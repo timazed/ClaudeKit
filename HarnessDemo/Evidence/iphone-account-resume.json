@@ -1,0 +1,111 @@
+{
+  "conversationContentOmitted": true,
+  "date": "2026-10-15T04:31:29Z",
+  "device": "iPhone",
+  "durationSeconds": 18.00472593307495,
+  "environment": "physical iOS device",
+  "fixtureModelRequests": 0,
+  "fixtureVerified": false,
+  "mode": "account",
+  "nativePID": 9955,
+  "officialTranscriptPaths": [
+    "/private/var/mobile/Containers/Data/Application/DBDADB30-EC99-4F5C-8BC7-87850892FACB/Library/Application Support/OfficialClaude/projects/-private-var-mobile-Containers-Data-Application-DBDADB30-EC99-4F5C-8BC7-87850892FACB-Documents-Workspace/b5b87514-080f-4694-bb90-d46a39f4b3fd.jsonl",
+    "/private/var/mobile/Containers/Data/Application/DBDADB30-EC99-4F5C-8BC7-87850892FACB/Library/Application Support/OfficialClaude/projects/-private-var-mobile-Containers-Data-Application-409AE966-62A7-4543-B1B5-E9E3C37666BC-Documents-Workspace/b5b87514-080f-4694-bb90-d46a39f4b3fd.jsonl"
+  ],
+  "passed": true,
+  "permissionRequests": 0,
+  "reads": 0,
+  "responseCharacters": 409,
+  "restoredAccount": {
+    "apiKeySource": null,
+    "apiProvider": "firstParty",
+    "hasAccountEmail": true,
+    "tokenSource": null
+  },
+  "result": {
+    "api_error_status": null,
+    "duration_api_ms": 2443,
+    "duration_ms": 2467,
+    "fast_mode_state": "off",
+    "is_error": false,
+    "modelUsage": {
+      "claude-sonnet-4-6": {
+        "cacheCreationInputTokens": 141,
+        "cacheReadInputTokens": 1141,
+        "contextWindow": 200000,
+        "costUSD": 0.0031600499999999998,
+        "inputTokens": 3,
+        "maxOutputTokens": 32000,
+        "outputTokens": 152,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 1,
+    "permission_denials": [],
+    "session_id": "b5b87514-080f-4694-bb90-d46a39f4b3fd",
+    "stop_reason": "end_turn",
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "total_cost_usd": 0.0031600499999999998,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 141,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 141,
+      "cache_read_input_tokens": 1141,
+      "inference_geo": "",
+      "input_tokens": 3,
+      "iterations": [],
+      "output_tokens": 152,
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "e55095a0-41c6-43e8-b8cf-7fd304490cc3"
+  },
+  "resumed": true,
+  "runID": "30BF7E58-E566-4009-81CE-6695A48C1CDA",
+  "runtime": {
+    "arch": "arm64",
+    "flags": [
+      "--jitless",
+      "--no-short-builtin-calls",
+      "--regexp-interpret-all",
+      "--stack-size=864"
+    ],
+    "harnessSHA256": "bc3358282800e3e99daa8e71ac5b7b1566bd0d7ca7eb94f714a7859365d3163f",
+    "harnessVersion": "2.1.112",
+    "icu": "73.2",
+    "jitless": true,
+    "mode": "account",
+    "node": "v18.19.1",
+    "pid": 9955,
+    "platform": "ios",
+    "resumedSession": "b5b87514-080f-4694-bb90-d46a39f4b3fd",
+    "type": "demo_runtime",
+    "workspace": "/var/mobile/Containers/Data/Application/DBDADB30-EC99-4F5C-8BC7-87850892FACB/Documents/Workspace"
+  },
+  "scope": "Official harness executes locally. Fixture mode simulates model responses, not the agent loop. Shell, subagents and compaction are not tested.",
+  "sessionID": "b5b87514-080f-4694-bb90-d46a39f4b3fd",
+  "streamEvents": 32,
+  "systemVersion": "27.0.1",
+  "verification": {
+    "accountMode": true,
+    "exactPriorNoteRecalled": true,
+    "newMarkerPresent": true,
+    "newProcess": true,
+    "noFixtureRequests": true,
+    "noRepeatedTools": true,
+    "passed": true,
+    "resumed": true,
+    "sameNativeAndNodeProcess": true,
+    "sameSession": true,
+    "transcriptExists": true
+  },
+  "writes": 0
+}

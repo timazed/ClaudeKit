@@ -1,0 +1,31 @@
+'use strict';
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+const { resolveResumeTarget } = require('../Runtime/resume.cjs');
+
+test('finds the same official transcript after iOS relocates the app container', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'harness-resume-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const session = 'b5b87514-080f-4694-bb90-d46a39f4b3fd';
+  const oldContainer = path.join(root, 'old-container');
+  const newContainer = path.join(root, 'new-container');
+  const relative = path.join('OfficialClaude', 'projects', '-old-container-Documents-Workspace');
+  fs.mkdirSync(path.join(oldContainer, relative), { recursive: true });
+  const bytes = '{"type":"user","sessionId":"' + session + '"}\n';
+  fs.writeFileSync(path.join(oldContainer, relative, session + '.jsonl'), bytes);
+  fs.renameSync(oldContainer, newContainer);
+  const config = path.join(newContainer, 'OfficialClaude');
+  const selected = resolveResumeTarget(config, session);
+  assert.equal(selected, path.join(newContainer, relative, session + '.jsonl'));
+  assert.equal(fs.readFileSync(selected, 'utf8'), bytes);
+  assert.equal(resolveResumeTarget(config, ''), null);
+  assert.throws(() => resolveResumeTarget(config, '../credentials'), /not a UUID/);
+  assert.throws(() => resolveResumeTarget(config, '00000000-0000-0000-0000-000000000000'), /missing/);
+  const duplicate = path.join(config, 'projects', 'another-project');
+  fs.mkdirSync(duplicate);
+  fs.copyFileSync(selected, path.join(duplicate, session + '.jsonl'));
+  assert.throws(() => resolveResumeTarget(config, session), /Multiple transcripts/);
+});

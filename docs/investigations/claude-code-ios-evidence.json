@@ -1,0 +1,467 @@
+{
+  "inspection_date": "2026-10-14",
+  "timezone": "Australia/Sydney",
+  "method": "Static inspection of public registry archives, metadata, SDK type declarations, prototype source, and macOS Mach-O headers. No harness or device execution, no source extraction from native binary. Literal scans are occurrence evidence, not runtime traces or complete dependency graphs.",
+  "packages": [
+    {
+      "name": "@anthropic-ai/claude-code",
+      "version": "2.1.299",
+      "source": "https://registry.npmjs.org/@anthropic-ai/claude-code/2.1.299",
+      "package_fields": {
+        "bin": {
+          "claude": "bin/claude.exe"
+        },
+        "main": null,
+        "exports": null,
+        "engines": {
+          "node": ">=22.0.0"
+        },
+        "license": "SEE LICENSE IN README.md",
+        "dependencies": {},
+        "optionalDependencies": {
+          "@anthropic-ai/claude-code-darwin-arm64": "2.1.299",
+          "@anthropic-ai/claude-code-darwin-x64": "2.1.299",
+          "@anthropic-ai/claude-code-linux-x64": "2.1.299",
+          "@anthropic-ai/claude-code-linux-arm64": "2.1.299",
+          "@anthropic-ai/claude-code-linux-x64-musl": "2.1.299",
+          "@anthropic-ai/claude-code-linux-arm64-musl": "2.1.299",
+          "@anthropic-ai/claude-code-win32-x64": "2.1.299",
+          "@anthropic-ai/claude-code-win32-arm64": "2.1.299"
+        },
+        "claudeCodeVersion": null
+      },
+      "archive_files": [
+        "LICENSE.md",
+        "README.md",
+        "bin/claude.exe",
+        "cli-wrapper.cjs",
+        "install.cjs",
+        "package.json",
+        "sdk-tools.d.ts"
+      ]
+    },
+    {
+      "name": "@anthropic-ai/claude-agent-sdk",
+      "version": "0.3.299",
+      "source": "https://registry.npmjs.org/@anthropic-ai/claude-agent-sdk/0.3.299",
+      "package_fields": {
+        "bin": null,
+        "main": "sdk.mjs",
+        "exports": {
+          ".": {
+            "types": "./sdk.d.ts",
+            "default": "./sdk.mjs"
+          },
+          "./core": {
+            "types": "./core.d.ts",
+            "default": "./core.mjs"
+          },
+          "./extract": {
+            "types": "./extractFromBunfs.d.ts",
+            "default": "./extractFromBunfs.js"
+          },
+          "./browser": {
+            "types": "./browser-sdk.d.ts",
+            "default": "./browser-sdk.js"
+          },
+          "./bridge": {
+            "types": "./bridge.d.ts",
+            "default": "./bridge.mjs"
+          },
+          "./sdk-tools": {
+            "types": "./sdk-tools.d.ts"
+          },
+          "./sdk-tools.js": {
+            "types": "./sdk-tools.d.ts"
+          }
+        },
+        "engines": {
+          "node": ">=18.0.0"
+        },
+        "license": "SEE LICENSE IN README.md",
+        "dependencies": null,
+        "optionalDependencies": {
+          "@anthropic-ai/claude-agent-sdk-linux-x64": "0.3.299",
+          "@anthropic-ai/claude-agent-sdk-linux-arm64": "0.3.299",
+          "@anthropic-ai/claude-agent-sdk-linux-x64-musl": "0.3.299",
+          "@anthropic-ai/claude-agent-sdk-linux-arm64-musl": "0.3.299",
+          "@anthropic-ai/claude-agent-sdk-darwin-x64": "0.3.299",
+          "@anthropic-ai/claude-agent-sdk-darwin-arm64": "0.3.299",
+          "@anthropic-ai/claude-agent-sdk-win32-x64": "0.3.299",
+          "@anthropic-ai/claude-agent-sdk-win32-arm64": "0.3.299"
+        },
+        "claudeCodeVersion": "2.1.299"
+      },
+      "archive_files": [
+        "LICENSE.md",
+        "README.md",
+        "agentSdkTypes.d.ts",
+        "bridge.d.ts",
+        "bridge.mjs",
+        "browser-sdk.d.ts",
+        "browser-sdk.js",
+        "core-x6a2shyd.mjs",
+        "core-xcjrj654.mjs",
+        "core.d.ts",
+        "core.mjs",
+        "extractFromBunfs.d.ts",
+        "extractFromBunfs.js",
+        "manifest.json",
+        "manifest.zst.json",
+        "package.json",
+        "sdk-tools.d.ts",
+        "sdk.d.ts",
+        "sdk.mjs"
+      ]
+    },
+    {
+      "name": "@anthropic-ai/claude-code",
+      "version": "2.1.112",
+      "source": "https://registry.npmjs.org/@anthropic-ai/claude-code/2.1.112",
+      "package_fields": {
+        "bin": {
+          "claude": "cli.js"
+        },
+        "main": null,
+        "exports": null,
+        "engines": {
+          "node": ">=18.0.0"
+        },
+        "license": "SEE LICENSE IN README.md",
+        "dependencies": {},
+        "optionalDependencies": {
+          "@img/sharp-darwin-arm64": "^0.34.2",
+          "@img/sharp-darwin-x64": "^0.34.2",
+          "@img/sharp-linux-arm": "^0.34.2",
+          "@img/sharp-linux-arm64": "^0.34.2",
+          "@img/sharp-linux-x64": "^0.34.2",
+          "@img/sharp-linuxmusl-arm64": "^0.34.2",
+          "@img/sharp-linuxmusl-x64": "^0.34.2",
+          "@img/sharp-win32-arm64": "^0.34.2",
+          "@img/sharp-win32-x64": "^0.34.2"
+        },
+        "claudeCodeVersion": null
+      },
+      "archive_files": [
+        "LICENSE.md",
+        "README.md",
+        "cli.js",
+        "package.json",
+        "sdk-tools.d.ts",
+        "vendor/audio-capture/arm64-darwin/audio-capture.node",
+        "vendor/audio-capture/arm64-linux/audio-capture.node",
+        "vendor/audio-capture/arm64-win32/audio-capture.node",
+        "vendor/audio-capture/x64-darwin/audio-capture.node",
+        "vendor/audio-capture/x64-linux/audio-capture.node",
+        "vendor/audio-capture/x64-win32/audio-capture.node",
+        "vendor/ripgrep/COPYING",
+        "vendor/ripgrep/arm64-darwin/rg",
+        "vendor/ripgrep/arm64-linux/rg",
+        "vendor/ripgrep/arm64-win32/rg.exe",
+        "vendor/ripgrep/x64-darwin/rg",
+        "vendor/ripgrep/x64-linux/rg",
+        "vendor/ripgrep/x64-win32/rg.exe",
+        "vendor/seccomp/arm64/apply-seccomp",
+        "vendor/seccomp/x64/apply-seccomp"
+      ]
+    },
+    {
+      "name": "@anthropic-ai/claude-code",
+      "version": "2.1.113",
+      "source": "https://registry.npmjs.org/@anthropic-ai/claude-code/2.1.113",
+      "package_fields": {
+        "bin": {
+          "claude": "bin/claude.exe"
+        },
+        "main": null,
+        "exports": null,
+        "engines": {
+          "node": ">=18.0.0"
+        },
+        "license": "SEE LICENSE IN README.md",
+        "dependencies": {},
+        "optionalDependencies": {
+          "@anthropic-ai/claude-code-darwin-arm64": "2.1.113",
+          "@anthropic-ai/claude-code-darwin-x64": "2.1.113",
+          "@anthropic-ai/claude-code-linux-x64": "2.1.113",
+          "@anthropic-ai/claude-code-linux-arm64": "2.1.113",
+          "@anthropic-ai/claude-code-linux-x64-musl": "2.1.113",
+          "@anthropic-ai/claude-code-linux-arm64-musl": "2.1.113",
+          "@anthropic-ai/claude-code-win32-x64": "2.1.113",
+          "@anthropic-ai/claude-code-win32-arm64": "2.1.113"
+        },
+        "claudeCodeVersion": null
+      },
+      "archive_files": [
+        "package/cli-wrapper.cjs",
+        "package/install.cjs",
+        "package/bin/claude.exe",
+        "package/package.json",
+        "package/LICENSE.md",
+        "package/README.md",
+        "package/sdk-tools.d.ts"
+      ]
+    },
+    {
+      "name": "@anthropic-ai/claude-agent-sdk",
+      "version": "0.2.112",
+      "source": "https://registry.npmjs.org/@anthropic-ai/claude-agent-sdk/0.2.112",
+      "package_fields": {
+        "bin": null,
+        "main": "sdk.mjs",
+        "exports": {
+          ".": {
+            "types": "./sdk.d.ts",
+            "default": "./sdk.mjs"
+          },
+          "./embed": {
+            "types": "./embed.d.ts",
+            "default": "./embed.js"
+          },
+          "./browser": {
+            "types": "./browser-sdk.d.ts",
+            "default": "./browser-sdk.js"
+          },
+          "./bridge": {
+            "types": "./bridge.d.ts",
+            "default": "./bridge.mjs"
+          },
+          "./assistant": {
+            "types": "./assistant.d.ts",
+            "default": "./assistant.mjs"
+          },
+          "./sdk-tools": {
+            "types": "./sdk-tools.d.ts"
+          },
+          "./sdk-tools.js": {
+            "types": "./sdk-tools.d.ts"
+          }
+        },
+        "engines": {
+          "node": ">=18.0.0"
+        },
+        "license": "SEE LICENSE IN README.md",
+        "dependencies": {
+          "@anthropic-ai/sdk": "^0.81.0",
+          "@modelcontextprotocol/sdk": "^1.29.0"
+        },
+        "optionalDependencies": {
+          "@img/sharp-darwin-arm64": "^0.34.2",
+          "@img/sharp-darwin-x64": "^0.34.2",
+          "@img/sharp-linux-arm": "^0.34.2",
+          "@img/sharp-linux-arm64": "^0.34.2",
+          "@img/sharp-linux-x64": "^0.34.2",
+          "@img/sharp-linuxmusl-arm64": "^0.34.2",
+          "@img/sharp-linuxmusl-x64": "^0.34.2",
+          "@img/sharp-win32-arm64": "^0.34.2",
+          "@img/sharp-win32-x64": "^0.34.2"
+        },
+        "claudeCodeVersion": "2.1.112"
+      },
+      "archive_files": [
+        "package/vendor/ripgrep/COPYING",
+        "package/vendor/ripgrep/arm64-darwin/rg",
+        "package/vendor/ripgrep/arm64-linux/rg",
+        "package/vendor/ripgrep/x64-darwin/rg",
+        "package/vendor/ripgrep/x64-linux/rg",
+        "package/vendor/ripgrep/arm64-win32/rg.exe",
+        "package/vendor/ripgrep/x64-win32/rg.exe",
+        "package/browser-sdk.js",
+        "package/cli.js",
+        "package/embed.js",
+        "package/extractFromBunfs.js",
+        "package/manifest.json",
+        "package/manifest.zst.json",
+        "package/package.json",
+        "package/LICENSE.md",
+        "package/README.md",
+        "package/assistant.mjs",
+        "package/bridge.mjs",
+        "package/sdk.mjs",
+        "package/vendor/audio-capture/arm64-darwin/audio-capture.node",
+        "package/vendor/audio-capture/arm64-linux/audio-capture.node",
+        "package/vendor/audio-capture/arm64-win32/audio-capture.node",
+        "package/vendor/audio-capture/x64-darwin/audio-capture.node",
+        "package/vendor/audio-capture/x64-linux/audio-capture.node",
+        "package/vendor/audio-capture/x64-win32/audio-capture.node",
+        "package/agentSdkTypes.d.ts",
+        "package/assistant.d.ts",
+        "package/bridge.d.ts",
+        "package/browser-sdk.d.ts",
+        "package/embed.d.ts",
+        "package/extractFromBunfs.d.ts",
+        "package/sdk-tools.d.ts",
+        "package/sdk.d.ts"
+      ]
+    }
+  ],
+  "historical_bundle": {
+    "version": "2.1.112",
+    "bytes": 13711684,
+    "sha256": "bc3358282800e3e99daa8e71ac5b7b1566bd0d7ca7eb94f714a7859365d3163f",
+    "sdk_cli_sha256": "1c4c22f3f693aa389dd84062ab1f4342c75da6818e35842ba286b23fff065b18",
+    "literal_module_candidates": [
+      "assert",
+      "async_hooks",
+      "buffer",
+      "bun:jsc",
+      "child_process",
+      "constants",
+      "crypto",
+      "dns",
+      "events",
+      "fs",
+      "fs/promises",
+      "http",
+      "http2",
+      "https",
+      "inspector",
+      "module",
+      "net",
+      "node:assert",
+      "node:async_hooks",
+      "node:buffer",
+      "node:child_process",
+      "node:console",
+      "node:crypto",
+      "node:diagnostics_channel",
+      "node:dns",
+      "node:events",
+      "node:fs",
+      "node:fs/promises",
+      "node:http",
+      "node:http2",
+      "node:https",
+      "node:module",
+      "node:net",
+      "node:os",
+      "node:path",
+      "node:perf_hooks",
+      "node:process",
+      "node:querystring",
+      "node:readline",
+      "node:stream",
+      "node:stream/consumers",
+      "node:timers/promises",
+      "node:tls",
+      "node:tty",
+      "node:url",
+      "node:util",
+      "node:util/types",
+      "node:worker_threads",
+      "node:zlib",
+      "os",
+      "path",
+      "path/posix",
+      "path/win32",
+      "perf_hooks",
+      "process",
+      "querystring",
+      "readline",
+      "stream",
+      "stream/promises",
+      "string_decoder",
+      "tls",
+      "tty",
+      "url",
+      "util",
+      "v8",
+      "vm",
+      "worker_threads",
+      "zlib"
+    ],
+    "occurrences": {
+      "Bun.spawn": {
+        "count": 1,
+        "first_character_offset": 4586831
+      },
+      "Bun.hash": {
+        "count": 6,
+        "first_character_offset": 870861
+      },
+      "bun:jsc": {
+        "count": 1,
+        "first_character_offset": 11419187
+      },
+      "worker_threads": {
+        "count": 4,
+        "first_character_offset": 1287252
+      },
+      "WebAssembly.compile": {
+        "count": 2,
+        "first_character_offset": 1322067
+      },
+      "readFileSync(": {
+        "count": 40,
+        "first_character_offset": 140952
+      },
+      "createHash(": {
+        "count": 13,
+        "first_character_offset": 870904
+      },
+      "spawn(": {
+        "count": 17,
+        "first_character_offset": 921884
+      },
+      "execFile(": {
+        "count": 5,
+        "first_character_offset": 2983372
+      },
+      "ripgrep": {
+        "count": 42,
+        "first_character_offset": 998742
+      },
+      "process.binding": {
+        "count": 0,
+        "first_character_offset": -1
+      },
+      "getBuiltinModule": {
+        "count": 0,
+        "first_character_offset": -1
+      }
+    }
+  },
+  "native_binary": {
+    "package": "@anthropic-ai/claude-code-darwin-arm64@2.1.299",
+    "bytes": 247931696,
+    "sha256": "ba5ab7b8c195fa03ab8d5bf3915c76153b576a2c40e79a5c46e265e7ed9744b3",
+    "file": "/tmp/claude-ios-investigation/native/package/claude: Mach-O 64-bit executable arm64",
+    "header": "MH_MAGIC_64 ARM64 EXECUTE; LC_BUILD_VERSION platform 1 (macOS), minos 13.0, sdk 26.5; __BUN segment and __bun_builtins section present."
+  },
+  "repositories": {
+    "anthropics/claude-code": {
+      "sha": "9b4f0d6ef8ceaf62f6b46babb9a4d84bec541a2e",
+      "url": "https://github.com/anthropics/claude-code"
+    },
+    "1amageek/ClaudeStand": {
+      "sha": "c7e782de62c27f91c6882732db32396f631d85b9",
+      "url": "https://github.com/1amageek/ClaudeStand"
+    },
+    "1amageek/swift-bun": {
+      "sha": "504aa47a80fb212eaa915a9b6177cd423cba68b9",
+      "url": "https://github.com/1amageek/swift-bun"
+    },
+    "ikunluo3-bit/l-shell-ios": {
+      "sha": "e95055e4affc962b32b860704c4f551aaefce052",
+      "url": "https://github.com/ikunluo3-bit/l-shell-ios"
+    }
+  },
+  "archive_sha256": {
+    "claude-code-2.1.299": "af955f68d925dc7f94fb397fa34465b5c0610cec59c75314ca9c06fef65bae7d",
+    "claude-agent-sdk-0.3.299": "f0beb43b8a11cfe7eddc2441cdfa3fd9075a620f5157b9cf4de4dfd7fb20bb6b",
+    "claude-code-2.1.112": "84379969ea53a0e5fd231a8f77debe4c7cb17dd971f4809d10d33f9aeca5de09",
+    "claude-code-2.1.113": "6df6e9f0b174c36f8de71539099f0553ff73c49b0fcac3125f3a9447758cbbbb",
+    "claude-agent-sdk-0.2.112": "c6ea0f92a79424f384010812d493a5fc20ef96dc38099ef8c3e215e7a0c09d19",
+    "claude-code-darwin-arm64-2.1.299": "86b621e84c7a553063a289da90c99a1167064c2033c755066f4d50eaf1e84744"
+  },
+  "registry_integrity_checks": {
+    "claude-code": {
+      "expected": "sha512-7pI5Pi+q0GHtX429SHGT0+IZgQ/2VlgcwRAHeDcH0vsumkF3tCHFp2vzKxp0uh8aytskZWHhmJ3kBi7ZfabywQ==",
+      "matches": true
+    },
+    "claude-agent-sdk": {
+      "expected": "sha512-E3JzXZ/xza/FW/13MfLYyW1z4l/kut1WY4GXFoLkqJlLm5ilK9cey/dA9SwjNy1B1N206gDlPAzXSM9AUBErbQ==",
+      "matches": true
+    }
+  }
+}

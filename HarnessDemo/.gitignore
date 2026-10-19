@@ -1,0 +1,7 @@
+Vendor/
+Runtime/vendor/
+build/
+build-device/
+*.xcuserstate
+xcuserdata/
+

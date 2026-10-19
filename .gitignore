@@ -1,0 +1,19 @@
+.build/
+.swiftpm/
+DerivedData/
+.DS_Store
+Sources/ClaudeKitHarness/Resources/Runtime/vendor/
+LibraryDemo/build*/
+
+# Local build products and IDE state
+**/build*/
+**/xcuserdata/
+*.xcuserstate
+*.xcresult/
+
+# Local credentials and server data
+.env
+.env.*
+*.p8
+*.p12
+*.mobileprovision

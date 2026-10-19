@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-19",
+  "fullCodexKitParity": false,
+  "comparisonCommit": "be2e9842f19d63add93bb3f0dab8690c9ae0631a",
+  "officialHarnessSHA256": "bc3358282800e3e99daa8e71ac5b7b1566bd0d7ca7eb94f714a7859365d3163f",
+  "lastSuccessfulPackageRun": {
+    "tests": 22,
+    "failures": 0,
+    "skips": 0,
+    "log": "/tmp/claudekit-parity-tests-final.log",
+    "completedAt": "2026-10-19 15:56:29 Australia/Sydney",
+    "includes": [
+      "official session switching",
+      "native tool image result",
+      "image input",
+      "ephemeral transcript isolation",
+      "structured JSON",
+      "official logout credential removal",
+      "skill budgets",
+      "memory scope",
+      "SQLite reopen"
+    ]
+  },
+  "lastSuccessfulIOSRun": {
+    "tests": 1,
+    "failures": 0,
+    "log": "/tmp/claudekit-parity-ios-tests.log",
+    "scope": [
+      "image input",
+      "typed JSON",
+      "ephemeral projection isolation",
+      "memory retrieval",
+      "harness logout"
+    ],
+    "simulator": "C1DFECE8-D228-4590-8C60-07E85FEC8CCC"
+  },
+  "finalVerification": {
+    "status": "blocked",
+    "reason": "Automatic approval review timed out; full UI regression retry also timed out. Commands were not executed.",
+    "unverifiedChanges": [
+      "explicit parallel tool opt-in and serial barrier",
+      "parallel ceiling regression test",
+      "demo model selection fallback"
+    ]
+  },
+  "currentSourceSHA256": {
+    "LibraryDemo/Sources/DemoModel.swift": "24dce7b166086bbc1511f73f3fda688528816c7f555c9e20981fb52c8f903ffa",
+    "LibraryDemo/Sources/LibraryDemoApp.swift": "3bad37263d6f8fa889b1550107fcfbe6ec1bd5e11df4ac248dc91598b6cca9c2",
+    "Sources/ClaudeKit/Approval/ApprovalModels.swift": "95af19e19b2600330804408fbccef899a62df7ac042be8a8502075fbdbabeccb",
+    "Sources/ClaudeKit/Auth/ClaudeAccount.swift": "bbe130b7caa33b165edec09daf4a352af7699ed777506c1be3594ab36400bdf9",
+    "Sources/ClaudeKit/Memory/AgentMemory.swift": "43a9e74a328acbf72bc221f10b88167717be10022009f769087b0755269e2763",
+    "Sources/ClaudeKit/Runtime/AgentBehavior.swift": "46c51947fdf43b8511719319ae971e96e3cbcdc68bdc12ef46711fb837220368",
+    "Sources/ClaudeKit/Runtime/AgentEvents.swift": "4f940ab2fe2ba8877680eccb0c50da7f1198cec688a39f83b93f2ff83fd908f4",
+    "Sources/ClaudeKit/Runtime/AgentExecution.swift": "36ca7efbc3d0fa4328b0e964bbd4b2f5ea59137080f7de5d015d80f20c0e9d6f",
+    "Sources/ClaudeKit/Runtime/AgentModelInfo.swift": "4f5a00a2bd0f6cd96a42bb37ea08239a9b8b93a73246aa3f8731c6706b8e24ff",
+    "Sources/ClaudeKit/Runtime/AgentModels.swift": "64b5ff4060c8452830bf600467edd9a8c0fce0977adabcdd8d0d2f7172294bd9",
+    "Sources/ClaudeKit/Runtime/AgentRequest+Validation.swift": "fdf902016626f6f52b117131f6e5a04f75bb485e16b676da77bd05357f5d33bd",
+    "Sources/ClaudeKit/Runtime/AgentRequest.swift": "0cc5874e78860779f8824a3c4c93e842dacee36b6bdc83c7aab9dc17ccce15f4",
+    "Sources/ClaudeKit/Runtime/AgentRuntime+Threads.swift": "c5aa9ab71273562c84951b720335501481981b9d9e0e2faf2bf3fea884ee7724",
+    "Sources/ClaudeKit/Runtime/AgentRuntime.swift": "b7bddb911a71ef383f11590940cba35de872cf03bbde7add6b7fafd753f79209",
+    "Sources/ClaudeKit/Runtime/AgentRuntimeError.swift": "f09c710f333d15e7878a62f624a6d4acf8389c8a3a08f815a88dd2e7141993b6",
+    "Sources/ClaudeKit/Runtime/HarnessDriving.swift": "40128a6af041f4b87097b68b536748553c3898550d1ac740fc28005db540fc69",
+    "Sources/ClaudeKit/Runtime/RuntimeStateStore.swift": "474c0f280b54338019b74190a60c71ee5d8c8f0e55d2e5d4547c874c6483d126",
+    "Sources/ClaudeKit/Support/JSONValue.swift": "e20edb9f37da226b99d93833695b09c72d00055e3f08e84abdfcbd93b9d4905a",
+    "Sources/ClaudeKit/Tools/ToolModels.swift": "c24e4a7911d6e029a757a29e18183919e11ea0fb2288a07136a794a48cf3c4cd",
+    "Sources/ClaudeKit/Tools/ToolSchema.swift": "864777883cd1099a6b485869fd283badd5f515387dd704a7b520a51938a99a66",
+    "Sources/ClaudeKitHarness/AgentRuntime+DefaultHarness.swift": "17d1b673693e39a1061c7c049692150cc2097bfad7c6bdb3959d57635e36e45e",
+    "Sources/ClaudeKitHarness/ClaudeCodeDriver+Events.swift": "4cac6afb402435e07d77f3500da31568127c5fe43d86bb3dce7003152cd4c2d1",
+    "Sources/ClaudeKitHarness/ClaudeCodeDriver.swift": "2c59b21856096c8368187f306e0c125cb03e5a89e5b38e857e995ade8baad4b6",
+    "Sources/ClaudeKitHarness/HarnessTransport.swift": "699cf88985bec078c9d01adcf56408346958c513522e041cfca0fd6e3bacf099",
+    "Sources/ClaudeKitSQLite/SQLiteRuntimeStateStore.swift": "89d81f3ce5de729052b80eac887e1b083e703ff3cce6e8cbc5cab5af242fa931",
+    "Tests/ClaudeKitTests/BehaviorAndStoreTests.swift": "2314cd0ca344a5160327efa6ed077c7c8be68464b4e162ca7590cd89f9fa98b8",
+    "Tests/ClaudeKitTests/ExecutionTests.swift": "e364ddc1c8a4daba4e90638683a8fe05a721f699f89874c46331e31c9d6487ea",
+    "Tests/ClaudeKitTests/HarnessRuntimeTests.swift": "91e457ae96b12b68d974252956449674d04d11695e44b34a6ed79ce92283022b",
+    "Tests/ClaudeKitTests/RequestModeTests.swift": "c86d730217af04a380527bbd038c9c80dd1d7003f9a042fa536c49dadeb38338"
+  }
+}

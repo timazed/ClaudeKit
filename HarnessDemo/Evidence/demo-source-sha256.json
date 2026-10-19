@@ -1,0 +1,21 @@
+{
+  "Runtime/bootstrap.cjs": "f83961beb904fa5a1ac579091367c9b6323f78e9f98660adb35aa51c98906a76",
+  "Runtime/fixture.cjs": "3da4b3f2fb23d6a83f7be80adbdf6eb5763761a983e5139a9e0d6ca4e604c5c6",
+  "Runtime/resume.cjs": "48ce5135638e6721e3a66eb48de327405c1b2bef3d02fc23c7d72a858c911075",
+  "Runtime/shims/child_process.js": "62e52ffcb84c183a234f0b4e3e77d37a21f0a8a70e4ab7af6867fc3302e9635e",
+  "Runtime/shims/fetch.js": "640fc09e1d029e458ddf6cbdf9eb4e42889687d968486f9c5ecf72d1fb1aec4d",
+  "Runtime/shims/fs-safe-copy.js": "99dafaed4b40cd9c6fdac9d8b648dac8ef85d63c87027df8cf6cde8b3d6868ea",
+  "Runtime/shims/intl.js": "5d26ac78bf2363289c70994c858c0c5f1e1b1e12c9ed5f20bbebac26850c2767",
+  "Runtime/shims/process-exit.js": "c90fd7795c70e03f368f7ceb51e912b0547547a6de517552ce12414d19ad0310",
+  "Runtime/shims/process-title.js": "f1db373aff99202f0f6c030d8b0d6ca859c17483a78fea8731f0a69b5bc3de49",
+  "Runtime/shims/wasm-stub.js": "22215d71a07ed00a6840802a286ae4e5e44530fc337bf5fb8c504f45f307eff1",
+  "Sources/HarnessDemo.entitlements": "b34bba452eae0713c7d2a4f3c28925784cc6ec6035bd3595486317c3afdb13f2",
+  "Sources/HarnessDemoApp.swift": "5c9b0720c33990a27cfade52261fbb1c6a456550c592fc976d3dee8a56f948fd",
+  "Sources/HarnessHost.swift": "aaf1072ede4315d478900bcf9f6f9b74cc69cee7e962d3a0ff542f3ae03a02a6",
+  "Tests/HarnessDemoUITests.swift": "dbb3eaab669556e0554e18866b20f9a9713b463c911d95c465e8f57fc5a5430b",
+  "Tests/auth-smoke.cjs": "d108e20d8f72e9e7e62e987100029c09f22f42127ce7c1623b06a0a6374fcb07",
+  "Tests/protocol-smoke.cjs": "c6a2e84dd045926b975c09b6caceb79870df41b8c7d531a4512cc80056f3af0b",
+  "Tests/resume-path.cjs": "0ff23f3a6ef4882581f3860d8f74f33a2f5fc8c2eeca6ff7b76a0d879d6f54e7",
+  "scripts/bootstrap.sh": "d17b4a7f7f54f24153f725c69cfa5cfc3a362a92416be95ba439bad03c2a24f6",
+  "scripts/generate-project.py": "4bd3c5ca87f86f895006b4457d9b9bc691c8783329ad4b79cb90657a5e605db3"
+}

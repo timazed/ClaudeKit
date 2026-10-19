@@ -1,0 +1,39 @@
+{
+  "date" : "2026-10-14T07:36:29Z",
+  "device" : "iPhone",
+  "durationSeconds" : 0.22034907341003418,
+  "environment" : "physical iOS device",
+  "fixtureModelRequests" : 0,
+  "fixtureVerified" : false,
+  "mode" : "fixture",
+  "nativePID" : 4632,
+  "officialTranscriptPaths" : [
+
+  ],
+  "passed" : false,
+  "permissionRequests" : 0,
+  "reads" : 0,
+  "result" : {
+    "error" : "SyntaxError: Invalid regular expression: \/^\\p{Default_Ignorable_Code_Point}$\/: Invalid property name\n    at ModuleLoader.moduleStrategy (node:internal\/modules\/esm\/translators:152:18)\n    at ModuleLoader.moduleProvider (node:internal\/modules\/esm\/loader:299:14)\n    at async link (node:internal\/modules\/esm\/module_job:67:21)"
+  },
+  "resumed" : false,
+  "runID" : "245B2435-CCE2-48A6-9296-F17D540DCA9B",
+  "runtime" : {
+    "arch" : "arm64",
+    "harnessSHA256" : "bc3358282800e3e99daa8e71ac5b7b1566bd0d7ca7eb94f714a7859365d3163f",
+    "harnessVersion" : "2.1.112",
+    "jitless" : true,
+    "mode" : "fixture",
+    "node" : "v18.20.4",
+    "pid" : 4632,
+    "platform" : "ios",
+    "resumedSession" : null,
+    "type" : "demo_runtime",
+    "workspace" : "\/var\/mobile\/Containers\/Data\/Application\/98B283D0-74DB-4C3A-AF52-6D35CC89CB96\/Documents\/Workspace"
+  },
+  "scope" : "Official harness executes locally. Fixture mode simulates model responses, not the agent loop. Shell, subagents and compaction are not tested.",
+  "sessionID" : "",
+  "streamEvents" : 0,
+  "systemVersion" : "27.0.1",
+  "writes" : 0
+}

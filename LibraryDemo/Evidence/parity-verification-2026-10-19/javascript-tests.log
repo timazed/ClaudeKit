@@ -1,0 +1,12 @@
+✔ independent jobs overlap without duplicate runs and cancellation is isolated (2.302042ms)
+✔ push retry survives scheduler restart without replaying generation (0.872ms)
+✔ HTTP receipt replay, conflict, authentication and restart recovery without generation (96.01875ms)
+✔ concurrent worker workspaces, chdir, ESM and symlinks stay independent (33.11725ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 159.259958

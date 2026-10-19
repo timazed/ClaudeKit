@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-14T07:47:18Z",
+  "device": "iPhone",
+  "durationSeconds": 1.525251030921936,
+  "environment": "iOS simulator",
+  "fixtureModelRequests": 1,
+  "fixtureVerified": true,
+  "mode": "fixture",
+  "nativePID": 2133,
+  "officialTranscriptPaths": [
+    "/Users/tima/Library/Developer/CoreSimulator/Devices/C1DFECE8-D228-4590-8C60-07E85FEC8CCC/data/Containers/Data/Application/029888F7-A8A2-4105-BF56-6F5A8461EC92/Library/Application Support/OfficialClaude/projects/-Users-tima-Library-Developer-CoreSimulator-Devices-C1DFECE8-D228-4590-8C60-07E85FEC8CCC-data-Containers-Data-Application-029888F7-A8A2-4105-BF56-6F5A8461EC92-Documents-Workspace/78799980-95c4-4cd9-ac52-089b07fb44e9.jsonl"
+  ],
+  "passed": true,
+  "permissionRequests": 0,
+  "reads": 0,
+  "result": {
+    "api_error_status": null,
+    "duration_api_ms": 31,
+    "duration_ms": 37,
+    "fast_mode_state": "off",
+    "is_error": false,
+    "modelUsage": {
+      "claude-sonnet-4-6": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "contextWindow": 200000,
+        "costUSD": 0.00075,
+        "inputTokens": 100,
+        "maxOutputTokens": 32000,
+        "outputTokens": 30,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 1,
+    "permission_denials": [],
+    "result": "RESUME_OK: Official harness on iOS: ABF94C35-53F7-4AEA-BEA3-0DC062023AE3",
+    "session_id": "78799980-95c4-4cd9-ac52-089b07fb44e9",
+    "stop_reason": "end_turn",
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "total_cost_usd": 0.00075,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "",
+      "input_tokens": 100,
+      "iterations": [],
+      "output_tokens": 30,
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "8821ae11-f704-442c-a9f8-3373b7bd36ca"
+  },
+  "resumed": true,
+  "runID": "4F87411A-0F71-4C58-9FCF-732B2B84DF63",
+  "runtime": {
+    "arch": "arm64",
+    "flags": [
+      "--jitless",
+      "--no-short-builtin-calls",
+      "--regexp-interpret-all",
+      "--stack-size=864"
+    ],
+    "harnessSHA256": "bc3358282800e3e99daa8e71ac5b7b1566bd0d7ca7eb94f714a7859365d3163f",
+    "harnessVersion": "2.1.112",
+    "icu": "73.2",
+    "jitless": true,
+    "mode": "fixture",
+    "node": "v18.19.1",
+    "pid": 2133,
+    "platform": "ios",
+    "resumedSession": "78799980-95c4-4cd9-ac52-089b07fb44e9",
+    "type": "demo_runtime",
+    "workspace": "/Users/tima/Library/Developer/CoreSimulator/Devices/C1DFECE8-D228-4590-8C60-07E85FEC8CCC/data/Containers/Data/Application/029888F7-A8A2-4105-BF56-6F5A8461EC92/Documents/Workspace"
+  },
+  "scope": "Official harness executes locally. Fixture mode simulates model responses, not the agent loop. Shell, subagents and compaction are not tested.",
+  "sessionID": "78799980-95c4-4cd9-ac52-089b07fb44e9",
+  "streamEvents": 11,
+  "systemVersion": "18.6",
+  "writes": 0
+}

@@ -1,0 +1,29 @@
+{
+  "authorizationHost": "claude.com",
+  "authorizationPath": "/cai/oauth/authorize",
+  "credentialsHandledBy": "unmodified official harness",
+  "nativePID": 9780,
+  "officialLoginControl": "claude_authenticate",
+  "realAccountAuthenticated": false,
+  "runtime": {
+    "arch": "arm64",
+    "flags": [
+      "--jitless",
+      "--no-short-builtin-calls",
+      "--regexp-interpret-all",
+      "--stack-size=864"
+    ],
+    "harnessSHA256": "bc3358282800e3e99daa8e71ac5b7b1566bd0d7ca7eb94f714a7859365d3163f",
+    "harnessVersion": "2.1.112",
+    "icu": "73.2",
+    "jitless": true,
+    "mode": "account",
+    "node": "v18.19.1",
+    "pid": 9780,
+    "platform": "ios",
+    "resumedSession": null,
+    "type": "demo_runtime",
+    "workspace": "/var/mobile/Containers/Data/Application/409AE966-62A7-4543-B1B5-E9E3C37666BC/Documents/Workspace"
+  },
+  "status": "awaiting_user_sign_in"
+}

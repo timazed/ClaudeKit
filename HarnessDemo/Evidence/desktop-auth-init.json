@@ -1,0 +1,1 @@
+{"passed":true,"harnessVersion":"2.1.112","mode":"account","authorizationOrigin":"https://claude.com","authorizationPath":"/cai/oauth/authorize","pkce":"S256","callbackHost":"localhost","manualFallback":true,"scope":"Official harness generates login URL and owns PKCE/callback; account authentication and inference await human sign-in."}

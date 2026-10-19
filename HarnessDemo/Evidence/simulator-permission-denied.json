@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-14T07:46:39Z",
+  "device": "iPhone",
+  "durationSeconds": 3.347936987876892,
+  "environment": "iOS simulator",
+  "fixtureModelRequests": 1,
+  "fixtureVerified": false,
+  "mode": "fixture",
+  "nativePID": 1881,
+  "officialTranscriptPaths": [
+    "/Users/tima/Library/Developer/CoreSimulator/Devices/C1DFECE8-D228-4590-8C60-07E85FEC8CCC/data/Containers/Data/Application/029888F7-A8A2-4105-BF56-6F5A8461EC92/Library/Application Support/OfficialClaude/projects/-Users-tima-Library-Developer-CoreSimulator-Devices-C1DFECE8-D228-4590-8C60-07E85FEC8CCC-data-Containers-Data-Application-029888F7-A8A2-4105-BF56-6F5A8461EC92-Documents-Workspace/dc9eba6e-d618-44af-aa21-4237f035e620.jsonl"
+  ],
+  "passed": false,
+  "permissionRequests": 1,
+  "reads": 0,
+  "result": {
+    "api_error_status": 400,
+    "duration_api_ms": 20,
+    "duration_ms": 1756,
+    "fast_mode_state": "off",
+    "is_error": true,
+    "modelUsage": {
+      "claude-sonnet-4-6": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "contextWindow": 200000,
+        "costUSD": 0.00075,
+        "inputTokens": 100,
+        "maxOutputTokens": 32000,
+        "outputTokens": 30,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 2,
+    "permission_denials": [
+      {
+        "tool_input": {
+          "text": "Official harness on iOS: DABE6883-47B8-4677-BA04-106715A5378E"
+        },
+        "tool_name": "mcp__ios__write_note",
+        "tool_use_id": "toolu_fixture_write"
+      }
+    ],
+    "result": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Harness returned a tool error: [{\\\"type\\\":\\\"tool_result\\\",\\\"content\\\":\\\"The user denied this tool request.\\\",\\\"is_error\\\":true,\\\"tool_use_id\\\":\\\"toolu_fixture_write\\\",\\\"cache_control\\\":{\\\"type\\\":\\\"ephemeral\\\"}}]\"}}",
+    "session_id": "dc9eba6e-d618-44af-aa21-4237f035e620",
+    "stop_reason": "stop_sequence",
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "total_cost_usd": 0.00075,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "",
+      "input_tokens": 100,
+      "iterations": [],
+      "output_tokens": 30,
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "59e6095e-17b2-4b18-86c7-43318645a5f1"
+  },
+  "resumed": false,
+  "runID": "8F8B03E6-508E-4A6C-BDB9-EDC21C6FEC64",
+  "runtime": {
+    "arch": "arm64",
+    "flags": [
+      "--jitless",
+      "--no-short-builtin-calls",
+      "--regexp-interpret-all",
+      "--stack-size=864"
+    ],
+    "harnessSHA256": "bc3358282800e3e99daa8e71ac5b7b1566bd0d7ca7eb94f714a7859365d3163f",
+    "harnessVersion": "2.1.112",
+    "icu": "73.2",
+    "jitless": true,
+    "mode": "fixture",
+    "node": "v18.19.1",
+    "pid": 1881,
+    "platform": "ios",
+    "resumedSession": null,
+    "type": "demo_runtime",
+    "workspace": "/Users/tima/Library/Developer/CoreSimulator/Devices/C1DFECE8-D228-4590-8C60-07E85FEC8CCC/data/Containers/Data/Application/029888F7-A8A2-4105-BF56-6F5A8461EC92/Documents/Workspace"
+  },
+  "scope": "Official harness executes locally. Fixture mode simulates model responses, not the agent loop. Shell, subagents and compaction are not tested.",
+  "sessionID": "dc9eba6e-d618-44af-aa21-4237f035e620",
+  "streamEvents": 11,
+  "systemVersion": "18.6",
+  "writes": 0
+}

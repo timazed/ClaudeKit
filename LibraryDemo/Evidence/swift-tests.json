@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "date": "2026-10-18",
+  "newLibraryTests": 5,
+  "legacyTests": 7,
+  "failures": 0,
+  "harnessIntegrationEnabled": true,
+  "desktopNode": "24.14.0",
+  "tests": [
+    "ClaudeKitTests.ExecutionTests testApprovalCancellationRemovesPrompt",
+    "ClaudeKitTests.ExecutionTests testCancellationBusyAndStaleHandle",
+    "ClaudeKitTests.ExecutionTests testDifferentAccountCannotRestoreStoredThreads",
+    "ClaudeKitTests.HarnessRuntimeTests testOfficialHarnessSwitchesAndRestoresSessions",
+    "ClaudeKitTests.HarnessRuntimeTests testSchemaRejectsUnsupportedAndInvalidArguments",
+    "ClaudeKitLegacyTests.AgentRuntimeTests testExecutesToolWithApproval",
+    "ClaudeKitLegacyTests.AgentRuntimeTests testSendCollectsAssistantMessageAndPersistsHistory",
+    "ClaudeKitLegacyTests.AnthropicCredentialTests testAPIKeyUsesXAPIKeyHeader",
+    "ClaudeKitLegacyTests.AnthropicCredentialTests testBearerTokenUsesAuthorizationHeader",
+    "ClaudeKitLegacyTests.JSONValueTests testRoundTripsObjects",
+    "ClaudeKitLegacyTests.ToolRegistryTests testRejectsInvalidToolNames",
+    "ClaudeKitLegacyTests.ToolRegistryTests testStoresDefinitionsSortedByName"
+  ]
+}

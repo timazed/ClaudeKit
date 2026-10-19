@@ -1,0 +1,149 @@
+warning: 'realm-swift': /Users/tima/Projects/AssistantAI/ClaudeKit/.build/checkouts/realm-swift/Package.swift:49:19: warning: 'v4' is deprecated: watchOS 9.0 is the oldest supported version [#DeprecatedDeclaration]
+ 47 |         .iOS(.v12),
+ 48 |         .tvOS(.v12),
+ 49 |         .watchOS(.v4)
+    |                   `- warning: 'v4' is deprecated: watchOS 9.0 is the oldest supported version [#DeprecatedDeclaration]
+ 50 |     ],
+ 51 |     products: [
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+Building for debugging...
+[Computing dependencies]
+[Using on-disk description]
+[1 / 4]
+[1 / 3] ClaudeKit
+[3 / 12] ClaudeKit_ClaudeKitHarness
+Build complete! (1.04 sec.)
+Test Suite 'All tests' started at 2026-10-19 17:08:57.606.
+Test Suite 'ClaudeKitTests.xctest' started at 2026-10-19 17:08:57.607.
+Test Suite 'BehaviorAndStoreTests' started at 2026-10-19 17:08:57.607.
+Test Case '-[ClaudeKitTests.BehaviorAndStoreTests testOfficialLogoutRemovesScopedCredential]' started.
+Test Case '-[ClaudeKitTests.BehaviorAndStoreTests testOfficialLogoutRemovesScopedCredential]' passed (1.656 seconds).
+Test Case '-[ClaudeKitTests.BehaviorAndStoreTests testParallelToolCeilingAndSerialDefault]' started.
+Test Case '-[ClaudeKitTests.BehaviorAndStoreTests testParallelToolCeilingAndSerialDefault]' passed (0.218 seconds).
+Test Case '-[ClaudeKitTests.BehaviorAndStoreTests testPoliciesDenyBeforeExecutingAndRequiredToolsFailCommit]' started.
+Test Case '-[ClaudeKitTests.BehaviorAndStoreTests testPoliciesDenyBeforeExecutingAndRequiredToolsFailCommit]' passed (0.001 seconds).
+Test Case '-[ClaudeKitTests.BehaviorAndStoreTests testPolicyIntersectionAndPersonaPrecedence]' started.
+Test Case '-[ClaudeKitTests.BehaviorAndStoreTests testPolicyIntersectionAndPersonaPrecedence]' passed (0.000 seconds).
+Test Case '-[ClaudeKitTests.BehaviorAndStoreTests testSQLiteRoundTripAndScopedMemory]' started.
+Test Case '-[ClaudeKitTests.BehaviorAndStoreTests testSQLiteRoundTripAndScopedMemory]' passed (0.015 seconds).
+Test Suite 'BehaviorAndStoreTests' passed at 2026-10-19 17:08:59.498.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 1.890 (1.891) seconds
+Test Suite 'ConcurrencyParityTests' started at 2026-10-19 17:08:59.498.
+Test Case '-[ClaudeKitTests.ConcurrencyParityTests testIndependentThreadsHaveNoTwoTurnCapAndCancellationIsIsolated]' started.
+Test Case '-[ClaudeKitTests.ConcurrencyParityTests testIndependentThreadsHaveNoTwoTurnCapAndCancellationIsIsolated]' passed (0.019 seconds).
+Test Case '-[ClaudeKitTests.ConcurrencyParityTests testLimitsAreConfigurableLikeCodexKit]' started.
+Test Case '-[ClaudeKitTests.ConcurrencyParityTests testLimitsAreConfigurableLikeCodexKit]' passed (0.000 seconds).
+Test Case '-[ClaudeKitTests.ConcurrencyParityTests testSearchPolicyHasNoArbitraryCallCapAndNarrowsSubdomains]' started.
+Test Case '-[ClaudeKitTests.ConcurrencyParityTests testSearchPolicyHasNoArbitraryCallCapAndNarrowsSubdomains]' passed (0.001 seconds).
+Test Case '-[ClaudeKitTests.ConcurrencyParityTests testTypedRecordsAllowRequiredToolsAndIgnoreCommentary]' started.
+Test Case '-[ClaudeKitTests.ConcurrencyParityTests testTypedRecordsAllowRequiredToolsAndIgnoreCommentary]' passed (0.001 seconds).
+Test Suite 'ConcurrencyParityTests' passed at 2026-10-19 17:08:59.519.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.021 (0.021) seconds
+Test Suite 'ExecutionTests' started at 2026-10-19 17:08:59.519.
+Test Case '-[ClaudeKitTests.ExecutionTests testApprovalCancellationRemovesPrompt]' started.
+Test Case '-[ClaudeKitTests.ExecutionTests testApprovalCancellationRemovesPrompt]' passed (0.001 seconds).
+Test Case '-[ClaudeKitTests.ExecutionTests testCancellationBusyAndStaleHandle]' started.
+Test Case '-[ClaudeKitTests.ExecutionTests testCancellationBusyAndStaleHandle]' passed (0.001 seconds).
+Test Case '-[ClaudeKitTests.ExecutionTests testDifferentAccountCannotRestoreStoredThreads]' started.
+Test Case '-[ClaudeKitTests.ExecutionTests testDifferentAccountCannotRestoreStoredThreads]' passed (0.000 seconds).
+Test Case '-[ClaudeKitTests.ExecutionTests testSignInCancellationClearsAttemptAndIgnoresStaleBrowser]' started.
+Test Case '-[ClaudeKitTests.ExecutionTests testSignInCancellationClearsAttemptAndIgnoresStaleBrowser]' passed (0.000 seconds).
+Test Suite 'ExecutionTests' passed at 2026-10-19 17:08:59.522.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'HarnessRuntimeTests' started at 2026-10-19 17:08:59.522.
+Test Case '-[ClaudeKitTests.HarnessRuntimeTests testOfficialHarnessSwitchesAndRestoresSessions]' started.
+Test Case '-[ClaudeKitTests.HarnessRuntimeTests testOfficialHarnessSwitchesAndRestoresSessions]' passed (4.114 seconds).
+Test Case '-[ClaudeKitTests.HarnessRuntimeTests testSchemaRejectsUnsupportedAndInvalidArguments]' started.
+Test Case '-[ClaudeKitTests.HarnessRuntimeTests testSchemaRejectsUnsupportedAndInvalidArguments]' passed (0.000 seconds).
+Test Suite 'HarnessRuntimeTests' passed at 2026-10-19 17:09:03.637.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 4.115 (4.115) seconds
+Test Suite 'NonImageParityTests' started at 2026-10-19 17:09:03.637.
+Test Case '-[ClaudeKitTests.NonImageParityTests testDeniedRecoveryDoesNotSpendAttempt]' started.
+Test Case '-[ClaudeKitTests.NonImageParityTests testDeniedRecoveryDoesNotSpendAttempt]' passed (0.003 seconds).
+Test Case '-[ClaudeKitTests.NonImageParityTests testExplicitToolFreeRequestRejectsRequiredToolsBeforeRun]' started.
+Test Case '-[ClaudeKitTests.NonImageParityTests testExplicitToolFreeRequestRejectsRequiredToolsBeforeRun]' passed (0.001 seconds).
+Test Case '-[ClaudeKitTests.NonImageParityTests testInvalidRecordNeverCommitsAssistant]' started.
+Test Case '-[ClaudeKitTests.NonImageParityTests testInvalidRecordNeverCommitsAssistant]' passed (0.001 seconds).
+Test Case '-[ClaudeKitTests.NonImageParityTests testJSONLinesChunksCommitAndRestore]' started.
+Test Case '-[ClaudeKitTests.NonImageParityTests testJSONLinesChunksCommitAndRestore]' passed (0.002 seconds).
+Test Case '-[ClaudeKitTests.NonImageParityTests testRecoveryLeaseExcludesSecondStore]' started.
+Test Case '-[ClaudeKitTests.NonImageParityTests testRecoveryLeaseExcludesSecondStore]' passed (0.001 seconds).
+Test Case '-[ClaudeKitTests.NonImageParityTests testRecoveryReceiptReplaysWithoutGenerationOrAuthorization]' started.
+Test Case '-[ClaudeKitTests.NonImageParityTests testRecoveryReceiptReplaysWithoutGenerationOrAuthorization]' passed (0.005 seconds).
+Test Case '-[ClaudeKitTests.NonImageParityTests testSQLiteIndexedQueryAndMigration]' started.
+Test Case '-[ClaudeKitTests.NonImageParityTests testSQLiteIndexedQueryAndMigration]' passed (0.008 seconds).
+Test Case '-[ClaudeKitTests.NonImageParityTests testXMLValidationRejectsDTDAndWrongSchema]' started.
+Test Case '-[ClaudeKitTests.NonImageParityTests testXMLValidationRejectsDTDAndWrongSchema]' passed (0.001 seconds).
+Test Suite 'NonImageParityTests' passed at 2026-10-19 17:09:03.660.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.023 (0.024) seconds
+Test Suite 'RequestModeTests' started at 2026-10-19 17:09:03.661.
+Test Case '-[ClaudeKitTests.RequestModeTests testAttachmentsRejectSpoofedTypeAndOversizedPacket]' started.
+Test Case '-[ClaudeKitTests.RequestModeTests testAttachmentsRejectSpoofedTypeAndOversizedPacket]' passed (0.001 seconds).
+Test Case '-[ClaudeKitTests.RequestModeTests testEphemeralDoesNotChangeStateOrResumeExistingSession]' started.
+Test Case '-[ClaudeKitTests.RequestModeTests testEphemeralDoesNotChangeStateOrResumeExistingSession]' passed (0.001 seconds).
+Test Case '-[ClaudeKitTests.RequestModeTests testOfficialHarnessImageAndEphemeralModes]' started.
+Test Case '-[ClaudeKitTests.RequestModeTests testOfficialHarnessImageAndEphemeralModes]' passed (2.702 seconds).
+Test Case '-[ClaudeKitTests.RequestModeTests testOfficialHarnessStructuredOutput]' started.
+Test Case '-[ClaudeKitTests.RequestModeTests testOfficialHarnessStructuredOutput]' passed (1.689 seconds).
+Test Case '-[ClaudeKitTests.RequestModeTests testStructuredResultIsValidatedBeforeCommit]' started.
+Test Case '-[ClaudeKitTests.RequestModeTests testStructuredResultIsValidatedBeforeCommit]' passed (0.001 seconds).
+Test Suite 'RequestModeTests' passed at 2026-10-19 17:09:08.055.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 4.394 (4.395) seconds
+Test Suite 'StorageAndMemoryParityTests' started at 2026-10-19 17:09:08.055.
+Test Case '-[ClaudeKitTests.StorageAndMemoryParityTests testEmbeddingCacheInvalidatesEditsAndExcludesDeletedRecords]' started.
+Test Case '-[ClaudeKitTests.StorageAndMemoryParityTests testEmbeddingCacheInvalidatesEditsAndExcludesDeletedRecords]' passed (0.001 seconds).
+Test Case '-[ClaudeKitTests.StorageAndMemoryParityTests testFailedPersistenceRequiresRestoreBeforeFurtherTurns]' started.
+Test Case '-[ClaudeKitTests.StorageAndMemoryParityTests testFailedPersistenceRequiresRestoreBeforeFurtherTurns]' passed (0.001 seconds).
+Test Case '-[ClaudeKitTests.StorageAndMemoryParityTests testMemoryContextBudgetIsExplicit]' started.
+Test Case '-[ClaudeKitTests.StorageAndMemoryParityTests testMemoryContextBudgetIsExplicit]' passed (0.002 seconds).
+Test Case '-[ClaudeKitTests.StorageAndMemoryParityTests testRemotePreparationFreezesHistoryMemoryAndInstructions]' started.
+Test Case '-[ClaudeKitTests.StorageAndMemoryParityTests testRemotePreparationFreezesHistoryMemoryAndInstructions]' passed (0.001 seconds).
+Test Case '-[ClaudeKitTests.StorageAndMemoryParityTests testSQLiteAndRealmPreserveInactivePartitionsAndRedaction]' started.
+Test Case '-[ClaudeKitTests.StorageAndMemoryParityTests testSQLiteAndRealmPreserveInactivePartitionsAndRedaction]' passed (0.195 seconds).
+Test Suite 'StorageAndMemoryParityTests' passed at 2026-10-19 17:09:08.255.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.199 (0.200) seconds
+Test Suite 'ClaudeKitTests.xctest' passed at 2026-10-19 17:09:08.255.
+	 Executed 33 tests, with 0 failures (0 unexpected) in 10.645 (10.649) seconds
+Test Suite 'All tests' passed at 2026-10-19 17:09:08.255.
+	 Executed 33 tests, with 0 failures (0 unexpected) in 10.645 (10.650) seconds
+Test Suite 'All tests' started at 2026-10-19 17:09:08.381.
+Test Suite 'ClaudeKitLegacyTests.xctest' started at 2026-10-19 17:09:08.382.
+Test Suite 'AgentRuntimeTests' started at 2026-10-19 17:09:08.382.
+Test Case '-[ClaudeKitLegacyTests.AgentRuntimeTests testExecutesToolWithApproval]' started.
+Test Case '-[ClaudeKitLegacyTests.AgentRuntimeTests testExecutesToolWithApproval]' passed (0.005 seconds).
+Test Case '-[ClaudeKitLegacyTests.AgentRuntimeTests testSendCollectsAssistantMessageAndPersistsHistory]' started.
+Test Case '-[ClaudeKitLegacyTests.AgentRuntimeTests testSendCollectsAssistantMessageAndPersistsHistory]' passed (0.001 seconds).
+Test Suite 'AgentRuntimeTests' passed at 2026-10-19 17:09:08.389.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.006 (0.007) seconds
+Test Suite 'AnthropicCredentialTests' started at 2026-10-19 17:09:08.389.
+Test Case '-[ClaudeKitLegacyTests.AnthropicCredentialTests testAPIKeyUsesXAPIKeyHeader]' started.
+Test Case '-[ClaudeKitLegacyTests.AnthropicCredentialTests testAPIKeyUsesXAPIKeyHeader]' passed (0.000 seconds).
+Test Case '-[ClaudeKitLegacyTests.AnthropicCredentialTests testBearerTokenUsesAuthorizationHeader]' started.
+Test Case '-[ClaudeKitLegacyTests.AnthropicCredentialTests testBearerTokenUsesAuthorizationHeader]' passed (0.000 seconds).
+Test Suite 'AnthropicCredentialTests' passed at 2026-10-19 17:09:08.390.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+Test Suite 'JSONValueTests' started at 2026-10-19 17:09:08.390.
+Test Case '-[ClaudeKitLegacyTests.JSONValueTests testRoundTripsObjects]' started.
+Test Case '-[ClaudeKitLegacyTests.JSONValueTests testRoundTripsObjects]' passed (0.001 seconds).
+Test Suite 'JSONValueTests' passed at 2026-10-19 17:09:08.390.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'ToolRegistryTests' started at 2026-10-19 17:09:08.390.
+Test Case '-[ClaudeKitLegacyTests.ToolRegistryTests testRejectsInvalidToolNames]' started.
+Test Case '-[ClaudeKitLegacyTests.ToolRegistryTests testRejectsInvalidToolNames]' passed (0.000 seconds).
+Test Case '-[ClaudeKitLegacyTests.ToolRegistryTests testStoresDefinitionsSortedByName]' started.
+Test Case '-[ClaudeKitLegacyTests.ToolRegistryTests testStoresDefinitionsSortedByName]' passed (0.001 seconds).
+Test Suite 'ToolRegistryTests' passed at 2026-10-19 17:09:08.392.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'ClaudeKitLegacyTests.xctest' passed at 2026-10-19 17:09:08.392.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.008 (0.010) seconds
+Test Suite 'All tests' passed at 2026-10-19 17:09:08.392.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.008 (0.011) seconds
+􀟈  Test run started.
+􀄵  Testing Library Version: 2084
+􀄵  Target Platform: arm64e-apple-macos14.0
+􁁛  Test run with 0 tests in 0 suites passed after 0.001 seconds.
+􀟈  Test run started.
+􀄵  Testing Library Version: 2084
+􀄵  Target Platform: arm64e-apple-macos14.0
+􁁛  Test run with 0 tests in 0 suites passed after 0.001 seconds.

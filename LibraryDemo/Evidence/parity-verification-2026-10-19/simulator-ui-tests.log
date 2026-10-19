@@ -1,0 +1,536 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project LibraryDemo/LibraryDemo.xcodeproj -scheme LibraryDemo -destination "platform=iOS Simulator,id=C1DFECE8-D228-4590-8C60-07E85FEC8CCC" -derivedDataPath /tmp/claudekit-parity-build -resultBundlePath /tmp/claudekit-parity-acceptance.xcresult test
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  ClaudeKit: /Users/tima/Projects/AssistantAI/ClaudeKit @ local
+  RealmDatabase: https://github.com/realm/realm-core.git @ 20.1.5
+  Realm: https://github.com/realm/realm-swift.git @ 20.0.5
+
+Writing result bundle at path:
+	/tmp/claudekit-parity-acceptance.xcresult
+
+/Library/Developer/Toolchains/Metal.xctoolchain:1:1: warning: failed to load toolchain: could not find Info.plist in /Library/Developer/Toolchains/Metal.xctoolchain
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (9 targets)
+    Target 'LibraryDemoUITests' in project 'LibraryDemo'
+        ➜ Explicit dependency on target 'LibraryDemo' in project 'LibraryDemo'
+    Target 'LibraryDemo' in project 'LibraryDemo'
+        ➜ Explicit dependency on target 'ClaudeKit-product' in project 'ClaudeKit'
+        ➜ Explicit dependency on target 'ClaudeKitHarness-product' in project 'ClaudeKit'
+        ➜ Explicit dependency on target 'ClaudeKitUI-product' in project 'ClaudeKit'
+    Target 'ClaudeKitUI-product' in project 'ClaudeKit'
+        ➜ Explicit dependency on target 'ClaudeKitUI' in project 'ClaudeKit'
+        ➜ Explicit dependency on target 'ClaudeKit' in project 'ClaudeKit'
+    Target 'ClaudeKitUI' in project 'ClaudeKit'
+        ➜ Explicit dependency on target 'ClaudeKit' in project 'ClaudeKit'
+    Target 'ClaudeKitHarness-product' in project 'ClaudeKit'
+        ➜ Explicit dependency on target 'ClaudeKitHarness' in project 'ClaudeKit'
+        ➜ Explicit dependency on target 'ClaudeKit_ClaudeKitHarness' in project 'ClaudeKit'
+        ➜ Explicit dependency on target 'ClaudeKit' in project 'ClaudeKit'
+    Target 'ClaudeKitHarness' in project 'ClaudeKit'
+        ➜ Explicit dependency on target 'ClaudeKit_ClaudeKitHarness' in project 'ClaudeKit'
+        ➜ Explicit dependency on target 'ClaudeKit' in project 'ClaudeKit'
+    Target 'ClaudeKit_ClaudeKitHarness' in project 'ClaudeKit' (no dependencies)
+    Target 'ClaudeKit-product' in project 'ClaudeKit'
+        ➜ Explicit dependency on target 'ClaudeKit' in project 'ClaudeKit'
+    Target 'ClaudeKit' in project 'ClaudeKit' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 6cae280b758c1141129877b56ccbecce
+Build description path: /tmp/claudekit-parity-build/Build/Intermediates.noindex/XCBuildData/6cae280b758c1141129877b56ccbecce.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk /tmp/claudekit-parity-build/SDKStatCaches.noindex/iphonesimulator27.0-24A430-e829b21a6f8c9b70876ba0858053c0448dc58220667be655e1bcc261a7455254.sdkstatcache
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo/LibraryDemo.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -o /tmp/claudekit-parity-build/SDKStatCaches.noindex/iphonesimulator27.0-24A430-e829b21a6f8c9b70876ba0858053c0448dc58220667be655e1bcc261a7455254.sdkstatcache
+
+SwiftDriver LibraryDemo normal arm64 com.apple.xcode.tools.swift.compiler (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name LibraryDemo -Onone @/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /tmp/claudekit-parity-build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -index-store-path /tmp/claudekit-parity-build/Index.noindex/DataStore -swift-version 5 -I /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -F /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -c -j18 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/claudekit-parity-build/SDKStatCaches.noindex/iphonesimulator27.0-24A430-e829b21a6f8c9b70876ba0858053c0448dc58220667be655e1bcc261a7455254.sdkstatcache -output-file-map /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/claudekit-parity-build/ModuleCache.noindex -sdk-module-cache-path /tmp/claudekit-parity-build/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/claudekit-parity-build/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-generated-files.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-own-target-headers.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo-1fd86c764707724f561422af243be829-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-project-headers.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/DerivedSources-normal/arm64 -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/DerivedSources/arm64 -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo-Swift.h -working-directory /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo -experimental-emit-module-separately -disable-cmo
+
+CpResource /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/ClaudeKit_ClaudeKitHarness.bundle/Runtime /Users/tima/Projects/AssistantAI/ClaudeKit/Sources/ClaudeKitHarness/Resources/Runtime (in target 'ClaudeKit_ClaudeKitHarness' from project 'ClaudeKit')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/tima/Projects/AssistantAI/ClaudeKit/Sources/ClaudeKitHarness/Resources/Runtime /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/ClaudeKit_ClaudeKitHarness.bundle
+
+ProcessInfoPlistFile /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/ClaudeKit_ClaudeKitHarness.bundle/Info.plist /tmp/claudekit-parity-build/Build/Intermediates.noindex/ClaudeKit.build/Debug-iphonesimulator/ClaudeKit_ClaudeKitHarness-b.build/empty-ClaudeKit_ClaudeKitHarness.plist (in target 'ClaudeKit_ClaudeKitHarness' from project 'ClaudeKit')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit
+    builtin-infoPlistUtility /tmp/claudekit-parity-build/Build/Intermediates.noindex/ClaudeKit.build/Debug-iphonesimulator/ClaudeKit_ClaudeKitHarness-b.build/empty-ClaudeKit_ClaudeKitHarness.plist -producttype com.apple.product-type.bundle -expandbuildsettings -format binary -platform iphonesimulator -o /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/ClaudeKit_ClaudeKitHarness.bundle/Info.plist
+
+CodeSign /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/ClaudeKit_ClaudeKitHarness.bundle (in target 'ClaudeKit_ClaudeKitHarness' from project 'ClaudeKit')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/ClaudeKit_ClaudeKitHarness.bundle
+/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/ClaudeKit_ClaudeKitHarness.bundle: replacing existing signature
+
+Copy /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/ClaudeKit_ClaudeKitHarness.bundle /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/ClaudeKit_ClaudeKitHarness.bundle (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/ClaudeKit_ClaudeKitHarness.bundle /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app
+
+ProcessInfoPlistFile /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/Info.plist /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/empty-LibraryDemo.plist (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-infoPlistUtility /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/empty-LibraryDemo.plist -producttype com.apple.product-type.application -genpkginfo /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -scanforprivacyfile /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/ClaudeKit_ClaudeKitHarness.bundle -scanforprivacyfile /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/Frameworks/NodeMobile.framework -o /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/Info.plist
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ LibraryDemo (in target 'LibraryDemo' from project 'LibraryDemo')
+
+SwiftCompile normal arm64 (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    
+
+SwiftCompile normal arm64 Compiling\ DemoModel.swift /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo/Sources/DemoModel.swift (in target 'LibraryDemo' from project 'LibraryDemo')
+
+SwiftCompile normal arm64 /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo/Sources/DemoModel.swift (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-SwiftPerFileCompile DemoModel.swift
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for LibraryDemo (in target 'LibraryDemo' from project 'LibraryDemo')
+
+SwiftDriver\ Compilation\ Requirements LibraryDemo normal arm64 com.apple.xcode.tools.swift.compiler (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name LibraryDemo -Onone @/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /tmp/claudekit-parity-build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -index-store-path /tmp/claudekit-parity-build/Index.noindex/DataStore -swift-version 5 -I /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -F /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -c -j18 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/claudekit-parity-build/SDKStatCaches.noindex/iphonesimulator27.0-24A430-e829b21a6f8c9b70876ba0858053c0448dc58220667be655e1bcc261a7455254.sdkstatcache -output-file-map /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/claudekit-parity-build/ModuleCache.noindex -sdk-module-cache-path /tmp/claudekit-parity-build/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/claudekit-parity-build/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-generated-files.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-own-target-headers.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo-1fd86c764707724f561422af243be829-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-project-headers.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/DerivedSources-normal/arm64 -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/DerivedSources/arm64 -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo-Swift.h -working-directory /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo -experimental-emit-module-separately -disable-cmo
+
+Copy /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.swiftsourceinfo (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.swiftsourceinfo /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+Copy /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.swiftmodule/arm64-apple-ios-simulator.swiftmodule /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.swiftmodule (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.swiftmodule /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+Copy /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.swiftmodule/arm64-apple-ios-simulator.abi.json /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.abi.json (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.abi.json /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+SwiftDriver LibraryDemoUITests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name LibraryDemoUITests -Onone @/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.SwiftFileList -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /tmp/claudekit-parity-build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -index-store-path /tmp/claudekit-parity-build/Index.noindex/DataStore -swift-version 5 -I /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/Developer/Library/Frameworks -parse-as-library -c -j18 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/claudekit-parity-build/SDKStatCaches.noindex/iphonesimulator27.0-24A430-e829b21a6f8c9b70876ba0858053c0448dc58220667be655e1bcc261a7455254.sdkstatcache -output-file-map /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/claudekit-parity-build/ModuleCache.noindex -sdk-module-cache-path /tmp/claudekit-parity-build/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/claudekit-parity-build/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests-generated-files.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests-own-target-headers.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo-1fd86c764707724f561422af243be829-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests-project-headers.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/DerivedSources-normal/arm64 -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/DerivedSources/arm64 -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests-Swift.h -working-directory /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo -experimental-emit-module-separately -disable-cmo
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ LibraryDemoUITests (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+
+SwiftCompile normal arm64 (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    
+
+SwiftCompile normal arm64 Compiling\ LibraryDemoUITests.swift /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo/Tests/LibraryDemoUITests.swift (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+
+SwiftCompile normal arm64 /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo/Tests/LibraryDemoUITests.swift (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-SwiftPerFileCompile LibraryDemoUITests.swift
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for LibraryDemoUITests (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+
+SwiftDriver\ Compilation\ Requirements LibraryDemoUITests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name LibraryDemoUITests -Onone @/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.SwiftFileList -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /tmp/claudekit-parity-build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -index-store-path /tmp/claudekit-parity-build/Index.noindex/DataStore -swift-version 5 -I /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/Developer/Library/Frameworks -parse-as-library -c -j18 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/claudekit-parity-build/SDKStatCaches.noindex/iphonesimulator27.0-24A430-e829b21a6f8c9b70876ba0858053c0448dc58220667be655e1bcc261a7455254.sdkstatcache -output-file-map /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/claudekit-parity-build/ModuleCache.noindex -sdk-module-cache-path /tmp/claudekit-parity-build/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/claudekit-parity-build/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests-generated-files.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests-own-target-headers.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo-1fd86c764707724f561422af243be829-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests-project-headers.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/DerivedSources-normal/arm64 -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/DerivedSources/arm64 -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests-Swift.h -working-directory /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo -experimental-emit-module-separately -disable-cmo
+
+Copy /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.swiftsourceinfo (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.swiftsourceinfo /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+Copy /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests.swiftmodule/arm64-apple-ios-simulator.abi.json /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.abi.json (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.abi.json /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Copy /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests.swiftmodule/arm64-apple-ios-simulator.swiftmodule /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.swiftmodule (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.swiftmodule /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+SwiftDriverJobDiscovery normal arm64 Compiling LibraryDemoUITests.swift (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+
+SwiftDriver\ Compilation LibraryDemoUITests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name LibraryDemoUITests -Onone @/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.SwiftFileList -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /tmp/claudekit-parity-build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -index-store-path /tmp/claudekit-parity-build/Index.noindex/DataStore -swift-version 5 -I /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/Developer/Library/Frameworks -parse-as-library -c -j18 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/claudekit-parity-build/SDKStatCaches.noindex/iphonesimulator27.0-24A430-e829b21a6f8c9b70876ba0858053c0448dc58220667be655e1bcc261a7455254.sdkstatcache -output-file-map /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/claudekit-parity-build/ModuleCache.noindex -sdk-module-cache-path /tmp/claudekit-parity-build/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/claudekit-parity-build/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests-generated-files.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests-own-target-headers.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo-1fd86c764707724f561422af243be829-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests-project-headers.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/DerivedSources-normal/arm64 -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/DerivedSources/arm64 -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests-Swift.h -working-directory /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Compiling DemoModel.swift (in target 'LibraryDemo' from project 'LibraryDemo')
+
+SwiftCompile normal arm64 Compiling\ LibraryDemoApp.swift /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo/Sources/LibraryDemoApp.swift (in target 'LibraryDemo' from project 'LibraryDemo')
+
+SwiftCompile normal arm64 /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo/Sources/LibraryDemoApp.swift (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-SwiftPerFileCompile LibraryDemoApp.swift
+
+SwiftDriverJobDiscovery normal arm64 Compiling LibraryDemoApp.swift (in target 'LibraryDemo' from project 'LibraryDemo')
+
+SwiftDriver\ Compilation LibraryDemo normal arm64 com.apple.xcode.tools.swift.compiler (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name LibraryDemo -Onone @/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /tmp/claudekit-parity-build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -index-store-path /tmp/claudekit-parity-build/Index.noindex/DataStore -swift-version 5 -I /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -F /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -c -j18 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/claudekit-parity-build/SDKStatCaches.noindex/iphonesimulator27.0-24A430-e829b21a6f8c9b70876ba0858053c0448dc58220667be655e1bcc261a7455254.sdkstatcache -output-file-map /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/claudekit-parity-build/ModuleCache.noindex -sdk-module-cache-path /tmp/claudekit-parity-build/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/claudekit-parity-build/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-generated-files.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-own-target-headers.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo-1fd86c764707724f561422af243be829-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-project-headers.hmap -Xcc -I/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/DerivedSources-normal/arm64 -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/DerivedSources/arm64 -Xcc -I/tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo-Swift.h -working-directory /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo -experimental-emit-module-separately -disable-cmo
+
+Ld /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/LibraryDemo.debug.dylib normal (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios18.0-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -Os -Xlinker -no_warn_duplicate_libraries -L/tmp/claudekit-parity-build/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -F/tmp/claudekit-parity-build/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -filelist /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.LinkFileList -install_name @rpath/LibraryDemo.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path -Xlinker -rpath -Xlinker /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo_lto.o -rdynamic -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.swiftmodule -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -framework NodeMobile -Xlinker -no_adhoc_codesign -o /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/LibraryDemo.debug.dylib
+
+ConstructStubExecutorLinkFileList /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-ExecutorLinkFileList-normal-arm64.txt (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    construct-stub-executor-link-file-list /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/LibraryDemo.debug.dylib /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'LibraryDemo' from project 'LibraryDemo')
+
+Ld /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/LibraryDemo normal (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios18.0-simulator -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -Os -Xlinker -no_warn_duplicate_libraries -L/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -F/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker @loader_path -Xlinker -rpath -Xlinker /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -rdynamic -Xlinker -objc_abi_version -Xlinker 2 -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo-ExecutorLinkFileList-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo.app-Simulated.xcent.der /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/LibraryDemo.debug.dylib -Xlinker -no_adhoc_codesign -o /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/LibraryDemo
+
+CopySwiftLibs /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/LibraryDemo.debug.dylib --scan-folder /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/Frameworks --scan-folder /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/PlugIns --scan-folder /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/SystemExtensions --scan-folder /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/Extensions --platform iphonesimulator --toolchain /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.266.1.fqhfas/Metal.xctoolchain --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+
+ExtractAppIntentsMetadata (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.266.1.fqhfas/Metal.xctoolchain --module-name LibraryDemo --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk --xcode-version 27A266a --platform-family iOS --deployment-target 18.0 --bundle-identifier ai.claudekit.demo --output /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app --target-triple arm64-apple-ios18.0-simulator --binary-file /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/LibraryDemo --dependency-file /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo_dependency_info.dat --stringsdata-file /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.SwiftFileList --metadata-file-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo.DependencyMetadataFileList --static-metadata-file-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/Objects-normal/arm64/LibraryDemo.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --no-app-shortcuts-localization
+2026-10-19 17:07:34.334 appintentsmetadataprocessor[12714:53935548] Starting appintentsmetadataprocessor export
+2026-10-19 17:07:34.338 appintentsmetadataprocessor[12714:53935548] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+
+CodeSign /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/LibraryDemo.debug.dylib (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/LibraryDemo.debug.dylib
+
+CodeSign /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/__preview.dylib (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/__preview.dylib
+/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app/__preview.dylib: replacing existing signature
+
+CodeSign /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --entitlements /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemo.build/LibraryDemo.app.xcent --timestamp\=none --generate-entitlement-der /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app
+
+Validate /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app (in target 'LibraryDemo' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-validationUtility /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemo.app -shallow-bundle -infoplist-subpath Info.plist
+
+Ld /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest/LibraryDemoUITests normal (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios18.0-simulator -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -Os -Xlinker -no_warn_duplicate_libraries -L/tmp/claudekit-parity-build/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/tmp/claudekit-parity-build/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/Developer/Library/Frameworks -filelist /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests_lto.o -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.swiftmodule -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests.xctest-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests.xctest-Simulated.xcent.der -Xlinker -no_adhoc_codesign -o /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest/LibraryDemoUITests
+
+ProcessInfoPlistFile /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest/Info.plist /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/empty-LibraryDemoUITests.plist (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-infoPlistUtility /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/empty-LibraryDemoUITests.plist -producttype com.apple.product-type.bundle.ui-testing -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/ProductTypeInfoPlistAdditions.plist -o /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest/Info.plist
+
+ExtractAppIntentsMetadata (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.266.1.fqhfas/Metal.xctoolchain --module-name LibraryDemoUITests --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk --xcode-version 27A266a --platform-family iOS --deployment-target 18.0 --bundle-identifier ai.claudekit.demo.uitests --output /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest --target-triple arm64-apple-ios18.0-simulator --binary-file /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest/LibraryDemoUITests --dependency-file /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests_dependency_info.dat --stringsdata-file /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.SwiftFileList --metadata-file-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests.DependencyMetadataFileList --static-metadata-file-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/LibraryDemoUITests.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/Objects-normal/arm64/LibraryDemoUITests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --no-app-shortcuts-localization
+2026-10-19 17:07:34.757 appintentsmetadataprocessor[12743:53935669] Starting appintentsmetadataprocessor export
+2026-10-19 17:07:34.760 appintentsmetadataprocessor[12743:53935669] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+
+CopySwiftLibs /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest/LibraryDemoUITests --scan-folder /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest/Frameworks --scan-folder /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest/PlugIns --scan-folder /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest/SystemExtensions --scan-folder /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest/Extensions --platform iphonesimulator --toolchain /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.266.1.fqhfas/Metal.xctoolchain --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /tmp/claudekit-parity-build/Build/Intermediates.noindex/LibraryDemo.build/Debug-iphonesimulator/LibraryDemoUITests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+
+CodeSign /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app/PlugIns/LibraryDemoUITests.xctest
+
+CodeSign /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app (in target 'LibraryDemoUITests' from project 'LibraryDemo')
+    cd /Users/tima/Projects/AssistantAI/ClaudeKit/LibraryDemo
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app
+/tmp/claudekit-parity-build/Build/Products/Debug-iphonesimulator/LibraryDemoUITests-Runner.app: replacing existing signature
+
+PruneExplicitPrecompiledModules /tmp/claudekit-parity-build/SDKExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /tmp/claudekit-parity-build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /tmp/claudekit-parity-build/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+2026-10-19 17:07:35.612756+1100 LibraryDemoUITests-Runner[12746:53935868] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-19 17:07:36.129.
+Test Suite 'LibraryDemoUITests.xctest' started at 2026-10-19 17:07:36.130.
+Test Suite 'LibraryDemoUITests' started at 2026-10-19 17:07:36.130.
+Test Case '-[LibraryDemoUITests.LibraryDemoUITests testCancelApprovalThenNewConversation]' started.
+    t =     0.00s Start Test at 2026-10-19 17:07:36.131
+    t =     0.02s Set Up
+    t =     0.02s Open ai.claudekit.demo
+    t =     0.02s     Launch ai.claudekit.demo
+2026-10-19 17:07:36.215 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-19 17:07:36.215 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.70s         Setting up automation session
+    t =     1.17s         Wait for ai.claudekit.demo to idle
+    t =     2.32s Waiting 30.0s for "New conversation" Button to exist
+    t =     3.34s     Checking `Expect predicate `existsNoRetry == 1` for object "New conversation" Button`
+    t =     3.34s         Checking existence of `"New conversation" Button`
+    t =     3.45s Tap "New conversation" Button
+    t =     3.45s     Wait for ai.claudekit.demo to idle
+    t =     3.45s     Find the "New conversation" Button
+    t =     3.50s     Check for interrupting elements affecting "New conversation" Button
+    t =     3.53s     Synthesize event
+    t =     3.83s     Wait for ai.claudekit.demo to idle
+    t =     3.83s Tap "Send" Button
+    t =     3.83s     Wait for ai.claudekit.demo to idle
+    t =     3.83s     Find the "Send" Button
+    t =     3.88s     Check for interrupting elements affecting "Send" Button
+    t =     3.91s     Synthesize event
+    t =     3.91s         Scroll element to visible
+    t =     3.92s         Find the "Send" Button
+    t =     3.97s         Computed hit point {64.000000000000057, 822.83333333333314} after scrolling to visible
+    t =     4.25s     Wait for ai.claudekit.demo to idle
+    t =     4.25s Waiting 30.0s for "Stop turn" Button to exist
+    t =     5.28s     Checking `Expect predicate `existsNoRetry == 1` for object "Stop turn" Button`
+    t =     5.28s         Checking existence of `"Stop turn" Button`
+    t =     5.33s Tap "Stop turn" Button
+    t =     5.34s     Wait for ai.claudekit.demo to idle
+    t =     5.34s     Find the "Stop turn" Button
+    t =     5.38s     Check for interrupting elements affecting "Stop turn" Button
+    t =     5.42s     Synthesize event
+    t =     5.71s     Wait for ai.claudekit.demo to idle
+    t =     5.71s Waiting 15.0s for "Turn ended" StaticText to exist
+    t =     6.74s     Checking `Expect predicate `existsNoRetry == 1` for object "Turn ended" StaticText`
+    t =     6.74s         Checking existence of `"Turn ended" StaticText`
+    t =     6.79s Checking existence of `"Allow once" Button`
+    t =     6.84s Find the "native-tool-count" StaticText
+    t =     6.89s Tap "New conversation" Button
+    t =     6.89s     Wait for ai.claudekit.demo to idle
+    t =     6.89s     Find the "New conversation" Button
+    t =     6.94s     Check for interrupting elements affecting "New conversation" Button
+    t =     6.97s     Synthesize event
+    t =     6.98s         Scroll element to visible
+    t =     6.98s         Find the "New conversation" Button
+    t =     7.07s         Computed hit point {300.83333333333337, 110.50000000000027} after scrolling to visible
+    t =     7.35s     Wait for ai.claudekit.demo to idle
+    t =     7.36s Tap "Send" Button
+    t =     7.36s     Wait for ai.claudekit.demo to idle
+    t =     7.36s     Find the "Send" Button
+    t =     7.41s     Check for interrupting elements affecting "Send" Button
+    t =     7.45s     Synthesize event
+    t =     7.45s         Scroll element to visible
+    t =     7.45s         Find the "Send" Button
+    t =     7.52s         Computed hit point {64.000000000000057, 822.83333333333314} after scrolling to visible
+    t =     7.80s     Wait for ai.claudekit.demo to idle
+    t =     7.81s Waiting 30.0s for "Allow once" Button to exist
+    t =     8.84s     Checking `Expect predicate `existsNoRetry == 1` for object "Allow once" Button`
+    t =     8.84s         Checking existence of `"Allow once" Button`
+    t =     8.90s Tap "Allow once" Button
+    t =     8.90s     Wait for ai.claudekit.demo to idle
+    t =     8.90s     Find the "Allow once" Button
+    t =     8.95s     Check for interrupting elements affecting "Allow once" Button
+    t =     8.99s     Synthesize event
+    t =     9.28s     Wait for ai.claudekit.demo to idle
+    t =     9.28s Waiting 15.0s for "Allow once" Button to exist
+    t =    10.32s     Checking `Expect predicate `existsNoRetry == 1` for object "Allow once" Button`
+    t =    10.32s         Checking existence of `"Allow once" Button`
+    t =    10.37s Tap "Allow once" Button
+    t =    10.37s     Wait for ai.claudekit.demo to idle
+    t =    10.37s     Find the "Allow once" Button
+    t =    10.52s     Check for interrupting elements affecting "Allow once" Button
+    t =    10.56s     Synthesize event
+    t =    10.85s     Wait for ai.claudekit.demo to idle
+    t =    10.89s Waiting 15.0s for "Turn completed" StaticText to exist
+    t =    11.92s     Checking `Expect predicate `existsNoRetry == 1` for object "Turn completed" StaticText`
+    t =    11.92s         Checking existence of `"Turn completed" StaticText`
+    t =    11.98s Find the "native-tool-count" StaticText
+    t =    12.04s Tear Down
+Test Case '-[LibraryDemoUITests.LibraryDemoUITests testCancelApprovalThenNewConversation]' passed (12.372 seconds).
+Test Case '-[LibraryDemoUITests.LibraryDemoUITests testDenyPreventsNativeWrite]' started.
+    t =     0.00s Start Test at 2026-10-19 17:07:48.503
+    t =     0.01s Set Up
+    t =     0.01s Open ai.claudekit.demo
+    t =     0.02s     Launch ai.claudekit.demo
+    t =     0.02s         Terminate ai.claudekit.demo:12779
+2026-10-19 17:07:49.609 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-19 17:07:49.609 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.32s         Setting up automation session
+    t =     1.93s         Wait for ai.claudekit.demo to idle
+    t =     3.07s Waiting 30.0s for "New conversation" Button to exist
+    t =     4.10s     Checking `Expect predicate `existsNoRetry == 1` for object "New conversation" Button`
+    t =     4.10s         Checking existence of `"New conversation" Button`
+    t =     4.21s Tap "New conversation" Button
+    t =     4.21s     Wait for ai.claudekit.demo to idle
+    t =     4.21s     Find the "New conversation" Button
+    t =     4.26s     Check for interrupting elements affecting "New conversation" Button
+    t =     4.29s     Synthesize event
+    t =     4.59s     Wait for ai.claudekit.demo to idle
+    t =     4.60s Waiting 5.0s for "Send" Button to exist
+    t =     5.63s     Checking `Expect predicate `existsNoRetry == 1` for object "Send" Button`
+    t =     5.63s         Checking existence of `"Send" Button`
+    t =     5.68s Tap "Send" Button
+    t =     5.68s     Wait for ai.claudekit.demo to idle
+    t =     5.68s     Find the "Send" Button
+    t =     5.76s     Check for interrupting elements affecting "Send" Button
+    t =     5.79s     Synthesize event
+    t =     5.79s         Scroll element to visible
+    t =     5.80s         Find the "Send" Button
+    t =     5.86s         Computed hit point {64.000000000000057, 822.83333333333314} after scrolling to visible
+    t =     6.15s     Wait for ai.claudekit.demo to idle
+    t =     6.15s Waiting 30.0s for "Deny" Button to exist
+    t =     7.19s     Checking `Expect predicate `existsNoRetry == 1` for object "Deny" Button`
+    t =     7.19s         Checking existence of `"Deny" Button`
+    t =     7.26s Tap "Deny" Button
+    t =     7.26s     Wait for ai.claudekit.demo to idle
+    t =     7.26s     Find the "Deny" Button
+    t =     7.31s     Check for interrupting elements affecting "Deny" Button
+    t =     7.35s     Synthesize event
+    t =     7.64s     Wait for ai.claudekit.demo to idle
+    t =     7.64s Waiting 15.0s for "Turn ended" StaticText to exist
+    t =     8.67s     Checking `Expect predicate `existsNoRetry == 1` for object "Turn ended" StaticText`
+    t =     8.67s         Checking existence of `"Turn ended" StaticText`
+    t =     8.75s Find the "native-tool-count" StaticText
+    t =     8.80s Tear Down
+Test Case '-[LibraryDemoUITests.LibraryDemoUITests testDenyPreventsNativeWrite]' passed (9.025 seconds).
+Test Case '-[LibraryDemoUITests.LibraryDemoUITests testLibrarySessionsAndProcessRestart]' started.
+    t =     0.00s Start Test at 2026-10-19 17:07:57.529
+    t =     0.02s Set Up
+    t =     0.02s Open ai.claudekit.demo
+    t =     0.02s     Launch ai.claudekit.demo
+    t =     0.02s         Terminate ai.claudekit.demo:13150
+2026-10-19 17:07:58.607 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-19 17:07:58.607 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.29s         Setting up automation session
+    t =     1.92s         Wait for ai.claudekit.demo to idle
+    t =     3.07s Waiting 90.0s for "PASS — library A → B → A" StaticText to exist
+    t =     4.10s     Checking `Expect predicate `existsNoRetry == 1` for object "PASS — library A → B → A" StaticText`
+    t =     4.10s         Checking existence of `"PASS — library A → B → A" StaticText`
+    t =     4.26s         Capturing element debug description
+    t =     5.08s     Checking `Expect predicate `existsNoRetry == 1` for object "PASS — library A → B → A" StaticText`
+    t =     5.08s         Checking existence of `"PASS — library A → B → A" StaticText`
+    t =     5.16s Terminate ai.claudekit.demo:13688
+    t =     6.23s Open ai.claudekit.demo
+    t =     6.23s     Launch ai.claudekit.demo
+2026-10-19 17:08:03.759 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-19 17:08:03.759 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     6.44s         Setting up automation session
+    t =     6.92s         Wait for ai.claudekit.demo to idle
+    t =     8.04s Waiting 45.0s for "PASS — library resumed after restart" StaticText to exist
+    t =     9.06s     Checking `Expect predicate `existsNoRetry == 1` for object "PASS — library resumed after restart" StaticText`
+    t =     9.06s         Checking existence of `"PASS — library resumed after restart" StaticText`
+    t =     9.15s Tear Down
+Test Case '-[LibraryDemoUITests.LibraryDemoUITests testLibrarySessionsAndProcessRestart]' passed (9.359 seconds).
+Test Case '-[LibraryDemoUITests.LibraryDemoUITests testOfficialSignInBrowserAndCancellation]' started.
+    t =     0.00s Start Test at 2026-10-19 17:08:06.889
+    t =     0.02s Set Up
+    t =     0.02s Open ai.claudekit.demo
+    t =     0.02s     Launch ai.claudekit.demo
+    t =     0.02s         Terminate ai.claudekit.demo:13947
+2026-10-19 17:08:07.955 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-19 17:08:07.955 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.27s         Setting up automation session
+    t =     1.65s         Wait for ai.claudekit.demo to idle
+    t =     2.76s Waiting 30.0s for "Sign in with Claude" Button to exist
+    t =     3.78s     Checking `Expect predicate `existsNoRetry == 1` for object "Sign in with Claude" Button`
+    t =     3.78s         Checking existence of `"Sign in with Claude" Button`
+    t =     3.81s Tap "Sign in with Claude" Button
+    t =     3.81s     Wait for ai.claudekit.demo to idle
+    t =     3.81s     Find the "Sign in with Claude" Button
+    t =     3.82s     Check for interrupting elements affecting "Sign in with Claude" Button
+    t =     3.83s     Synthesize event
+    t =     4.12s     Wait for ai.claudekit.demo to idle
+    t =     4.12s Waiting 30.0s for "Cancel" Button to exist
+    t =     5.13s     Checking `Expect predicate `existsNoRetry == 1` for object "Cancel" Button`
+    t =     5.13s         Checking existence of `"Cancel" Button`
+    t =     5.23s Tap "Cancel" Button
+    t =     5.23s     Wait for ai.claudekit.demo to idle
+    t =     5.23s     Find the "Cancel" Button
+    t =     5.30s     Check for interrupting elements affecting "Cancel" Button
+    t =     5.36s     Synthesize event
+    t =     5.65s     Wait for ai.claudekit.demo to idle
+    t =     5.98s Waiting 10.0s for "Sign in with Claude" Button to exist
+    t =     6.98s     Checking `Expect predicate `existsNoRetry == 1` for object "Sign in with Claude" Button`
+    t =     6.98s         Checking existence of `"Sign in with Claude" Button`
+    t =     8.02s Checking `Expect predicate `enabled == 1` for object "Sign in with Claude" Button`
+    t =     8.02s     Find the "Sign in with Claude" Button
+    t =     8.03s Checking existence of `"Cancel sign-in" Button`
+    t =     8.04s Checking existence of `"Sign-in cancelled" StaticText`
+    t =     8.05s Tap "Sign in with Claude" Button
+    t =     8.05s     Wait for ai.claudekit.demo to idle
+    t =     8.06s     Find the "Sign in with Claude" Button
+    t =     8.07s     Check for interrupting elements affecting "Sign in with Claude" Button
+    t =     8.09s     Synthesize event
+    t =     8.38s     Wait for ai.claudekit.demo to idle
+    t =     8.38s Waiting 30.0s for "Cancel" Button to exist
+    t =     9.40s     Checking `Expect predicate `existsNoRetry == 1` for object "Cancel" Button`
+    t =     9.40s         Checking existence of `"Cancel" Button`
+    t =     9.44s Tap "Cancel" Button
+    t =     9.44s     Wait for ai.claudekit.demo to idle
+    t =     9.45s     Find the "Cancel" Button
+    t =     9.51s     Check for interrupting elements affecting "Cancel" Button
+    t =     9.60s     Synthesize event
+    t =     9.90s     Wait for ai.claudekit.demo to idle
+    t =    10.24s Waiting 10.0s for "Sign-in cancelled" StaticText to exist
+    t =    11.27s     Checking `Expect predicate `existsNoRetry == 1` for object "Sign-in cancelled" StaticText`
+    t =    11.27s         Checking existence of `"Sign-in cancelled" StaticText`
+    t =    11.28s Tear Down
+Test Case '-[LibraryDemoUITests.LibraryDemoUITests testOfficialSignInBrowserAndCancellation]' passed (11.597 seconds).
+Test Case '-[LibraryDemoUITests.LibraryDemoUITests testRequestModesOnEmbeddedHarness]' started.
+    t =     0.00s Start Test at 2026-10-19 17:08:18.486
+    t =     0.01s Set Up
+    t =     0.02s Open ai.claudekit.demo
+    t =     0.02s     Launch ai.claudekit.demo
+    t =     0.02s         Terminate ai.claudekit.demo:14065
+2026-10-19 17:08:19.558 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-19 17:08:19.558 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.28s         Setting up automation session
+    t =     1.96s         Wait for ai.claudekit.demo to idle
+    t =     3.11s Waiting 90.0s for "PASS — images, JSON, ephemeral, memory, logout" StaticText to exist
+    t =     4.14s     Checking `Expect predicate `existsNoRetry == 1` for object "PASS — images, JSON, ephemeral, memory, logout" StaticText`
+    t =     4.14s         Checking existence of `"PASS — images, JSON, ephemeral, memory, logout" StaticText`
+    t =     4.26s         Capturing element debug description
+    t =     5.18s     Checking `Expect predicate `existsNoRetry == 1` for object "PASS — images, JSON, ephemeral, memory, logout" StaticText`
+    t =     5.18s         Checking existence of `"PASS — images, JSON, ephemeral, memory, logout" StaticText`
+    t =     5.20s Tear Down
+Test Case '-[LibraryDemoUITests.LibraryDemoUITests testRequestModesOnEmbeddedHarness]' passed (5.445 seconds).
+Test Case '-[LibraryDemoUITests.LibraryDemoUITests testTypedFormatsAndRecoveryOnEmbeddedHarness]' started.
+    t =     0.00s Start Test at 2026-10-19 17:08:23.931
+    t =     0.02s Set Up
+    t =     0.02s Open ai.claudekit.demo
+    t =     0.02s     Launch ai.claudekit.demo
+    t =     0.02s         Terminate ai.claudekit.demo:14342
+2026-10-19 17:08:25.002 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-19 17:08:25.002 xcodebuild[12070:53932801] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.35s         Setting up automation session
+    t =     1.99s         Wait for ai.claudekit.demo to idle
+    t =     3.14s Waiting 90.0s for "PASS — JSONL, XML, recovery replay" StaticText to exist
+    t =     4.16s     Checking `Expect predicate `existsNoRetry == 1` for object "PASS — JSONL, XML, recovery replay" StaticText`
+    t =     4.16s         Checking existence of `"PASS — JSONL, XML, recovery replay" StaticText`
+    t =     4.28s         Capturing element debug description
+    t =     5.21s     Checking `Expect predicate `existsNoRetry == 1` for object "PASS — JSONL, XML, recovery replay" StaticText`
+    t =     5.21s         Checking existence of `"PASS — JSONL, XML, recovery replay" StaticText`
+    t =     5.28s Tear Down
+Test Case '-[LibraryDemoUITests.LibraryDemoUITests testTypedFormatsAndRecoveryOnEmbeddedHarness]' passed (5.493 seconds).
+Test Suite 'LibraryDemoUITests' passed at 2026-10-19 17:08:29.425.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 53.292 (53.295) seconds
+Test Suite 'LibraryDemoUITests.xctest' passed at 2026-10-19 17:08:29.425.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 53.292 (53.295) seconds
+Test Suite 'All tests' passed at 2026-10-19 17:08:29.425.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 53.292 (53.296) seconds
+2026-10-19 17:08:29.725 xcodebuild[12070:53932801] [MT] IDETestOperationsObserverDebug: 54.905 elapsed -- Testing started completed.
+2026-10-19 17:08:29.725 xcodebuild[12070:53932801] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-19 17:08:29.725 xcodebuild[12070:53932801] [MT] IDETestOperationsObserverDebug: 54.905 sec, +54.905 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/claudekit-parity-acceptance.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started

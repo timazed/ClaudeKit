@@ -1,0 +1,309 @@
+// !$*UTF8*$!
+{
+	"archiveVersion" = 1;
+	"classes" = {
+	};
+	"objectVersion" = 56;
+	"objects" = {
+		"7540B65E851A12D0DC7018D2" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Sources/HarnessDemoApp.swift";
+			"sourceTree" = "<group>";
+		};
+		"6F20F9282838F4BFBD6B6A05" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "7540B65E851A12D0DC7018D2";
+		};
+		"1E223FCE60AA1A68F7B4FE25" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Sources/HarnessHost.swift";
+			"sourceTree" = "<group>";
+		};
+		"2036029ED4F8DE1EFA856851" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "1E223FCE60AA1A68F7B4FE25";
+		};
+		"C4740E4CA28C9C8D6A8447AE" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "folder";
+			"path" = "Runtime";
+			"sourceTree" = "<group>";
+		};
+		"004D162CBCC52957F95FB815" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "wrapper.xcframework";
+			"path" = "Vendor/NodeMobile.xcframework";
+			"sourceTree" = "<group>";
+		};
+		"38A007151ABE87CC01A5B6E9" = {
+			"isa" = "PBXFileReference";
+			"explicitFileType" = "wrapper.application";
+			"path" = "HarnessDemo.app";
+			"sourceTree" = "BUILT_PRODUCTS_DIR";
+			"includeInIndex" = 0;
+		};
+		"38175992739FAC9009021F88" = {
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"path" = "Tests/HarnessDemoUITests.swift";
+			"sourceTree" = "<group>";
+		};
+		"417AA930090463967E1EA4EE" = {
+			"isa" = "PBXFileReference";
+			"explicitFileType" = "wrapper.cfbundle";
+			"path" = "HarnessDemoUITests.xctest";
+			"sourceTree" = "BUILT_PRODUCTS_DIR";
+			"includeInIndex" = 0;
+		};
+		"124F4FD8F6E77A5551F4A6BD" = {
+			"isa" = "PBXGroup";
+			"children" = ("7540B65E851A12D0DC7018D2", "1E223FCE60AA1A68F7B4FE25", "38175992739FAC9009021F88", "C4740E4CA28C9C8D6A8447AE", "004D162CBCC52957F95FB815", "FBDC4F23F93125BBEEAE800C");
+			"sourceTree" = "<group>";
+		};
+		"FBDC4F23F93125BBEEAE800C" = {
+			"isa" = "PBXGroup";
+			"children" = ("38A007151ABE87CC01A5B6E9", "417AA930090463967E1EA4EE");
+			"name" = "Products";
+			"sourceTree" = "<group>";
+		};
+		"1CE6DC2571680BAD24FA2D71" = {
+			"isa" = "PBXSourcesBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = ("6F20F9282838F4BFBD6B6A05", "2036029ED4F8DE1EFA856851");
+			"runOnlyForDeploymentPostprocessing" = 0;
+		};
+		"192FD30588F669D5EA1B5C43" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "C4740E4CA28C9C8D6A8447AE";
+		};
+		"7C9581047372A5681A4931A9" = {
+			"isa" = "PBXResourcesBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = ("192FD30588F669D5EA1B5C43");
+			"runOnlyForDeploymentPostprocessing" = 0;
+		};
+		"2A546B8F5728503603361698" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "004D162CBCC52957F95FB815";
+		};
+		"7805F7FC904F49F676E90BFE" = {
+			"isa" = "PBXFrameworksBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = ("2A546B8F5728503603361698");
+			"runOnlyForDeploymentPostprocessing" = 0;
+		};
+		"BD58EA27437CE731DCF21003" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "004D162CBCC52957F95FB815";
+			"settings" = {
+				"ATTRIBUTES" = ("CodeSignOnCopy", "RemoveHeadersOnCopy");
+			};
+		};
+		"72EE5623C6675721514C9186" = {
+			"isa" = "PBXCopyFilesBuildPhase";
+			"buildActionMask" = 2147483647;
+			"dstPath" = "";
+			"dstSubfolderSpec" = 10;
+			"files" = ("BD58EA27437CE731DCF21003");
+			"name" = "Embed Frameworks";
+			"runOnlyForDeploymentPostprocessing" = 0;
+		};
+		"89E1FD6268CC0F221A2BE178" = {
+			"isa" = "XCBuildConfiguration";
+			"buildSettings" = {
+				"CLANG_ENABLE_MODULES" = "YES";
+				"CLANG_ENABLE_OBJC_ARC" = "YES";
+				"SDKROOT" = "iphoneos";
+				"IPHONEOS_DEPLOYMENT_TARGET" = "18.0";
+				"SWIFT_VERSION" = "5.0";
+				"ENABLE_BITCODE" = "NO";
+				"GCC_C_LANGUAGE_STANDARD" = "gnu17";
+				"ARCHS" = "arm64";
+				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+				"DEBUG_INFORMATION_FORMAT" = "dwarf";
+			};
+			"name" = "Debug";
+		};
+		"E6DE6C99132752C914FEF632" = {
+			"isa" = "XCBuildConfiguration";
+			"buildSettings" = {
+				"CLANG_ENABLE_MODULES" = "YES";
+				"CLANG_ENABLE_OBJC_ARC" = "YES";
+				"SDKROOT" = "iphoneos";
+				"IPHONEOS_DEPLOYMENT_TARGET" = "18.0";
+				"SWIFT_VERSION" = "5.0";
+				"ENABLE_BITCODE" = "NO";
+				"GCC_C_LANGUAGE_STANDARD" = "gnu17";
+				"ARCHS" = "arm64";
+				"SWIFT_OPTIMIZATION_LEVEL" = "-O";
+				"DEBUG_INFORMATION_FORMAT" = "dwarf-with-dsym";
+			};
+			"name" = "Release";
+		};
+		"FA52021448A4AC7DE6CD200E" = {
+			"isa" = "XCConfigurationList";
+			"buildConfigurations" = ("89E1FD6268CC0F221A2BE178", "E6DE6C99132752C914FEF632");
+			"defaultConfigurationIsVisible" = 0;
+			"defaultConfigurationName" = "Debug";
+		};
+		"7082CC0B6FC1282FCEABD07A" = {
+			"isa" = "XCBuildConfiguration";
+			"buildSettings" = {
+				"PRODUCT_NAME" = "$(TARGET_NAME)";
+				"PRODUCT_BUNDLE_IDENTIFIER" = "ai.claudekit.harnesslab";
+				"DEVELOPMENT_TEAM" = "T9G4574SJG";
+				"CODE_SIGN_STYLE" = "Automatic";
+				"GENERATE_INFOPLIST_FILE" = "YES";
+				"INFOPLIST_KEY_CFBundleDisplayName" = "Harness Lab";
+				"INFOPLIST_KEY_UILaunchScreen_Generation" = "YES";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation" = "YES";
+				"INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace" = "YES";
+				"INFOPLIST_KEY_UIFileSharingEnabled" = "YES";
+				"INFOPLIST_KEY_UISupportedInterfaceOrientations" = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"TARGETED_DEVICE_FAMILY" = "1,2";
+				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
+				"SUPPORTS_MACCATALYST" = "NO";
+				"LD_RUNPATH_SEARCH_PATHS" = ("$(inherited)", "@executable_path/Frameworks");
+				"CODE_SIGN_ENTITLEMENTS" = "Sources/HarnessDemo.entitlements";
+				"MARKETING_VERSION" = "0.1.0";
+				"CURRENT_PROJECT_VERSION" = "1";
+				"ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
+			};
+			"name" = "Debug";
+		};
+		"639A7CA24D39909E713B47F7" = {
+			"isa" = "XCBuildConfiguration";
+			"buildSettings" = {
+				"PRODUCT_NAME" = "$(TARGET_NAME)";
+				"PRODUCT_BUNDLE_IDENTIFIER" = "ai.claudekit.harnesslab";
+				"DEVELOPMENT_TEAM" = "T9G4574SJG";
+				"CODE_SIGN_STYLE" = "Automatic";
+				"GENERATE_INFOPLIST_FILE" = "YES";
+				"INFOPLIST_KEY_CFBundleDisplayName" = "Harness Lab";
+				"INFOPLIST_KEY_UILaunchScreen_Generation" = "YES";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation" = "YES";
+				"INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace" = "YES";
+				"INFOPLIST_KEY_UIFileSharingEnabled" = "YES";
+				"INFOPLIST_KEY_UISupportedInterfaceOrientations" = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"TARGETED_DEVICE_FAMILY" = "1,2";
+				"SUPPORTED_PLATFORMS" = "iphoneos iphonesimulator";
+				"SUPPORTS_MACCATALYST" = "NO";
+				"LD_RUNPATH_SEARCH_PATHS" = ("$(inherited)", "@executable_path/Frameworks");
+				"CODE_SIGN_ENTITLEMENTS" = "Sources/HarnessDemo.entitlements";
+				"MARKETING_VERSION" = "0.1.0";
+				"CURRENT_PROJECT_VERSION" = "1";
+				"ENABLE_USER_SCRIPT_SANDBOXING" = "YES";
+			};
+			"name" = "Release";
+		};
+		"20BA35986C8D108192A74E6F" = {
+			"isa" = "XCConfigurationList";
+			"buildConfigurations" = ("7082CC0B6FC1282FCEABD07A", "639A7CA24D39909E713B47F7");
+			"defaultConfigurationIsVisible" = 0;
+			"defaultConfigurationName" = "Debug";
+		};
+		"0E8A3AD980EC179856012B7E" = {
+			"isa" = "PBXNativeTarget";
+			"buildConfigurationList" = "20BA35986C8D108192A74E6F";
+			"buildPhases" = ("1CE6DC2571680BAD24FA2D71", "7805F7FC904F49F676E90BFE", "7C9581047372A5681A4931A9", "72EE5623C6675721514C9186");
+			"buildRules" = ();
+			"dependencies" = ();
+			"name" = "HarnessDemo";
+			"productName" = "HarnessDemo";
+			"productReference" = "38A007151ABE87CC01A5B6E9";
+			"productType" = "com.apple.product-type.application";
+		};
+		"0F3D67935A4F199E058A017A" = {
+			"isa" = "XCBuildConfiguration";
+			"buildSettings" = {
+				"PRODUCT_NAME" = "$(TARGET_NAME)";
+				"PRODUCT_BUNDLE_IDENTIFIER" = "ai.claudekit.harnesslab.uitests";
+				"GENERATE_INFOPLIST_FILE" = "YES";
+				"DEVELOPMENT_TEAM" = "T9G4574SJG";
+				"CODE_SIGN_STYLE" = "Automatic";
+				"TEST_TARGET_NAME" = "HarnessDemo";
+				"TARGETED_DEVICE_FAMILY" = "1,2";
+				"SWIFT_VERSION" = "5.0";
+			};
+			"name" = "Debug";
+		};
+		"20B70E15FDC36C625E57F658" = {
+			"isa" = "XCBuildConfiguration";
+			"buildSettings" = {
+				"PRODUCT_NAME" = "$(TARGET_NAME)";
+				"PRODUCT_BUNDLE_IDENTIFIER" = "ai.claudekit.harnesslab.uitests";
+				"GENERATE_INFOPLIST_FILE" = "YES";
+				"DEVELOPMENT_TEAM" = "T9G4574SJG";
+				"CODE_SIGN_STYLE" = "Automatic";
+				"TEST_TARGET_NAME" = "HarnessDemo";
+				"TARGETED_DEVICE_FAMILY" = "1,2";
+				"SWIFT_VERSION" = "5.0";
+			};
+			"name" = "Release";
+		};
+		"0FC3D6ECB8D70C820A80FE1C" = {
+			"isa" = "XCConfigurationList";
+			"buildConfigurations" = ("0F3D67935A4F199E058A017A", "20B70E15FDC36C625E57F658");
+			"defaultConfigurationIsVisible" = 0;
+			"defaultConfigurationName" = "Debug";
+		};
+		"BF7DBD92C8B148C5B7E0DF02" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "38175992739FAC9009021F88";
+		};
+		"D13161A084ABB15E36E9C5E4" = {
+			"isa" = "PBXSourcesBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = ("BF7DBD92C8B148C5B7E0DF02");
+			"runOnlyForDeploymentPostprocessing" = 0;
+		};
+		"C99E2D31C4EA76F7C528D5F9" = {
+			"isa" = "PBXFrameworksBuildPhase";
+			"buildActionMask" = 2147483647;
+			"files" = ();
+			"runOnlyForDeploymentPostprocessing" = 0;
+		};
+		"BA223EB12D25C38406B5A691" = {
+			"isa" = "PBXContainerItemProxy";
+			"containerPortal" = "98F54143AB4E86B28C3AFEE0";
+			"proxyType" = 1;
+			"remoteGlobalIDString" = "0E8A3AD980EC179856012B7E";
+			"remoteInfo" = "HarnessDemo";
+		};
+		"58A5D8785D26BBB94CE615BB" = {
+			"isa" = "PBXTargetDependency";
+			"target" = "0E8A3AD980EC179856012B7E";
+			"targetProxy" = "BA223EB12D25C38406B5A691";
+		};
+		"04D13FD0AA6F0197CF2C9990" = {
+			"isa" = "PBXNativeTarget";
+			"buildConfigurationList" = "0FC3D6ECB8D70C820A80FE1C";
+			"buildPhases" = ("D13161A084ABB15E36E9C5E4", "C99E2D31C4EA76F7C528D5F9");
+			"buildRules" = ();
+			"dependencies" = ("58A5D8785D26BBB94CE615BB");
+			"name" = "HarnessDemoUITests";
+			"productName" = "HarnessDemoUITests";
+			"productReference" = "417AA930090463967E1EA4EE";
+			"productType" = "com.apple.product-type.bundle.ui-testing";
+		};
+		"98F54143AB4E86B28C3AFEE0" = {
+			"isa" = "PBXProject";
+			"attributes" = {
+				"LastUpgradeCheck" = "2700";
+			};
+			"buildConfigurationList" = "FA52021448A4AC7DE6CD200E";
+			"compatibilityVersion" = "Xcode 14.0";
+			"developmentRegion" = "en";
+			"hasScannedForEncodings" = 0;
+			"knownRegions" = ("en", "Base");
+			"mainGroup" = "124F4FD8F6E77A5551F4A6BD";
+			"productRefGroup" = "FBDC4F23F93125BBEEAE800C";
+			"projectDirPath" = "";
+			"projectRoot" = "";
+			"targets" = ("0E8A3AD980EC179856012B7E", "04D13FD0AA6F0197CF2C9990");
+		};
+	};
+	"rootObject" = "98F54143AB4E86B28C3AFEE0";
+}
