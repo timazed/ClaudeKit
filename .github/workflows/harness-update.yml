@@ -1,0 +1,104 @@
+name: Official harness updates
+on:
+  schedule:
+    - cron: '23 21 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: official-harness-update
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      candidate: ${{ steps.check.outputs.candidate }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: python3 -m unittest discover -s Tests/HarnessUpdates -v
+      - id: check
+        run: |
+          python3 Scripts/harness-update.py check --write-candidate --report /tmp/harness-report.json
+          python3 - <<'PY'
+          import json, os
+          report = json.load(open('/tmp/harness-report.json'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('candidate=' + str(report['status'] == 'candidate').lower() + '\n')
+          PY
+      - name: Release report
+        if: always()
+        run: |
+          if [ -f /tmp/harness-report.json ]; then
+            cat /tmp/harness-report.json >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: steps.check.outputs.candidate == 'true'
+        with:
+          name: harness-candidate
+          path: HarnessDemo/ThirdParty/claude-code.json
+  qualify:
+    needs: check
+    if: needs.check.outputs.candidate == 'true'
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: harness-candidate
+          path: HarnessDemo/ThirdParty
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18.19.1'
+      - run: bash Scripts/bootstrap-library.sh
+      - name: Swift tests with official harness fixtures
+        run: CLAUDEKIT_RUN_HARNESS_TESTS=1 CLAUDEKIT_NODE="$(command -v node)" swift test
+      - run: node --test Tests/RuntimeJS/*.test.cjs RemoteServer/*.test.mjs
+      - run: node Tests/HarnessIntegration/worker-sessions.cjs
+      - name: iOS device build
+        run: xcodebuild -project LibraryDemo/LibraryDemo.xcodeproj -scheme LibraryDemo -destination 'generic/platform=iOS' CODE_SIGNING_ALLOWED=NO build
+      - name: iOS arm64 simulator build
+        run: xcodebuild -project LibraryDemo/LibraryDemo.xcodeproj -scheme LibraryDemo -destination 'generic/platform=iOS Simulator' ARCHS=arm64 CODE_SIGNING_ALLOWED=NO build
+  propose:
+    needs: qualify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: harness-candidate
+          path: HarnessDemo/ThirdParty
+      - name: Open draft update PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          version=$(python3 -c 'import json; print(json.load(open("HarnessDemo/ThirdParty/claude-code.json"))["version"])')
+          branch="codex/harness-$version"
+          if gh pr list --state all --head "$branch" --json number --jq 'length' | grep -qv '^0$'; then
+            echo "An update PR already exists for $version."
+            exit 0
+          fi
+          git switch -c "$branch"
+          git add HarnessDemo/ThirdParty/claude-code.json
+          git diff --cached --quiet && exit 0
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "Update official harness to $version"
+          git push origin "$branch"
+          cat > /tmp/harness-pr.md <<EOF_BODY
+          Updates the pinned official Claude Code harness and its verified archive/CLI checksums.
+
+          Automated qualification passed: Swift tests with harness fixtures, JavaScript tests, worker/session resume checks, and unsigned iOS device and arm64 simulator builds.
+
+          Evidence: $RUN_URL
+
+          Before merging, run simulator UI acceptance and physical-device/live-account qualification described in docs/verification.md. These are not established by CI builds. No automatic merge is enabled.
+          EOF_BODY
+          gh pr create --draft --base "$BASE_BRANCH" --head "$branch" --title "Update official Claude Code harness to $version" --body-file /tmp/harness-pr.md

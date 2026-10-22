@@ -83,7 +83,7 @@
 		"7805F7FC904F49F676E90BFE" = {
 			"isa" = "PBXFrameworksBuildPhase";
 			"buildActionMask" = 2147483647;
-			"files" = ("0C13DF6C721E397EFACC5ACD", "C197A6BB8D500D9C80213844", "798FD9471F8C8578912436CD");
+			"files" = ("0C13DF6C721E397EFACC5ACD", "798FD9471F8C8578912436CD");
 			"runOnlyForDeploymentPostprocessing" = 0;
 		};
 		"72EE5623C6675721514C9186" = {
@@ -195,7 +195,7 @@
 			"buildPhases" = ("1CE6DC2571680BAD24FA2D71", "7805F7FC904F49F676E90BFE", "7C9581047372A5681A4931A9", "72EE5623C6675721514C9186");
 			"buildRules" = ();
 			"dependencies" = ();
-			"packageProductDependencies" = ("3E86B8A7149791C8CB539A71", "A509200CE628DA64453893F9", "33BC51D153E81A328122051E");
+			"packageProductDependencies" = ("3E86B8A7149791C8CB539A71", "33BC51D153E81A328122051E");
 			"name" = "LibraryDemo";
 			"productName" = "LibraryDemo";
 			"productReference" = "38A007151ABE87CC01A5B6E9";
@@ -302,14 +302,6 @@
 		"0C13DF6C721E397EFACC5ACD" = {
 			"isa" = "PBXBuildFile";
 			"productRef" = "3E86B8A7149791C8CB539A71";
-		};
-		"A509200CE628DA64453893F9" = {
-			"isa" = "XCSwiftPackageProductDependency";
-			"productName" = "ClaudeKitHarness";
-		};
-		"C197A6BB8D500D9C80213844" = {
-			"isa" = "PBXBuildFile";
-			"productRef" = "A509200CE628DA64453893F9";
 		};
 		"33BC51D153E81A328122051E" = {
 			"isa" = "XCSwiftPackageProductDependency";

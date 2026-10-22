@@ -1,7 +1,7 @@
 import XCTest
-@testable import ClaudeKit
+import ClaudeKit
+@testable import ClaudeKitCore
 import ClaudeKitSQLite
-import ClaudeKitHarness
 
 final class BehaviorAndStoreTests: XCTestCase {
     func testPoliciesDenyBeforeExecutingAndRequiredToolsFailCommit() async throws {

@@ -1,6 +1,6 @@
 import XCTest
-@testable import ClaudeKit
-import ClaudeKitHarness
+import ClaudeKit
+@testable import ClaudeKitCore
 
 final class HarnessRuntimeTests: XCTestCase {
     func testSchemaRejectsUnsupportedAndInvalidArguments() throws {

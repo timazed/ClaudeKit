@@ -17,15 +17,14 @@ open LibraryDemo/LibraryDemo.xcodeproj
 
 Bootstrap prepares the pinned runtime resources and generates the demo project. See [third-party provenance](../HarnessDemo/ThirdParty/README.md) for version pins and license boundaries. Do not edit the vendor CLI to customize app behavior.
 
-In Xcode, add this directory as a local Swift package. Link `ClaudeKit`, `ClaudeKitHarness`, and, for the supplied UI presenters, `ClaudeKitUI`. Add `ClaudeKitSQLite` or `ClaudeKitRealm` only when choosing that persistence adapter. These instructions describe checkout integration; they do not assume a published package URL or release tag.
+In Xcode, add this directory as a local Swift package. Link `ClaudeKit` and, for the supplied UI presenters, `ClaudeKitUI`. Add `ClaudeKitSQLite` or `ClaudeKitRealm` only when choosing that persistence adapter. These instructions describe checkout integration; they do not assume a published package URL or release tag.
 
 ## Runtime ownership
 
-Retain one runtime for the app/account lifetime. Importing `ClaudeKitHarness` makes the initializer that creates the driver available. Developers do not load a driver manually.
+Retain one runtime for the app/account lifetime. Importing `ClaudeKit` makes the initializer that creates the driver available. Importing the module does not start the harness; `runtime.restore()` explicitly opens it. Developers do not load a driver manually.
 
 ```swift
 import ClaudeKit
-import ClaudeKitHarness
 import ClaudeKitUI
 
 @MainActor

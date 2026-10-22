@@ -5,7 +5,7 @@ import ClaudeKit
 @objc(ClaudeKitRuntimeSnapshot)
 private final class RuntimeSnapshot: Object {
     @Persisted(primaryKey: true) var id = "runtime"
-    @Persisted var version = 1
+    @Persisted var version = 2
     @Persisted var payload = Data()
 }
 @objc(ClaudeKitThreadRow)
@@ -43,16 +43,14 @@ public actor RealmRuntimeStateStore: RuntimeStatePartitioning {
     private func load(includeMessages: Bool) async throws -> StoredRuntimeState {
         let realm = try await open()
         guard let row = realm.object(ofType: RuntimeSnapshot.self, forPrimaryKey: "runtime") else { return .empty }
-        guard [1, 2].contains(row.version), row.payload.count <= 64 * 1024 * 1024 else { throw AgentRuntimeError(code: "realm_store", message: "Unsupported state format.") }
+        guard row.version == 2, row.payload.count <= 64 * 1024 * 1024 else { throw AgentRuntimeError(code: "realm_store", message: "Unsupported state format.") }
         var state = try JSONDecoder().decode(StoredRuntimeState.self, from: row.payload)
-        if row.version == 2 {
-            state.threads = try realm.objects(ThreadRow.self).map { try JSONDecoder().decode(AgentThread.self, from: $0.payload) }
-            if includeMessages {
+        state.threads = try realm.objects(ThreadRow.self).map { try JSONDecoder().decode(AgentThread.self, from: $0.payload) }
+        if includeMessages {
             for message in realm.objects(MessageRow.self).sorted(byKeyPath: "position") {
                 state.messagesByThread[message.threadID, default: []].append(try JSONDecoder().decode(AgentMessage.self, from: message.payload))
             }
         }
-            }
         if !includeMessages { state.messagesByThread = [:] }
         return state
     }

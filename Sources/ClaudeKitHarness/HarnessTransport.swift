@@ -1,5 +1,5 @@
 import Foundation
-import ClaudeKit
+import ClaudeKitCore
 #if os(iOS) && canImport(NodeMobile)
 import NodeMobile
 import Darwin

@@ -1,5 +1,6 @@
 import XCTest
-@testable import ClaudeKit
+import ClaudeKit
+@testable import ClaudeKitCore
 import ClaudeKitSQLite
 
 /// Regression coverage for non-image output, recovery and storage behavior.

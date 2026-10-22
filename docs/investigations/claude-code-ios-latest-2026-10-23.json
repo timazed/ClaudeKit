@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-23",
+  "method": "Static inspection of official npm metadata and archive, macOS Mach-O load commands, NUL-delimited JavaScript source scans within the __BUN section, and syntax-only parsing with vm.SourceTextModule. No linking, harness execution, authentication, or iOS device execution.",
+  "cli_metadata_url": "https://registry.npmjs.org/@anthropic-ai/claude-code/2.1.308",
+  "sdk_metadata_url": "https://registry.npmjs.org/@anthropic-ai/claude-agent-sdk/0.3.308",
+  "static": {
+    "version": "2.1.308",
+    "binary_sha256": "ca923c86ac84b30574a82331a05b6e066c27477a926ceaffe46a845a33e4dd37",
+    "binary_bytes": 274675680,
+    "platform": "macOS ARM64; LC_BUILD_VERSION platform 1, minimum macOS 13.0",
+    "bun_section_bytes": 180711037,
+    "javascript_chunks": 2524,
+    "javascript_utf8_bytes": 48607258,
+    "bun_module_imports": [
+      "bun:jsc"
+    ],
+    "bun_global_members": [
+      "FetchSession",
+      "Image",
+      "JSONL",
+      "SHA256",
+      "SQL",
+      "TOML",
+      "Terminal",
+      "Transpiler",
+      "WebView",
+      "YAML",
+      "ant",
+      "connect",
+      "deepEquals",
+      "file",
+      "gc",
+      "generateHeapSnapshot",
+      "hash",
+      "isStandaloneExecutable",
+      "listen",
+      "main",
+      "semver",
+      "serve",
+      "sleepSync",
+      "sliceAnsi",
+      "spawn",
+      "stdin",
+      "stringWidth",
+      "stripANSI",
+      "unsafe",
+      "version",
+      "which",
+      "wrapAnsi",
+      "zstdDecompress",
+      "zstdDecompressSync"
+    ],
+    "old_single_file_extractor_marker_found": false
+  },
+  "syntax_only": {
+    "node": "v24.14.0",
+    "parsed": 2524,
+    "total": 2524,
+    "failures": []
+  }
+}

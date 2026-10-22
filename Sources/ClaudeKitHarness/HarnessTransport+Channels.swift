@@ -1,5 +1,5 @@
 import Foundation
-import ClaudeKit
+import ClaudeKitCore
 
 /// Every driver owns a logical channel; iOS shares exactly one native Node instance.
 final class HarnessTransport: @unchecked Sendable {

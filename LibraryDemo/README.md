@@ -2,7 +2,7 @@
 
 [Documentation index](../docs/index.md)
 
-A small SwiftUI app consuming `ClaudeKit`, `ClaudeKitHarness`, and `ClaudeKitUI` through a local Swift package. Runtime configuration automatically creates the official harness driver. The demo only customizes harness settings to select its optional fixture mode; its automated verifier accesses driver diagnostics to check process identity. App code does not implement a second agent loop or directly import NodeMobile.
+A small SwiftUI app consuming `ClaudeKit` and `ClaudeKitUI` through a local Swift package. Runtime configuration automatically creates the official harness driver. The demo only customizes harness settings to select its optional fixture mode; its automated verifier accesses driver diagnostics to check process identity. App code does not implement a second agent loop or directly import NodeMobile.
 
 ## Build and run
 

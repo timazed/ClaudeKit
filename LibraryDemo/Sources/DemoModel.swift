@@ -1,6 +1,5 @@
 import SwiftUI
 import ClaudeKit
-import ClaudeKitHarness
 import ClaudeKitUI
 
 @MainActor final class DemoModel: ObservableObject {

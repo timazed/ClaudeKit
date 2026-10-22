@@ -16,6 +16,8 @@ Start with the [documentation index](docs/index.md) or [SDK integration guide](d
 | [Apple integrations](docs/apple-integrations.md) | [Structured recovery](docs/structured-request-recovery.md) | [Architecture](docs/runtime-architecture.md) |
 | [Models and usage](docs/models-and-usage.md) | [Remote execution](docs/remote-execution.md) | [Capability comparison](docs/feature-parity.md) |
 
+Harness releases are tracked by the [automatic update process](docs/harness-updates.md), with compatibility checks and tested draft update PRs.
+
 ## Run the demo
 
 Clone the repository, then bootstrap the pinned runtime dependencies:
@@ -35,12 +37,11 @@ For a deterministic test without signing in, add `--fixture` to the scheme's lau
 
 | Product | Purpose |
 | --- | --- |
-| `ClaudeKit` | Runtime, threads, execution handles, events, tool and approval contracts, persistence |
-| `ClaudeKitHarness` | Official harness adapter, embedded iOS Node host, pinned resources |
+| `ClaudeKit` | Complete SDK: runtime, default harness, threads, execution handles, events, tools, approvals, persistence |
+| `ClaudeKitHarness` | Harness implementation, included by `ClaudeKit`; separate import is optional |
 | `ClaudeKitSQLite` | Transactional rows, lazy history activation and indexed queries |
 | `ClaudeKitRealm` | Realm-backed rows, lazy history activation and indexed queries |
 | `ClaudeKitUI` | Sign-in coordinator/browser, approval inbox, observable runtime store |
-| `ClaudeKitLegacy`, `ClaudeKitLegacyUI` | Earlier Messages API implementation, preserved separately |
 
 The new products target iOS 18+ and macOS 14+. iOS embeds NodeMobile in the app process; the macOS development transport requires an explicit local Node executable. The binary currently includes arm64 device and arm64 simulator slices. Run bootstrap **before** resolving the local package in Xcode.
 
@@ -50,7 +51,6 @@ Create one runtime for the app's lifetime. ClaudeKit creates and retains the off
 
 ```swift
 import ClaudeKit
-import ClaudeKitHarness
 import ClaudeKitUI
 
 let approvals = ApprovalInbox()
@@ -82,7 +82,7 @@ The browser uses `ASWebAuthenticationSession` with ephemeral browsing enabled. C
 
 Use `execution.cancel()` to interrupt that execution, `waitUntilReady()` to await harness readiness, or `runtime.send(_:in:)` to collect a final reply. Consume each execution's event stream once. `runtime.observeState()` supplies snapshots; `AgentRuntimeStore` exposes them to SwiftUI.
 
-Import `ClaudeKitHarness` to enable the default-harness initializer. Advanced callers can supply its optional `harness:` settings for a custom storage directory, fixture mode, or a macOS Node executable. The existing `driver:` initializer remains available for custom drivers and tests; normal apps do not need it.
+Import `ClaudeKit` to access the default-harness initializer. Importing the module does not start the harness; call `runtime.restore()` explicitly. Advanced callers can supply its optional `harness:` settings for a custom storage directory, fixture mode, or a macOS Node executable. The existing `driver:` initializer remains available for custom drivers and tests; normal apps do not need it.
 
 ## Native tools
 
@@ -108,7 +108,7 @@ Tools are exposed through the harness's SDK MCP bridge. A denied approval preven
 
 ## Sessions and authentication
 
-One embedded Node host lives for the iOS process. A fresh Worker isolate loads the unmodified harness for each turn. The library resumes the selected official session, waits for the final assistant message to appear in the harness transcript, then commits the app-facing result for that execution. `AgentRuntime` supports simultaneous independent conversations, with one active operation per conversation. Each execution owns an independent harness session and cancellation state; there is no fixed lane assignment or library-imposed turn count. `ClaudeRuntimePool` is a compatibility wrapper over this runtime and migrates old lane stores on restore. The concurrent path has not been device-qualified.
+One embedded Node host lives for the iOS process. A fresh Worker isolate loads the unmodified harness for each turn. The library resumes the selected official session, waits for the final assistant message to appear in the harness transcript, then commits the app-facing result for that execution. `AgentRuntime` supports simultaneous independent conversations, with one active operation per conversation. Each execution owns an independent harness session and cancellation state; there is no fixed lane assignment or library-imposed turn count. The concurrent path has not been device-qualified.
 
 The official harness performs account login and manages its credential files. The library exposes account metadata, not account tokens. Harness configuration lives under Application Support, has iOS file protection, and is excluded from backup. App conversation projections are separate from official transcripts; preserve both for restart recovery. Use a separate driver directory and state store for each authentication mode/account. Account identity checks in this alpha use the metadata the harness supplies, not a complete account-management system.
 
@@ -126,6 +126,6 @@ This remains a development alpha. Backend differences include live-only hosted s
 
 The pinned combination is Claude Code **2.1.112**, NodeMobile **18.19.1**, and ICU **73.2**, running without JIT. Bootstrap and startup verify the official `cli.js` checksum; the CLI itself is not patched. See [third-party provenance](HarnessDemo/ThirdParty/README.md) for hashes, sources, and license boundaries. Bundled notices also ship in the library's runtime resources.
 
-The [implementation plan](docs/plans/claudekit-harness-library.md) records the wider roadmap. Both `DemoApp/AssistantRuntimeDemoApp.xcodeproj` and `LibraryDemo/LibraryDemo.xcodeproj` now build the same harness-backed demo sources. The existing DemoApp scheme and bundle identifier are preserved so rebuilding replaces its old API-key UI. Legacy library products remain available separately.
+The [implementation plan](docs/plans/claudekit-harness-library.md) records the wider roadmap. Both `DemoApp/AssistantRuntimeDemoApp.xcodeproj` and `LibraryDemo/LibraryDemo.xcodeproj` now build the same harness-backed demo sources. The existing DemoApp scheme and bundle identifier are preserved so rebuilding replaces its old API-key UI.
 
 The [concurrency and limitations audit](docs/concurrency-audit.md) compares the actual CodexKit implementation and records removed ceilings and remaining differences.

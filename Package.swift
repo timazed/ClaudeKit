@@ -22,13 +22,16 @@ let package = Package(
         .library(name: "ClaudeKitRealm", targets: ["ClaudeKitRealm"]),
         .library(name: "ClaudeKitSQLite", targets: ["ClaudeKitSQLite"]),
         .library(name: "ClaudeKitHarness", targets: ["ClaudeKitHarness"]),
-        .library(name: "ClaudeKitLegacy", targets: ["ClaudeKitLegacy"]),
-        .library(name: "ClaudeKitLegacyUI", targets: ["ClaudeKitLegacyUI"]),
     ],
     dependencies: [.package(url: "https://github.com/realm/realm-swift.git", exact: "20.0.5")],
     targets: [
         .target(
             name: "ClaudeKit",
+            dependencies: ["ClaudeKitCore", "ClaudeKitHarness"],
+            path: "Sources/ClaudeKitSDK"
+        ),
+        .target(
+            name: "ClaudeKitCore",
             path: "Sources/ClaudeKit"
         ),
         .target(
@@ -36,15 +39,13 @@ let package = Package(
             dependencies: ["ClaudeKit"],
             path: "Sources/ClaudeKitUI"
         ),
-        .target(name: "ClaudeKitHarness", dependencies: [.target(name: "ClaudeKit")] +
+        .target(name: "ClaudeKitHarness", dependencies: [.target(name: "ClaudeKitCore")] +
             (hasNode ? [.target(name: "NodeMobile", condition: .when(platforms: [.iOS]))] : []),
             resources: [.copy("Resources/Runtime")]),
         .target(name: "ClaudeKitRealm", dependencies: ["ClaudeKit", .product(name: "RealmSwift", package: "realm-swift")]),
         .target(name: "ClaudeKitSQLite", dependencies: ["ClaudeKit"], linkerSettings: [.linkedLibrary("sqlite3")]),
-        .target(name: "ClaudeKitLegacy"),
-        .target(name: "ClaudeKitLegacyUI", dependencies: ["ClaudeKitLegacy"]),
-        .testTarget(name: "ClaudeKitLegacyTests", dependencies: ["ClaudeKitLegacy", "ClaudeKitLegacyUI"]),
-        .testTarget(name: "ClaudeKitTests", dependencies: ["ClaudeKit", "ClaudeKitHarness", "ClaudeKitUI", "ClaudeKitSQLite", "ClaudeKitRealm"]),
+        .testTarget(name: "ClaudeKitImportTests", dependencies: ["ClaudeKit"]),
+        .testTarget(name: "ClaudeKitTests", dependencies: ["ClaudeKit", "ClaudeKitCore", "ClaudeKitHarness", "ClaudeKitUI", "ClaudeKitSQLite", "ClaudeKitRealm"]),
     ] + (hasNode ? [.binaryTarget(name: "NodeMobile", path: "HarnessDemo/Vendor/NodeMobile.xcframework")] : []),
     swiftLanguageModes: [.v5]
 )

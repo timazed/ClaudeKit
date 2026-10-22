@@ -29,7 +29,7 @@ add('root group', 'PBXGroup', children=source_files+[test_file, ref('products')]
 add('products', 'PBXGroup', children=[product,test_product], name='Products', sourceTree='<group>')
 add('sources phase', 'PBXSourcesBuildPhase', buildActionMask=2147483647, files=sources, runOnlyForDeploymentPostprocessing=0)
 add('resources phase', 'PBXResourcesBuildPhase', buildActionMask=2147483647, files=[], runOnlyForDeploymentPostprocessing=0)
-add('frameworks phase', 'PBXFrameworksBuildPhase', buildActionMask=2147483647, files=[ref(name+' product build') for name in ['ClaudeKit','ClaudeKitHarness','ClaudeKitUI']], runOnlyForDeploymentPostprocessing=0)
+add('frameworks phase', 'PBXFrameworksBuildPhase', buildActionMask=2147483647, files=[ref(name+' product build') for name in ['ClaudeKit','ClaudeKitUI']], runOnlyForDeploymentPostprocessing=0)
 add('embed phase', 'PBXCopyFilesBuildPhase', buildActionMask=2147483647, dstPath='', dstSubfolderSpec=10, files=[], name='Embed Frameworks', runOnlyForDeploymentPostprocessing=0)
 base = dict(CLANG_ENABLE_MODULES='YES', CLANG_ENABLE_OBJC_ARC='YES', SDKROOT='iphoneos', IPHONEOS_DEPLOYMENT_TARGET='18.0', SWIFT_VERSION='5.0', ENABLE_BITCODE='NO', GCC_C_LANGUAGE_STANDARD='gnu17', ARCHS='arm64')
 target = dict(PRODUCT_NAME='$(TARGET_NAME)', PRODUCT_BUNDLE_IDENTIFIER='ai.claudekit.demo', DEVELOPMENT_TEAM='T9G4574SJG', CODE_SIGN_STYLE='Automatic', GENERATE_INFOPLIST_FILE='YES', INFOPLIST_KEY_CFBundleDisplayName='ClaudeKit Demo', INFOPLIST_KEY_UILaunchScreen_Generation='YES', INFOPLIST_KEY_UIApplicationSceneManifest_Generation='YES', INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace='YES', INFOPLIST_KEY_UIFileSharingEnabled='YES', INFOPLIST_KEY_UISupportedInterfaceOrientations='UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight', TARGETED_DEVICE_FAMILY='1,2', SUPPORTED_PLATFORMS='iphoneos iphonesimulator', SUPPORTS_MACCATALYST='NO', LD_RUNPATH_SEARCH_PATHS=['$(inherited)','@executable_path/Frameworks'], CODE_SIGN_ENTITLEMENTS='Sources/LibraryDemo.entitlements', MARKETING_VERSION='0.1.0', CURRENT_PROJECT_VERSION='1', ENABLE_USER_SCRIPT_SANDBOXING='YES')
@@ -39,7 +39,7 @@ for owner, settings in [('project',base),('target',target)]:
         if owner == 'project': current.update(SWIFT_OPTIMIZATION_LEVEL='-Onone' if config=='Debug' else '-O', DEBUG_INFORMATION_FORMAT='dwarf' if config=='Debug' else 'dwarf-with-dsym')
         add(owner+config, 'XCBuildConfiguration', buildSettings=current, name=config)
     add(owner+' configs', 'XCConfigurationList', buildConfigurations=[ref(owner+'Debug'),ref(owner+'Release')], defaultConfigurationIsVisible=0, defaultConfigurationName='Debug')
-add('target', 'PBXNativeTarget', buildConfigurationList=ref('target configs'), buildPhases=[ref(x+' phase') for x in ['sources','frameworks','resources','embed']], buildRules=[], dependencies=[], packageProductDependencies=[ref(name+' product') for name in ['ClaudeKit','ClaudeKitHarness','ClaudeKitUI']], name='LibraryDemo', productName='LibraryDemo', productReference=product, productType='com.apple.product-type.application')
+add('target', 'PBXNativeTarget', buildConfigurationList=ref('target configs'), buildPhases=[ref(x+' phase') for x in ['sources','frameworks','resources','embed']], buildRules=[], dependencies=[], packageProductDependencies=[ref(name+' product') for name in ['ClaudeKit','ClaudeKitUI']], name='LibraryDemo', productName='LibraryDemo', productReference=product, productType='com.apple.product-type.application')
 for config in ['Debug','Release']:
     add('tests'+config, 'XCBuildConfiguration', buildSettings=dict(PRODUCT_NAME='$(TARGET_NAME)', PRODUCT_BUNDLE_IDENTIFIER='ai.claudekit.demo.uitests', GENERATE_INFOPLIST_FILE='YES', DEVELOPMENT_TEAM='T9G4574SJG', CODE_SIGN_STYLE='Automatic', TEST_TARGET_NAME='LibraryDemo', TARGETED_DEVICE_FAMILY='1,2', SWIFT_VERSION='5.0'), name=config)
 add('tests configs', 'XCConfigurationList', buildConfigurations=[ref('testsDebug'),ref('testsRelease')], defaultConfigurationIsVisible=0, defaultConfigurationName='Debug')
@@ -50,7 +50,7 @@ add('test dependency','PBXTargetDependency',target=ref('target'),targetProxy=ref
 add('tests','PBXNativeTarget',buildConfigurationList=ref('tests configs'),buildPhases=[ref('test sources'),ref('test frameworks')],buildRules=[],dependencies=[ref('test dependency')],name='LibraryDemoUITests',productName='LibraryDemoUITests',productReference=test_product,productType='com.apple.product-type.bundle.ui-testing')
 add('project', 'PBXProject', attributes={'LastUpgradeCheck':'2700'}, buildConfigurationList=ref('project configs'), compatibilityVersion='Xcode 14.0', developmentRegion='en', hasScannedForEncodings=0, knownRegions=['en','Base'], mainGroup=ref('root group'), productRefGroup=ref('products'), projectDirPath='', projectRoot='', targets=[ref('target'),ref('tests')],packageReferences=[ref('local package')])
 add('local package', 'XCLocalSwiftPackageReference', relativePath='..')
-for name in ['ClaudeKit','ClaudeKitHarness','ClaudeKitUI']:
+for name in ['ClaudeKit','ClaudeKitUI']:
     productRef = add(name+' product', 'XCSwiftPackageProductDependency', productName=name)
     add(name+' product build', 'PBXBuildFile', productRef=productRef)
 def encode(value, depth=0):

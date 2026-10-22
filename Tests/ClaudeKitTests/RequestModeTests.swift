@@ -1,6 +1,6 @@
 import XCTest
-@testable import ClaudeKit
-import ClaudeKitHarness
+import ClaudeKit
+@testable import ClaudeKitCore
 
 final class RequestModeTests: XCTestCase {
     static let schema: JSONValue = .object(["type": .string("object"), "properties": .object(["answer": .object(["type": .string("string")])]), "required": .array([.string("answer")]), "additionalProperties": .bool(false)])

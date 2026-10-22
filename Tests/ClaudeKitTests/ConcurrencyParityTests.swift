@@ -1,5 +1,6 @@
 import XCTest
-@testable import ClaudeKit
+import ClaudeKit
+@testable import ClaudeKitCore
 
 final class ConcurrencyParityTests: XCTestCase {
     func testIndependentThreadsHaveNoTwoTurnCapAndCancellationIsIsolated() async throws {

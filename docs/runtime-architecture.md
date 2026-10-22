@@ -18,6 +18,12 @@ flowchart LR
     Tools --> Driver
 ```
 
+## SDK modules
+
+Apps import `ClaudeKit`, which re-exports the core API and the default harness adapter. Internally, `ClaudeKitCore` contains the runtime contracts and `ClaudeKitHarness` depends on that core, avoiding a circular dependency.
+
+Imports do not launch the host. Constructing the default configuration creates its driver and storage directories; calling `runtime.restore()` opens the harness and restores account state.
+
 ## Ownership boundaries
 
 The harness owns account authentication, provider requests, tool iteration and model conversation state. Swift owns app-facing threads/messages, tool schemas/executors, approval presentation, policy enforcement and output validation/storage.

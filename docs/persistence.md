@@ -45,7 +45,7 @@ let loaded = await runtime.isHistoryLoaded(for: thread.id)
 
 Database stores support overview-only restore. `messages(for:)` reads the currently materialized projection; an empty array before activation is not proof of an empty stored conversation. Use `activateThread` before showing the full history, or `fetchMessages` for paging. Starting a turn materializes that thread automatically. Other unloaded histories are preserved during writes.
 
-The default restore remains eager for compatibility. File/in-memory stores fall back to eager loading. Activation reads a whole thread using pages, so it is not a bounded context-window operation. The official harness separately manages model context.
+The default restore loads history eagerly. File/in-memory stores fall back to eager loading. Activation reads a whole thread using pages, so it is not a bounded context-window operation. The official harness separately manages model context.
 
 ## Queries
 
