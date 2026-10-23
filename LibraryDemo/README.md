@@ -4,6 +4,14 @@
 
 A small SwiftUI app consuming `ClaudeKit` and `ClaudeKitUI` through a local Swift package. Runtime configuration automatically creates the official harness driver. The demo only customizes harness settings to select its optional fixture mode; its automated verifier accesses driver diagnostics to check process identity. App code does not implement a second agent loop or directly import NodeMobile.
 
+## Demo preview
+
+<p align="center">
+  <img src="Evidence/simulator-account-start.png" width="300" alt="ClaudeKit iOS demo sign-in screen">
+</p>
+
+Sign-in screen captured during the 18 October simulator verification. Both demo projects use the same app implementation.
+
 ## Build and run
 
 ```sh

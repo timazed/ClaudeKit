@@ -1,8 +1,30 @@
 # ClaudeKit
 
-A Swift library for embedding the **official Claude Code harness** in an iOS app, with Claude-account sign-in and a CodexKit-style application API.
+`ClaudeKit` is a Swift SDK for building Claude-powered agents in **iOS 18+ and macOS 14+** apps. It provides Claude account sign-in, persistent conversations, streaming responses, host-defined tools, and optional local memory.
 
-The development alpha now includes a small [ClaudeKit Demo](LibraryDemo/README.md) that consumes the local Swift package. The harness owns authentication, model requests, tool iteration, and conversation context. Swift owns the app's tools, approval UI, and local conversation list.
+Your app owns the tools and user interface. The official Claude Code harness handles authentication, model requests, tool iteration, and conversation context. On iOS, the harness runs inside the app through embedded NodeMobile; macOS development uses an explicitly configured Node executable.
+
+ClaudeKit is a **development alpha**. Start with the [demo app](LibraryDemo/README.md) or [SDK integration guide](docs/sdk-integration.md). See [verification](docs/verification.md) for tested behavior and remaining qualification.
+
+## Capabilities
+
+- Claude account sign-in through the official browser flow.
+- Persistent conversations with streaming replies, cancellation, and independent concurrent turns.
+- App-defined tools with native approval prompts and configurable execution limits.
+- Typed text, JSON, JSON Lines, and XML output, plus durable structured recovery.
+- Local memory and optional SQLite or Realm persistence.
+- Model discovery, usage reporting, and opt-in hosted search.
+- Remote execution and Apple integration helpers.
+
+See the [feature matrix](docs/feature-parity.md) for supported behavior and platform limits. Image generation is excluded.
+
+## Demo preview
+
+<p align="center">
+  <img src="LibraryDemo/Evidence/simulator-account-start.png" width="300" alt="ClaudeKit iOS demo showing the Sign in with Claude button and native-tool status">
+</p>
+
+The demo's sign-in screen, captured during the 18 October simulator verification. The [demo walkthrough](LibraryDemo/README.md) covers streaming conversations, tool approvals, structured output, memory, and recovery.
 
 ## Documentation
 
