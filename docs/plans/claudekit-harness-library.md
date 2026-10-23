@@ -77,12 +77,12 @@ flowchart TB
 
 The boundary is a `HarnessDriving` abstraction that starts/resumes a harness session, starts a turn, routes control messages, and reports capabilities. It does not accept an exported access token or ask Swift to schedule the next model call. Avoid forcing it into the existing credential-oriented `AgentBackend.beginTurn(history:session:)` contract.
 
-Proposed package products:
+Original proposed module layout (historical). Apps now link and import `ClaudeKit`, which includes the default harness; see [SDK integration](../sdk-integration.md) for current usage.
 
 | Product or target | Responsibility |
 | --- | --- |
 | `ClaudeKit` | Public models, runtime facade, driver protocol, execution handles, tool/approval contracts, store protocols, event mapping contracts |
-| `ClaudeKitHarness` | Official protocol adapter, session coordinator, bootstrap resources, and platform transport factories |
+| Internal harness adapter | Official protocol adapter, session coordinator, bootstrap resources, and platform transport factories |
 | Internal iOS host target plus `NodeMobile` binary target | Embedded runtime lifecycle, pipes, thread configuration, compatibility adapters; conditionally linked for iOS |
 | Internal macOS transport target | Launch a selected compatible local CLI using process pipes; no remote harness dependency |
 | `ClaudeKitUI` | SwiftUI state adapter, approval inbox, official browser presenter, manual-code fallback UI |
@@ -98,7 +98,6 @@ This is the original proposed API shape. See the root README and LibraryDemo for
 
 ```swift
 import ClaudeKit
-import ClaudeKitHarness
 import ClaudeKitUI
 
 let approvals = ApprovalInbox()

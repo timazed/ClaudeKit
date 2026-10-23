@@ -33,12 +33,11 @@ Choose the **LibraryDemo** scheme and an arm64 iPhone or simulator. For a physic
 
 For a deterministic test without signing in, add `--fixture` to the scheme's launch arguments. This runs the same official harness against a local model fixture; it does not contact a real model. See [demo instructions](LibraryDemo/README.md) for automated verification.
 
-## Package products
+## App integration products
 
 | Product | Purpose |
 | --- | --- |
 | `ClaudeKit` | Complete SDK: runtime, default harness, threads, execution handles, events, tools, approvals, persistence |
-| `ClaudeKitHarness` | Harness implementation, included by `ClaudeKit`; separate import is optional |
 | `ClaudeKitSQLite` | Transactional rows, lazy history activation and indexed queries |
 | `ClaudeKitRealm` | Realm-backed rows, lazy history activation and indexed queries |
 | `ClaudeKitUI` | Sign-in coordinator/browser, approval inbox, observable runtime store |
