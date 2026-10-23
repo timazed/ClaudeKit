@@ -18,13 +18,22 @@ ClaudeKit is a **development alpha**. Start with the [demo app](LibraryDemo/READ
 
 See the [feature matrix](docs/feature-parity.md) for supported behavior and platform limits. Image generation is excluded.
 
-## Demo preview
+## Demo gallery
 
-<p align="center">
-  <img src="LibraryDemo/Evidence/simulator-account-start.png" width="300" alt="ClaudeKit iOS demo showing the Sign in with Claude button and native-tool status">
-</p>
+<table>
+  <tr>
+    <td align="center"><a href="docs/images/demo/01-sign-in.png"><img src="docs/images/demo/01-sign-in.png" width="160" alt="ClaudeKit demo: sign in"></a><br>Sign in</td>
+    <td align="center"><a href="docs/images/demo/02-conversation.png"><img src="docs/images/demo/02-conversation.png" width="160" alt="ClaudeKit demo: conversation"></a><br>Conversation</td>
+    <td align="center"><a href="docs/images/demo/03-tool-approval.png"><img src="docs/images/demo/03-tool-approval.png" width="160" alt="ClaudeKit demo: tool approval"></a><br>Tool approval</td>
+    <td align="center"><a href="docs/images/demo/04-completed-reply.png"><img src="docs/images/demo/04-completed-reply.png" width="160" alt="ClaudeKit demo: completed reply"></a><br>Completed reply</td>
+    <td align="center"><a href="docs/images/demo/05-output-controls.png"><img src="docs/images/demo/05-output-controls.png" width="160" alt="ClaudeKit demo: output controls"></a><br>Output controls</td>
+    <td align="center"><a href="docs/images/demo/06-reply-formats.png"><img src="docs/images/demo/06-reply-formats.png" width="160" alt="ClaudeKit demo: reply formats"></a><br>Reply formats</td>
+  </tr>
+</table>
 
-The demo's sign-in screen, captured during the 18 October simulator verification. The [demo walkthrough](LibraryDemo/README.md) covers streaming conversations, tool approvals, structured output, memory, and recovery.
+Captured on an iPhone 17 Pro simulator running iOS 27.0 on 23 October 2026. Conversation, approval, reply, and format screens use the local model fixture with the real embedded harness. No live account or model responses are shown.
+
+See [capture details and reproduction](docs/images/demo/README.md) and the [demo walkthrough](LibraryDemo/README.md).
 
 ## Documentation
 

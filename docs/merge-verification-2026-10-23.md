@@ -23,3 +23,7 @@ Swift used `CLAUDEKIT_RUN_HARNESS_TESTS=1` and Node 18.19.1. Build logs were wri
 No simulator device/runtime was installed, so simulator UI acceptance was not rerun. No live-account or physical-device test was performed in this pass. Earlier prototype device evidence remains scoped as described in [the prototype README](../Prototypes/LatestHarness/README.md); the adapted latest prototype remains isolated from the shipping 2.1.112 runtime.
 
 The remote `main` was an ancestor of the branch during verification. No pull-request refs were exposed by the Git remote; authenticated GitHub review/check status was unavailable in this environment. The local verification results do not assert GitHub branch-protection or review approval.
+
+## Demo gallery follow-up
+
+Installed the iOS 27.0 simulator runtime and captured six fresh iPhone 17 Pro screenshots through a passing UI capture test. This exercised fixture conversation creation, native write/read approvals, completion, and the reply-format menu. See [gallery provenance](images/demo/README.md). The complete simulator acceptance suite and live-account/device qualification were not rerun.

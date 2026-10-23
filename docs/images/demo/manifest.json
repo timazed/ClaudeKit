@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-23",
+  "device": "iPhone 17 Pro",
+  "os": "iOS 27.0 (24A434)",
+  "test": "LibraryDemoUITests/testCaptureDocumentationGallery",
+  "testResult": "passed",
+  "sourceCommit": "c505d69",
+  "images": {
+    "01-sign-in.png": "80f981963f8ca872fc326cae64a3270fc281f7a29414b90b9e004646226749d6",
+    "02-conversation.png": "eb1edeb28d9aadb820ece7116e84b723264c77fb7aa1a1d91b267314319d441b",
+    "03-tool-approval.png": "d75de325f49fcdac1a540ab5d313027c8d920eebd3cfcb968cfd3b70eaf29d56",
+    "04-completed-reply.png": "e9e4f383159d7ea1ca50b3a3bd3f758827d5f266dc86169b03c128cf10656208",
+    "05-output-controls.png": "d1764b542adfeec62e53767351bd358f6ee68fc038afec2cf79147baa8fe8db5",
+    "06-reply-formats.png": "c955272f29647ea15c731c082ff457dfb5c8c8fdaa65eea76fc1e4b04d3e7892"
+  }
+}

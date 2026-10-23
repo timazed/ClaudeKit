@@ -2,6 +2,39 @@ import XCTest
 
 final class LibraryDemoUITests: XCTestCase {
     override func setUp() { continueAfterFailure = false }
+    // Opt in when refreshing the documentation gallery on a clean simulator.
+    func testCaptureDocumentationGallery() throws {
+        let app = XCUIApplication()
+        func capture(_ name: String) {
+            let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+            attachment.name = name
+            attachment.lifetime = .keepAlways
+            add(attachment)
+        }
+        app.launch()
+        XCTAssertTrue(app.buttons["Sign in with Claude"].waitForExistence(timeout: 30))
+        capture("01-sign-in")
+        app.terminate()
+        app.launchArguments = ["--fixture"]
+        app.launch()
+        XCTAssertTrue(app.buttons["New conversation"].waitForExistence(timeout: 30))
+        app.buttons["New conversation"].tap()
+        XCTAssertTrue(app.buttons["Send"].waitForExistence(timeout: 10))
+        capture("02-conversation")
+        app.buttons["Send"].tap()
+        XCTAssertTrue(app.buttons["Allow once"].waitForExistence(timeout: 30))
+        capture("03-tool-approval")
+        app.buttons["Allow once"].tap()
+        XCTAssertTrue(app.staticTexts["read_note"].waitForExistence(timeout: 30))
+        app.buttons["Allow once"].tap()
+        XCTAssertTrue(app.staticTexts["Turn completed"].waitForExistence(timeout: 30))
+        capture("04-completed-reply")
+        app.swipeUp()
+        capture("05-output-controls")
+        app.buttons["Reply format, Text"].tap()
+        XCTAssertTrue(app.buttons["JSON Lines"].waitForExistence(timeout: 10))
+        capture("06-reply-formats")
+    }
     func testTypedFormatsAndRecoveryOnEmbeddedHarness() {
         let app = XCUIApplication(); app.launchArguments = ["--fixture", "--verify-formats"]; app.launch()
         XCTAssertTrue(app.staticTexts["PASS — JSONL, XML, recovery replay"].waitForExistence(timeout: 90))
