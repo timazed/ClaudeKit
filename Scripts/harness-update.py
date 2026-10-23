@@ -92,6 +92,7 @@ def install(pin):
             stage.mkdir()
             for name, data in files.items():
                 (stage / name).write_bytes(data)
+            (stage / "harness-pin.json").write_text(json.dumps(pin, indent=2) + "\n")
             if destination.exists():
                 shutil.rmtree(destination)
             stage.rename(destination)

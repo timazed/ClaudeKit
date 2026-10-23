@@ -5,6 +5,7 @@ import io
 import json
 from pathlib import Path
 import tarfile
+import tempfile
 import unittest
 from unittest.mock import patch
 
@@ -50,6 +51,29 @@ class UpdateTests(unittest.TestCase):
         with patch.object(updater, 'download', side_effect=[json.dumps(package).encode(), data]):
             with self.assertRaisesRegex(ValueError, 'integrity'):
                 updater.candidate({'version': '2.1.112'})
+
+    def test_install_bundles_verified_pin_for_both_runtimes(self):
+        package = self.metadata()
+        output = io.BytesIO()
+        with tarfile.open(fileobj=output, mode='w:gz') as archive:
+            for name in updater.FILES:
+                data = json.dumps(package).encode() if name == 'package.json' else b'fixture'
+                member = tarfile.TarInfo('package/' + name)
+                member.size = len(data)
+                archive.addfile(member, io.BytesIO(data))
+        data = output.getvalue()
+        pin = dict(package=updater.PACKAGE, version=package['version'],
+                   tarball='https://registry.npmjs.org/example.tgz',
+                   archive_sha256=hashlib.sha256(data).hexdigest(),
+                   cli_sha256=hashlib.sha256(b'fixture').hexdigest())
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with patch.object(updater, 'ROOT', root), patch.object(updater, 'download', return_value=data):
+                updater.install(pin)
+            for relative in ('HarnessDemo/Runtime', 'Sources/ClaudeKitHarness/Resources/Runtime'):
+                installed = root / relative / 'vendor/claude-code'
+                self.assertEqual(json.loads((installed / 'harness-pin.json').read_text()), pin)
+                self.assertEqual(hashlib.sha256((installed / 'cli.js').read_bytes()).hexdigest(), pin['cli_sha256'])
 
     def test_downgrade_rejected(self):
         with patch.object(updater, 'download', return_value=json.dumps(self.metadata('2.1.100')).encode()):

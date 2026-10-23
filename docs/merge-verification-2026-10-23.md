@@ -1,0 +1,25 @@
+# Branch verification — 23 October 2026
+
+Branch: `codex/latest-harness-prototype`, based on `main` at `4a61b34`.
+
+This pass fixed the updater's runtime checksum mismatch: bootstrap now bundles the verified pin, and the SDK, Harness Lab and remote server read its checksum at startup. Runtime evidence reports that pin's version. A regression test checks both installed runtime copies. HTTP test cleanup now handles a child that exited during startup.
+
+`.nvmrc` pins Node 18.19.1. Both GitHub workflows read it. The new `Verify ClaudeKit` workflow runs the checked-in pin's qualification on pull requests and pushes to `main`; the scheduled updater still qualifies candidate releases separately.
+
+## Results
+
+| Check | Result |
+| --- | --- |
+| Python updater tests | 6 passed |
+| Swift tests with official-harness fixtures enabled | 34 passed, zero skipped |
+| JavaScript workspace, scheduler and HTTP tests | 4 passed; repeated successfully using nvm-managed Node 18.19.1 |
+| Official harness worker/session resume | A → B → A passed; distinct worker isolates, original session resumed with zero repeated tools |
+| LibraryDemo unsigned iOS device build | Passed |
+| LibraryDemo unsigned arm64 simulator build | Passed |
+| Git whitespace check | Passed |
+
+Swift used `CLAUDEKIT_RUN_HARNESS_TESTS=1` and Node 18.19.1. Build logs were written to `/tmp/claudekit-merge-{swift,ios,simulator,workers}.log` on the verification machine. Xcode first-launch setup was completed before the successful iOS builds.
+
+No simulator device/runtime was installed, so simulator UI acceptance was not rerun. No live-account or physical-device test was performed in this pass. Earlier prototype device evidence remains scoped as described in [the prototype README](../Prototypes/LatestHarness/README.md); the adapted latest prototype remains isolated from the shipping 2.1.112 runtime.
+
+The remote `main` was an ancestor of the branch during verification. No pull-request refs were exposed by the Git remote; authenticated GitHub review/check status was unavailable in this environment. The local verification results do not assert GitHub branch-protection or review approval.

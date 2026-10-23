@@ -1,0 +1,31 @@
+name: Verify ClaudeKit
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - run: python3 -m unittest discover -s Tests/HarnessUpdates -v
+      - run: bash Scripts/bootstrap-library.sh
+      - run: CLAUDEKIT_RUN_HARNESS_TESTS=1 CLAUDEKIT_NODE="$(command -v node)" swift test
+      - run: node --test Tests/RuntimeJS/*.test.cjs RemoteServer/*.test.mjs
+      - run: node Tests/HarnessIntegration/worker-sessions.cjs
+      - name: iOS device build
+        run: xcodebuild -project LibraryDemo/LibraryDemo.xcodeproj -scheme LibraryDemo -destination 'generic/platform=iOS' CODE_SIGNING_ALLOWED=NO build
+      - name: iOS arm64 simulator build
+        run: xcodebuild -project LibraryDemo/LibraryDemo.xcodeproj -scheme LibraryDemo -destination 'generic/platform=iOS Simulator' ARCHS=arm64 CODE_SIGNING_ALLOWED=NO build

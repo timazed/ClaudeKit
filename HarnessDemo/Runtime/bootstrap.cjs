@@ -63,9 +63,10 @@ setInterval(() => {}, 60000);
       delete process.env.CLAUDE_CODE_SIMPLE;
     } else if (!process.env.ANTHROPIC_API_KEY) throw new Error('Enter an Anthropic API key before starting API mode.');
   }
+  const pin = require('./vendor/claude-code/harness-pin.json');
   const cli = path.join(__dirname, 'vendor/claude-code/cli.js');
   const hash = require('node:crypto').createHash('sha256').update(fs.readFileSync(cli)).digest('hex');
-  if (hash !== 'bc3358282800e3e99daa8e71ac5b7b1566bd0d7ca7eb94f714a7859365d3163f') {
+  if (hash !== pin.cli_sha256) {
     throw new Error('Official CLI checksum mismatch');
   }
   // --bare disables the harness's own OAuth lookup; account mode must not use it.
@@ -81,7 +82,7 @@ setInterval(() => {}, 60000);
   emit({ type: 'demo_runtime', node: process.version, platform: process.platform,
     arch: process.arch, pid: process.pid, jitless: process.execArgv.includes('--jitless'),
     icu: process.versions.icu || null, flags: process.execArgv,
-    harnessVersion: '2.1.112', harnessSHA256: hash, mode: process.env.DEMO_MODE,
+    harnessVersion: pin.version, harnessSHA256: hash, mode: process.env.DEMO_MODE,
     workspace, resumedSession: process.env.DEMO_RESUME || null });
   await import(pathToFileURL(cli).href);
 })().catch(failure);

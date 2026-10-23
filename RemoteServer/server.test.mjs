@@ -37,7 +37,9 @@ test('HTTP receipt replay, conflict, authentication and restart recovery without
     assert.equal((await request('/v1/jobs', { method: 'POST', body: JSON.stringify({ ...submission, id: crypto.randomUUID(), parentJobID: crypto.randomUUID() }) })).status, 400);
     assert.equal(JSON.parse(await fs.readFile(path.join(root, interruptedID + '.json'), 'utf8')).state, 'interrupted');
   } finally {
-    const exited = once(child, 'exit'); child.kill('SIGTERM'); await exited;
+    if (child.exitCode === null && child.signalCode === null) {
+      const exited = once(child, 'exit'); child.kill('SIGTERM'); await exited;
+    }
     await fs.rm(root, { recursive: true, force: true });
   }
 });
