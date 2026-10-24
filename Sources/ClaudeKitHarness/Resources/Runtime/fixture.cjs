@@ -7,7 +7,7 @@ const crypto = require('node:crypto');
 exports.start = async function start(emit) {
   let requests = 0;
   const nonce = process.env.DEMO_NONCE || crypto.randomUUID();
-  const note = `Official harness on iOS: ${nonce}`;
+  const proofNote = `Official harness on iOS: ${nonce}`;
   const server = http.createServer((req, res) => {
     let raw = '';
     req.on('data', chunk => { raw += chunk; if (raw.length > 8 * 1024 * 1024) req.destroy(); });
@@ -18,15 +18,22 @@ exports.start = async function start(emit) {
         if (!req.url.startsWith('/v1/messages')) return json(res, { error: 'Not a fixture endpoint' }, 404);
         requests++;
         const messages = body.messages || [];
+        const gallery = JSON.stringify(messages).includes('Save my Saturday plan:');
+        const note = gallery ? 'Saturday in Sydney\n• Coffee in Surry Hills\n• Walk through the Royal Botanic Garden\n• Lunch by the harbour' : proofNote;
         const blocks = messages.flatMap(m => Array.isArray(m.content) ? m.content : []);
         const results = blocks.filter(c => c.type === 'tool_result');
+        const toolText = content => typeof content === 'string' ? content : (content || []).map(block => block.text || '').join('\n');
         const tools = (body.tools || []).map(t => t.name);
         const resume = messages.some(m => typeof m.content === 'string' ? m.content.includes('RESUME_PROOF') :
           (m.content || []).some(c => c.type === 'text' && c.text.includes('RESUME_PROOF')));
         let block;
         let stop = 'end_turn';
         const requestText = JSON.stringify(messages);
-        if (requestText.includes('IMAGE_TOOL_PROOF')) {
+        if (gallery && tools.includes('StructuredOutput')) {
+          if (!blocks.some(c => c.type === 'tool_use' && c.name === 'StructuredOutput')) {
+            block = { type: 'tool_use', id: 'toolu_gallery_json', name: 'StructuredOutput', input: { answer: '09:00 — Coffee in Surry Hills. 10:30 — Royal Botanic Garden walk. 12:30 — Lunch by Sydney Harbour.' } }; stop = 'tool_use';
+          } else { block = { type: 'text', text: 'Your weekend itinerary is ready in the requested format.' }; }
+        } else if (requestText.includes('IMAGE_TOOL_PROOF')) {
           if (!results.length) {
             block = { type: 'tool_use', id: 'toolu_image', name: 'mcp__ios__read_image', input: {} }; stop = 'tool_use';
           } else {
@@ -45,7 +52,7 @@ exports.start = async function start(emit) {
           const oldWrite = blocks.find(c => c.type === 'tool_use' && c.name === 'mcp__ios__write_note');
           const oldRead = blocks.find(c => c.type === 'tool_use' && c.name === 'mcp__ios__read_note');
           const readResult = results.find(c => c.tool_use_id === oldRead?.id);
-          if (!oldWrite || !readResult || readResult.is_error || !JSON.stringify(readResult.content).includes(oldWrite.input.text)) {
+          if (!oldWrite || !readResult || readResult.is_error || !toolText(readResult.content).includes(oldWrite.input.text)) {
             throw new Error('Resumed model context does not contain the original write and successful read result');
           }
           block = { type: 'text', text: `RESUME_OK: ${oldWrite.input.text}` };
@@ -68,9 +75,9 @@ exports.start = async function start(emit) {
           emit({ type: 'demo_fixture', stage: 'request_read', requests });
         } else {
           const read = results.find(c => c.tool_use_id === 'toolu_fixture_read');
-          if (!JSON.stringify(read.content).includes(note)) throw new Error('Read-back content does not match the unique test nonce');
+          if (!toolText(read.content).includes(note)) throw new Error('Read-back content does not match the unique test nonce');
           block = { type: 'text', text: requestText.includes('RECORDS_PROOF') ? '{"answer":"one"}\n{"answer":"two"}\n' :
-            requestText.includes('XML_PROOF') ? '<answer>verified</answer>' : `PROOF_OK: ${note}` };
+            requestText.includes('XML_PROOF') ? '<answer>verified</answer>' : gallery ? `Your Saturday plan is saved.\n\n${note}\n\nI read the note back and checked that every stop is there.` : `PROOF_OK: ${note}` };
           emit({ type: 'demo_fixture', stage: 'read_back_verified', requests, proof: note });
         }
         const message = { id: `msg_fixture_${requests}`, type: 'message', role: 'assistant', model: body.model,

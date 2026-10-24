@@ -12,6 +12,8 @@ import ClaudeKitUI
     @Published var selected: String?
     @Published var messages: [AgentMessage] = []
     @Published var streaming = ""
+    @Published var structuredReply = ""
+    @Published var structuredFormat = ""
     @Published var toolCalls = 0
     @Published var ephemeral = false
     enum ReplyFormat: String, CaseIterable { case text = "Text", json = "JSON", records = "JSON Lines", xml = "XML" }
@@ -87,7 +89,7 @@ import ClaudeKitUI
     func createThread() {
         guard let runtime else { return }
         Task {
-            do { let thread = try await runtime.createThread(title: "Conversation \(threads.count + 1)", configuration: .init(model: selectedModel)); selected = thread.id; await refresh() }
+            do { let thread = try await runtime.createThread(title: ProcessInfo.processInfo.arguments.contains("--gallery") ? (threads.isEmpty ? "Saturday in Sydney" : "Weekend itinerary") : "Conversation \(threads.count + 1)", configuration: .init(model: selectedModel)); selected = thread.id; structuredReply = ""; await refresh() }
             catch { self.error = error.localizedDescription }
         }
     }
@@ -99,7 +101,7 @@ import ClaudeKitUI
             busy = false
         }
     }
-    func select(_ id: String) { selected = id; Task { await refresh() } }
+    func select(_ id: String) { selected = id; structuredReply = ""; Task { await refresh() } }
     func send(_ prompt: String) {
         guard let runtime, let selected, !busy else { return }
         let isEphemeral = ephemeral
@@ -108,7 +110,7 @@ import ClaudeKitUI
         request.webSearch = useSearch ? .init(mode: .live, maximumCalls: 3) : nil
         switch replyFormat {
         case .json:
-            runTyped(request, output: AgentJSONResponseFormat<DemoAnswer>(name: "answer", schema: .raw(Self.answerSchema))) { $0.answer }; return
+            runTyped(request, output: AgentJSONResponseFormat<DemoAnswer>(name: "answer", schema: .raw(Self.answerSchema))) { JSONValue.object(["answer": .string($0.answer)]).prettyPrintedJSONString }; return
         case .records:
             runTyped(request, output: AgentRecordResponseFormat<DemoAnswer>(name: "answers", schema: .raw(Self.answerSchema), minimumRecords: 1, maximumRecords: 10)) {
                 $0.records.map(\.answer).joined(separator: "\n")
@@ -117,7 +119,7 @@ import ClaudeKitUI
             runTyped(request, output: AgentXMLResponseFormat(name: "answer", schema: .element("answer", text: .string))) { $0.rawXML }; return
         case .text: break
         }
-        busy = true; error = nil; streaming = ""; transientReply = ""; status = "Claude is working…"
+        busy = true; error = nil; streaming = ""; transientReply = ""; structuredReply = ""; status = "Claude is working…"
         turnTask = Task {
             do {
                 let handle = try await runtime.start(request, in: selected); execution = handle
@@ -219,7 +221,7 @@ extension DemoModel {
     private func runTyped<Format: AgentOutputFormat>(_ request: Request, output format: Format,
                                                     render: @escaping @Sendable (Format.Output) -> String) {
         guard let runtime, let selected, !busy else { return }
-        busy = true; error = nil; streaming = ""; transientReply = ""; status = "Claude is working…"
+        busy = true; error = nil; streaming = ""; transientReply = ""; structuredReply = ""; status = "Claude is working…"
         turnTask = Task {
             do {
                 let handle = try await runtime.start(request, in: selected, output: format)
@@ -229,6 +231,8 @@ extension DemoModel {
                     switch event {
                     case .format: units += 1; status = "Receiving output · \(units) events"
                     case let .outputCommitted(_, value):
+                        structuredReply = render(value)
+                        structuredFormat = replyFormat.rawValue
                         if request.isEphemeral { transientReply = render(value) }
                     case let .lifecycle(.toolCallFinished(result)): if result.success { toolCalls += 1 }
                     default: break

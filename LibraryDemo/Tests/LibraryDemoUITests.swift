@@ -15,7 +15,7 @@ final class LibraryDemoUITests: XCTestCase {
         XCTAssertTrue(app.buttons["Sign in with Claude"].waitForExistence(timeout: 30))
         capture("01-sign-in")
         app.terminate()
-        app.launchArguments = ["--fixture"]
+        app.launchArguments = ["--fixture", "--gallery"]
         app.launch()
         XCTAssertTrue(app.buttons["New conversation"].waitForExistence(timeout: 30))
         app.buttons["New conversation"].tap()
@@ -29,11 +29,20 @@ final class LibraryDemoUITests: XCTestCase {
         app.buttons["Allow once"].tap()
         XCTAssertTrue(app.staticTexts["Turn completed"].waitForExistence(timeout: 30))
         capture("04-completed-reply")
+        app.buttons["Reply settings"].tap()
         app.swipeUp()
         capture("05-output-controls")
         app.buttons["Reply format, Text"].tap()
         XCTAssertTrue(app.buttons["JSON Lines"].waitForExistence(timeout: 10))
         capture("06-reply-formats")
+        app.buttons["JSON"].tap()
+        app.swipeDown()
+        app.swipeDown()
+        app.buttons["New conversation"].tap()
+        app.buttons["Send"].tap()
+        XCTAssertTrue(app.staticTexts["Validated JSON"].waitForExistence(timeout: 45))
+        app.swipeUp()
+        capture("07-structured-result")
     }
     func testTypedFormatsAndRecoveryOnEmbeddedHarness() {
         let app = XCUIApplication(); app.launchArguments = ["--fixture", "--verify-formats"]; app.launch()

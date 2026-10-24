@@ -27,3 +27,9 @@ The remote `main` was an ancestor of the branch during verification. No pull-req
 ## Demo gallery follow-up
 
 Installed the iOS 27.0 simulator runtime and captured six fresh iPhone 17 Pro screenshots through a passing UI capture test. This exercised fixture conversation creation, native write/read approvals, completion, and the reply-format menu. See [gallery provenance](images/demo/README.md). The complete simulator acceptance suite and live-account/device qualification were not rerun.
+
+## Presentation refresh — 24 October 2026
+
+Reworked the demo welcome, conversation, approval, and committed structured-output presentation. The gallery now uses a readable Saturday itinerary through an explicit `--fixture --gallery` scenario. This remains a deterministic model fixture with actual embedded-harness execution and native note tools; screenshots are not live-model evidence.
+
+The seven-screen capture test passed, including a multiline note write/read round trip and a validated JSON result. Two additional simulator UI tests passed for approval denial and cancellation followed by a fresh conversation. All 34 Swift tests passed with official-harness fixtures enabled on nvm-managed Node 18.19.1. One parallel Swift run exited with SIGPIPE during logout; the subsequent complete run passed. Source and image hashes are recorded in the gallery manifest. This pass did not repeat live-account or physical-device qualification.

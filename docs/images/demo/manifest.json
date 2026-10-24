@@ -1,16 +1,23 @@
 {
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "device": "iPhone 17 Pro",
   "os": "iOS 27.0 (24A434)",
   "test": "LibraryDemoUITests/testCaptureDocumentationGallery",
   "testResult": "passed",
-  "sourceCommit": "c505d69",
+  "sourceBaseCommit": "2b8b86a",
+  "sources": {
+    "LibraryDemo/Sources/LibraryDemoApp.swift": "41ffa4dfe6f09e0cf98c7a6a2a5531446a354831bb9014ed269183cdab9adc2c",
+    "LibraryDemo/Sources/DemoModel.swift": "8897500a712cd44f930dfea9277cdcff0155f3172aa2cee89957a5d785ea7e69",
+    "LibraryDemo/Tests/LibraryDemoUITests.swift": "462115e1f9ef539c68f2a45c10d38a926d7977188b020e2225c0612c2138687f",
+    "Sources/ClaudeKitHarness/Resources/Runtime/fixture.cjs": "b2fca47d4746f3d79ca033f7206d075c47f5f9a9d90ad7e28c9ed63dc7f8826f"
+  },
   "images": {
-    "01-sign-in.png": "80f981963f8ca872fc326cae64a3270fc281f7a29414b90b9e004646226749d6",
-    "02-conversation.png": "eb1edeb28d9aadb820ece7116e84b723264c77fb7aa1a1d91b267314319d441b",
-    "03-tool-approval.png": "d75de325f49fcdac1a540ab5d313027c8d920eebd3cfcb968cfd3b70eaf29d56",
-    "04-completed-reply.png": "e9e4f383159d7ea1ca50b3a3bd3f758827d5f266dc86169b03c128cf10656208",
-    "05-output-controls.png": "d1764b542adfeec62e53767351bd358f6ee68fc038afec2cf79147baa8fe8db5",
-    "06-reply-formats.png": "c955272f29647ea15c731c082ff457dfb5c8c8fdaa65eea76fc1e4b04d3e7892"
+    "01-sign-in.png": "98cfd68bf1671a0b337defb2283b3a80bd963fdd34636130613259d4921b19d4",
+    "02-conversation.png": "b5889df412b4b4245220b3cc8cbe92d20ba1dcfc47f0d90d78684b2fb7e470de",
+    "03-tool-approval.png": "e74f3149d9c733d2e97efc3ff7e244600533b19d3705640b9da6e3c97a8f560e",
+    "04-completed-reply.png": "cbff789660d35ebea3f18357d7a572a24f25c7a2d2a93adb76e395320733777a",
+    "05-output-controls.png": "908a87cd06c2787e429fe793203f248869946b48d84f253c6785e65440393fd1",
+    "06-reply-formats.png": "ebb2290ddfcdb9362ea9cba54ffce3962fe09f013184816e43fa9c60d3a54718",
+    "07-structured-result.png": "dca99b666535d033ae0d43ad2e6dbfa674c300038d228bf16ad2c587b1fd5f35"
   }
 }
