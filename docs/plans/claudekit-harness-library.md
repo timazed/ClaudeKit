@@ -2,7 +2,7 @@
 
 Status: Core development alpha implemented on 18 October 2026. The runnable consumer app is [LibraryDemo](../../LibraryDemo/README.md), using the three public Swift package products. The sections below retain the wider implementation roadmap; they are not all claims of completed support.
 
-The session-switching gate passed: one embedded Node host runs disposable Worker isolates around the unmodified official harness. The library demonstrated A → B → A, process restart recovery, approvals, denial, and cancellation on iOS simulator. The original Messages implementation is preserved under `ClaudeKitLegacy` / `ClaudeKitLegacyUI`. See the [current API and limitations](../../README.md) and [verification evidence](../../LibraryDemo/Evidence/README.md). Logout, expiry qualification, advanced requests, and release packaging remain open.
+The session-switching gate passed: one embedded Node host runs disposable Worker isolates around the unmodified official harness. The library demonstrated A → B → A, process restart recovery, approvals, denial, and cancellation on iOS simulator. The original Messages implementation has been removed. See the [current API and limitations](../../README.md) and [verification evidence](../../LibraryDemo/Evidence/README.md). Logout, expiry qualification, advanced requests, and release packaging remain open.
 
 Build a Swift library with CodexKit's familiar integration pattern around the official Claude Code harness already demonstrated on iPhone. Apps should sign in with a Claude account, create conversations, stream replies, register Swift tools, present approvals, and restore their work through `AgentRuntime`. The harness retains ownership of authentication, model requests, agent iteration, and conversation context.
 
@@ -10,7 +10,7 @@ The first release should provide the core application API with one active execut
 
 ## Verified starting point
 
-At the start of this plan, the Swift package and `HarnessDemo` were separate implementations. The package used `AnthropicMessagesBackend` and a Swift-managed runtime; the demo embedded the unmodified harness. The implemented alpha replaces that runtime ownership boundary and retains the old implementation under explicitly named legacy products.
+At the start of this plan, the Swift package and `HarnessDemo` were separate implementations. The package used `AnthropicMessagesBackend` and a Swift-managed runtime; the demo embedded the unmodified harness. The implemented alpha replaces that runtime ownership boundary and removes the old implementation.
 
 On 15 October 2026, the physical iPhone tests established:
 
@@ -77,12 +77,12 @@ flowchart TB
 
 The boundary is a `HarnessDriving` abstraction that starts/resumes a harness session, starts a turn, routes control messages, and reports capabilities. It does not accept an exported access token or ask Swift to schedule the next model call. Avoid forcing it into the existing credential-oriented `AgentBackend.beginTurn(history:session:)` contract.
 
-Proposed package products:
+Original proposed module layout (historical). Apps now link and import `ClaudeKit`, which includes the default harness; see [SDK integration](../sdk-integration.md) for current usage.
 
 | Product or target | Responsibility |
 | --- | --- |
 | `ClaudeKit` | Public models, runtime facade, driver protocol, execution handles, tool/approval contracts, store protocols, event mapping contracts |
-| `ClaudeKitHarness` | Official protocol adapter, session coordinator, bootstrap resources, and platform transport factories |
+| Internal harness adapter | Official protocol adapter, session coordinator, bootstrap resources, and platform transport factories |
 | Internal iOS host target plus `NodeMobile` binary target | Embedded runtime lifecycle, pipes, thread configuration, compatibility adapters; conditionally linked for iOS |
 | Internal macOS transport target | Launch a selected compatible local CLI using process pipes; no remote harness dependency |
 | `ClaudeKitUI` | SwiftUI state adapter, approval inbox, official browser presenter, manual-code fallback UI |
@@ -98,7 +98,6 @@ This is the original proposed API shape. See the root README and LibraryDemo for
 
 ```swift
 import ClaudeKit
-import ClaudeKitHarness
 import ClaudeKitUI
 
 let approvals = ApprovalInbox()
@@ -234,7 +233,7 @@ Before publishing bundled proprietary artifacts, resolve the chosen distribution
 | `Tests` and new `Scripts` | Driver contracts, protocol fixture runs, isolated consumer builds, signed device/simulator verification, artifact checks |
 | Root README and guides | Replace the current Messages-only quickstart when the harness-backed package is usable; document intentional API differences |
 
-Keep the legacy Messages implementation available under an explicit legacy module/product during migration if existing consumers need it. It must never be an automatic fallback from a harness failure. Keep existing legacy history separate; there is no proven conversion from those UI histories to an official harness session. Decide the release version and deprecation schedule when actual consumers are identified.
+The library is unreleased; remove obsolete implementations without compatibility products or migration shims.
 
 Reuse CodexKit's interface patterns and relevant contract tests after checking the applicable source license. Avoid a dependency on the entire CodexKit package or a shared agent-loop implementation. Do not extract a new cross-provider framework before this integration stabilizes.
 

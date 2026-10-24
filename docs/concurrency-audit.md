@@ -12,7 +12,6 @@ ClaudeKit now follows that model for ordinary and typed turns: one runtime, inde
 
 Persistence is serialized independently of model execution. Writes cannot finish out of order and overwrite another thread's newer projection. If a write fails, the writer chain fails closed and the runtime requires restoration; it does not continue committing snapshots based on uncertain state. Authentication/restoration remain exclusive lifecycle operations. These semantics are not a promise of unlimited device resources.
 
-`ClaudeRuntimePool` is retained as a compatibility facade. Its former `maximumConcurrentExecutions` initializer argument is removed. Prior `lane-N.json` files are merged once on restore into `state.json`, with originals retained and account/identity conflicts rejected. New apps can simply use `AgentRuntime`.
 
 ## Limits corrected
 

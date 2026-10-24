@@ -23,7 +23,8 @@ const cli = path.resolve(process.env.CLAUDEKIT_CLI || path.join(here, '../Source
 const config = process.env.CLAUDEKIT_ACCOUNT_DIRECTORY;
 const token = process.env.CLAUDEKIT_REMOTE_TOKEN;
 if (!token || token.length < 32 || !config) throw new Error('Configure a strong remote token and the server-owned Claude account directory');
-if (crypto.createHash('sha256').update(await fs.readFile(cli)).digest('hex') !== 'bc3358282800e3e99daa8e71ac5b7b1566bd0d7ca7eb94f714a7859365d3163f') throw new Error('Harness checksum mismatch');
+const pin = JSON.parse(await fs.readFile(path.join(here, '../Sources/ClaudeKitHarness/Resources/Runtime/vendor/claude-code/harness-pin.json'), 'utf8'));
+if (crypto.createHash('sha256').update(await fs.readFile(cli)).digest('hex') !== pin.cli_sha256) throw new Error('Harness checksum mismatch');
 await fs.mkdir(root, { recursive: true, mode: 0o700 });
 await fs.mkdir(path.join(root, 'workspace'), { recursive: true, mode: 0o700 });
 const jobs = new Map(); const active = new Map();

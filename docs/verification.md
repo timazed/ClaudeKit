@@ -35,6 +35,8 @@ See the [detailed result report](verification-pending.md) and [source/log manife
 
 ## Before shipping a new harness version
 
+The [automatic update process](harness-updates.md) checks official releases daily and proposes compatible, tested updates as draft PRs.
+
 Verify provenance/hash and supported architecture first, then run fixture suites and the demo acceptance checks. Qualify real account refresh, live steering/search ordering and representative multiworker memory use separately. For remote work, test live generation/session continuation and production TLS/APNs in the intended account/deployment.
 
 Do not infer those external guarantees from passing fixture tests. Image generation is outside the implementation and verification scope.

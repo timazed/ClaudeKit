@@ -27,7 +27,6 @@ public actor SQLiteRuntimeStateStore: RuntimeStatePartitioning {
             try execute("CREATE INDEX IF NOT EXISTS claudekit_thread_date ON claudekit_threads(updated DESC, id)")
             try execute("CREATE TABLE IF NOT EXISTS claudekit_messages (id TEXT PRIMARY KEY, thread_id TEXT NOT NULL, position INTEGER NOT NULL, text TEXT NOT NULL, payload BLOB NOT NULL)")
             try execute("CREATE INDEX IF NOT EXISTS claudekit_message_page ON claudekit_messages(thread_id,position)")
-            try rebuildLegacyIndexIfNeeded()
         } catch { sqlite3_close(handle); database = nil; throw error }
     }
     public func loadState() async throws -> StoredRuntimeState { try await load(includeMessages: true) }
@@ -38,21 +37,19 @@ public actor SQLiteRuntimeStateStore: RuntimeStatePartitioning {
         defer { sqlite3_finalize(statement) }
         let result = sqlite3_step(statement)
         if result == SQLITE_DONE { return .empty }
-        guard result == SQLITE_ROW, [1, 2].contains(sqlite3_column_int(statement, 0)) else { throw error("Unknown or unreadable state format.") }
+        guard result == SQLITE_ROW, sqlite3_column_int(statement, 0) == 2 else { throw error("Unknown or unreadable state format.") }
         let count = Int(sqlite3_column_bytes(statement, 1))
         guard count <= 64 * 1024 * 1024, let bytes = sqlite3_column_blob(statement, 1) else { throw error("Invalid state payload.") }
         var state = try JSONDecoder().decode(StoredRuntimeState.self, from: Data(bytes: bytes, count: count))
-        if sqlite3_column_int(statement, 0) == 2 {
-            let threads = try prepareStatement("SELECT payload FROM claudekit_threads ORDER BY updated DESC,id")
-            defer { sqlite3_finalize(threads) }
-            while sqlite3_step(threads) == SQLITE_ROW { state.threads.append(try payload(AgentThread.self, from: threads)) }
-            if includeMessages {
+        let threads = try prepareStatement("SELECT payload FROM claudekit_threads ORDER BY updated DESC,id")
+        defer { sqlite3_finalize(threads) }
+        while sqlite3_step(threads) == SQLITE_ROW { state.threads.append(try payload(AgentThread.self, from: threads)) }
+        if includeMessages {
             let messages = try prepareStatement("SELECT thread_id,payload FROM claudekit_messages ORDER BY thread_id,position")
             defer { sqlite3_finalize(messages) }
             while sqlite3_step(messages) == SQLITE_ROW {
                 let id = String(cString: sqlite3_column_text(messages, 0))
                 state.messagesByThread[id, default: []].append(try payload(AgentMessage.self, from: messages, column: 1))
-            }
             }
         }
         if !includeMessages { state.messagesByThread = [:] }

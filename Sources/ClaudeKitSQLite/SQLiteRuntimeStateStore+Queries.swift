@@ -11,23 +11,6 @@ extension SQLiteRuntimeStateStore {
         guard size <= 64 * 1024 * 1024, let bytes = sqlite3_column_blob(statement, column) else { throw error("Invalid row payload.") }
         return try JSONDecoder().decode(type, from: Data(bytes: bytes, count: size))
     }
-    func rebuildLegacyIndexIfNeeded() throws {
-        let count = try prepareStatement("SELECT (SELECT COUNT(*) FROM claudekit_threads), payload, version FROM claudekit_state WHERE id=1")
-        let snapshot: StoredRuntimeState?
-        do {
-            defer { sqlite3_finalize(count) }
-            let step = sqlite3_step(count)
-            guard step == SQLITE_ROW || step == SQLITE_DONE else { throw error("Cannot inspect snapshot index.") }
-            if step == SQLITE_ROW {
-                guard [1, 2].contains(sqlite3_column_int(count, 2)) else { throw error("Unsupported snapshot version.") }
-                snapshot = sqlite3_column_int(count, 2) == 1 && sqlite3_column_int(count, 0) == 0 ? try payload(StoredRuntimeState.self, from: count, column: 1) : nil
-            } else { snapshot = nil }
-        }
-        if let snapshot {
-            try execute("BEGIN IMMEDIATE")
-            do { try rebuildIndexes(snapshot); try execute("COMMIT") } catch { try? execute("ROLLBACK"); throw error }
-        }
-    }
     func rebuildIndexes(_ state: StoredRuntimeState, preservingMessagesFor preserved: Set<String> = []) throws {
         // Only delete absent rows; UPSERT skips identical payloads and preserves indexes.
         try execute("CREATE TEMP TABLE IF NOT EXISTS retained_ids(id TEXT PRIMARY KEY)")

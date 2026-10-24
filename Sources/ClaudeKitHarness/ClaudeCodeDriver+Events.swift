@@ -1,5 +1,5 @@
 import Foundation
-import ClaudeKit
+import ClaudeKitCore
 
 extension ClaudeCodeDriver {
     func receive(_ packet: JSONValue) async {

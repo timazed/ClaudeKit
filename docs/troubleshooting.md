@@ -6,7 +6,7 @@
 
 | Symptom | Check |
 | --- | --- |
-| Default runtime initializer not found | Import/link `ClaudeKitHarness`; the core product only has the explicit-driver initializer |
+| Default runtime initializer not found | Import/link `ClaudeKit`; it includes the default-harness initializer |
 | Missing NodeMobile resources or incompatible simulator architecture | Bootstrap before package resolution; use an arm64 simulator/device |
 | macOS harness cannot start | Supply an existing absolute `nodeExecutable` path |
 | Sign-in does not open a browser | Retain/render the coordinator and browser; `signIn()` alone does not present UI |

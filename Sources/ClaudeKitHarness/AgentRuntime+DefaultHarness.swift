@@ -1,11 +1,11 @@
-import ClaudeKit
+import ClaudeKitCore
 import Foundation
 
 public extension AgentRuntime.Configuration {
     /// Creates and owns the official harness driver. Keep the resulting runtime
     /// for the application's lifetime on iOS.
     ///
-    /// Import ClaudeKitHarness to make this initializer available. Use the
+    /// Import ClaudeKit to make this initializer available. Use the
     /// driver-taking initializer when injecting a custom or test driver.
     init(approvalPresenter: any ApprovalPresenting,
          stateStore: any RuntimeStateStoring = FileRuntimeStateStore(),

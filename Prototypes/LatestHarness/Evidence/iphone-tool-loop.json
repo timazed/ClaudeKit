@@ -1,0 +1,139 @@
+{
+  "date" : "2026-10-22T15:08:35Z",
+  "device" : "iPhone",
+  "durationSeconds" : 2.8218199014663696,
+  "environment" : "physical iOS device",
+  "fixtureModelRequests" : 3,
+  "fixtureVerified" : true,
+  "mode" : "fixture",
+  "nativePID" : 59777,
+  "officialTranscriptPaths" : [
+    "\/private\/var\/mobile\/Containers\/Data\/Application\/1A7C4CD7-5944-4BA8-9200-A549F3D6660D\/Library\/Application Support\/OfficialClaude\/projects\/-private-var-mobile-Containers-Data-Application-1A7C4CD7-5944-4BA8-9200-A549F3D6660D-Documents-Workspace\/b4914769-dd76-4017-a72c-15def2c28873.jsonl"
+  ],
+  "passed" : true,
+  "permissionRequests" : 2,
+  "reads" : 1,
+  "result" : {
+    "api_error_status" : null,
+    "duration_api_ms" : 82,
+    "duration_ms" : 200,
+    "fast_mode_disabled_reason" : "sdk_opt_in_required",
+    "fast_mode_state" : "off",
+    "first_content_frame_ms" : 83,
+    "is_error" : false,
+    "modelUsage" : {
+      "claude-sonnet-4-6" : {
+        "cacheCreationInputTokens" : 0,
+        "cacheReadInputTokens" : 0,
+        "canonicalModel" : "claude-sonnet-4-6",
+        "contextWindow" : 200000,
+        "costBasis" : "list",
+        "costUSD" : 0.0022500000000000003,
+        "inputTokens" : 300,
+        "maxOutputTokens" : 32000,
+        "outputTokens" : 90,
+        "provider" : "firstParty",
+        "thinkingTokens" : 0,
+        "webSearchRequests" : 0
+      }
+    },
+    "num_turns" : 3,
+    "permission_denials" : [
+
+    ],
+    "queued_turn_count" : 0,
+    "result" : "PROOF_OK: Official harness on iOS: 6DF45D60-9B8F-452F-BBA1-A89D560E4AB6",
+    "result_index" : 0,
+    "safety_stops" : 0,
+    "session_id" : "b4914769-dd76-4017-a72c-15def2c28873",
+    "stop_reason" : "end_turn",
+    "subagent_stats" : {
+      "by_type" : {
+
+      },
+      "completed" : 0,
+      "failed" : 0,
+      "killed" : {
+        "parent" : 0,
+        "system" : 0,
+        "user" : 0
+      },
+      "max_depth" : 0,
+      "refused" : {
+        "budget" : 0,
+        "concurrency_limit" : 0,
+        "depth_limit" : 0
+      },
+      "requested" : {
+        "background" : 0,
+        "foreground" : 0,
+        "unset" : 0
+      },
+      "spawned" : 0,
+      "spawned_by_subagents" : 0,
+      "started_in_background" : 0
+    },
+    "subtype" : "success",
+    "terminal_reason" : "completed",
+    "time_to_request_ms" : 62,
+    "total_cost_usd" : 0.0022500000000000003,
+    "ttft_ms" : 87,
+    "ttft_stream_ms" : 82,
+    "type" : "result",
+    "usage" : {
+      "cache_creation" : {
+        "ephemeral_1h_input_tokens" : 0,
+        "ephemeral_5m_input_tokens" : 0
+      },
+      "cache_creation_input_tokens" : 0,
+      "cache_read_input_tokens" : 0,
+      "fallback_credit" : null,
+      "inference_geo" : "",
+      "input_tokens" : 300,
+      "iterations" : [
+
+      ],
+      "output_tokens" : 90,
+      "output_tokens_details" : {
+        "thinking_tokens" : 0
+      },
+      "server_tool_use" : {
+        "web_fetch_requests" : 0,
+        "web_search_requests" : 0
+      },
+      "service_tier" : "standard",
+      "speed" : "standard"
+    },
+    "uuid" : "5efe3976-4d38-42af-8e73-cdc048264b6b"
+  },
+  "resumed" : false,
+  "runID" : "9494E8BF-396F-49F5-B744-671447AE29E6",
+  "runtime" : {
+    "arch" : "arm64",
+    "flags" : [
+      "--jitless",
+      "--no-short-builtin-calls",
+      "--regexp-interpret-all",
+      "--stack-size=864"
+    ],
+    "harnessSHA256" : "d59c529190a6c017c8d2f1e0f94aceb1817bc726f53f2ead01bfe3ca0399521b",
+    "harnessVersion" : "2.1.308",
+    "icu" : "73.2",
+    "jitless" : true,
+    "mode" : "fixture",
+    "moduleFormat" : "esbuild CommonJS",
+    "node" : "v18.19.1",
+    "nodeVersionGateException" : true,
+    "pid" : 59777,
+    "platform" : "ios",
+    "prototype" : true,
+    "resumedSession" : null,
+    "type" : "demo_runtime",
+    "workspace" : "\/var\/mobile\/Containers\/Data\/Application\/1A7C4CD7-5944-4BA8-9200-A549F3D6660D\/Documents\/Workspace"
+  },
+  "scope" : "Official harness executes locally. Fixture mode simulates model responses, not the agent loop. Shell, subagents and compaction are not tested.",
+  "sessionID" : "b4914769-dd76-4017-a72c-15def2c28873",
+  "streamEvents" : 28,
+  "systemVersion" : "27.0.1",
+  "writes" : 1
+}

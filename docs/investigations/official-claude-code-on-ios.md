@@ -2,6 +2,44 @@
 
 Investigation date: 14 October 2026, Australia/Sydney.
 
+## Latest-harness prototype result, 23 October 2026
+
+The subsequent [isolated prototype](../../Prototypes/LatestHarness/README.md) passed a physical-iPhone fixture tool loop with the current 2.1.308 harness, then resumed the same session in a new process without repeating tools. It reconstructed the Bun module graph, converted modules to CommonJS, added host adapters/polyfills, and made an explicitly recorded iOS-only exception to the Node 22 version guard. It is an adapted prototype, not an unmodified or fully qualified distribution. Shipping runtime resources and the production pin were not changed. See the [device report](../../Prototypes/LatestHarness/Evidence/iphone-tool-loop.json) and [restart/resume report](../../Prototypes/LatestHarness/Evidence/iphone-resume.json).
+
+## Follow-up: latest release investigation, 23 October 2026
+
+**The native packaging change does not prove that the latest harness cannot be ported to an on-device JavaScript host.** Directly executing the desktop binary on iOS remains unavailable through our current integration, but extraction of its embedded JavaScript is a concrete experimental route. This qualifies the earlier conclusion below; it does not establish a working current-version iOS port.
+
+I inspected the official `claude-code` 2.1.308 and `claude-agent-sdk` 0.3.308 archives. Both distribute native platform executables, with no iOS package in their optional dependency lists. The SDK's `/core` export is a smaller client wrapper, not a separately distributed portable agent engine. Its `extractFromBunfs` helper extracts an embedded executable to disk so it can be spawned, not the harness JavaScript for in-process execution. [CLI metadata](https://registry.npmjs.org/@anthropic-ai/claude-code/2.1.308), [SDK metadata](https://registry.npmjs.org/@anthropic-ai/claude-agent-sdk/0.3.308).
+
+### What was directly verified
+
+The official macOS ARM64 2.1.308 binary was downloaded and checked against npm's SHA-512 integrity value. It is a 274,675,680-byte Mach-O executable targeting macOS 13.0+, with a 180,711,037-byte `__BUN,__bun` section. Static scanning recovered 2,524 JavaScript source chunks totaling 48,607,258 UTF-8 bytes. **All 2,524 chunks passed syntax-only parsing in Node 24.14.0.** No module was linked or evaluated. This establishes recoverable JavaScript syntax, not executable completeness, correct module identities, Node 18 support, or working behavior on iOS. [Machine-readable evidence](claude-code-ios-latest-2026-10-23.json).
+
+The source references Bun-specific facilities, including `bun:jsc`, `Bun.file`, `Bun.spawn`, `Bun.SQL`, `Bun.Terminal`, `Bun.FetchSession`, and zstd decompression. These are literal occurrence findings, not proof that each facility is required by the headless path. The package also contains runtime/native assets; extracting JavaScript alone does not resolve those dependencies. Bun documents that compiled executables bundle the application and runtime, and that bytecode compilation does not obscure source. [Bun executable documentation](https://bun.com/docs/bundler/executables).
+
+### Candidate approaches
+
+| Approach | Assessment |
+| --- | --- |
+| Extract current modules and host them in nodejs-mobile | Best focused experiment for this repository. Reuses the existing iOS host, native tool bridge and lifecycle work. Requires a proper Bun module-table/asset extractor and implementations of the runtime behavior actually reached by the headless harness. Not yet proven. |
+| Use the current Agent SDK directly | Does not remove the native harness process dependency. Neither `/core`, `/browser`, nor the extraction helper is evidence of an in-process iOS agent engine. |
+| Use swift-bun/JavaScriptCore | Another experimental host, but its documented missing Worker, TLS/HTTP2 and native-addon support would introduce additional work. It does not directly load the official desktop executable. |
+| Run the Linux executable inside an on-device emulator | Technically plausible way to preserve the official executable. UTM SE offers interpreted emulation without JIT, but guest OS overhead, startup, memory and latency need measurement. No successful Claude 2.1.308 run in UTM was established here. This is a fallback research route, not a lightweight SDK solution. |
+| Obtain a portable official build | The most maintainable route, but no public current iOS or in-process harness distribution was found. |
+
+There is useful precedent: [claude-code-qnx](https://github.com/qnx/claude-code-qnx) extracts Claude Code's bundled JavaScript and supplies Node-based Bun adapters. However, its inspected extractor looks for a single `src/entrypoints/cli.js` marker that is absent from the 2.1.308 macOS binary. Its launcher also returns empty modules for unresolved Bun filesystem assets, and its adapter includes approximations/stubs. These are reasons to study the technique rather than adopt it unchanged or assume every update works.
+
+[L Shell](https://github.com/ikunluo3-bit/l-shell-ios) still explicitly pins 2.1.112. [swift-bun](https://github.com/1amageek/swift-bun) describes an experimental compatibility subset. [UTM's documentation](https://github.com/utmapp/UTM) explains the JIT versus interpreted-emulation tradeoff. None establishes a current-version production iOS harness.
+
+### Recommended next experiment
+
+Build an isolated extraction/hosting prototype from the checksum-verified current package, preserving source bytes and asset identities wherever possible. First reconstruct and resolve the full module graph. Then trace missing APIs under desktop Node with JIT disabled and without credentials. Implement the required Bun behavior accurately; unsupported features should fail explicitly rather than return fake success. The current Node 24 syntax result must also be repeated against the embedded Node 18 runtime.
+
+The first meaningful acceptance gate is the current harness emitting its initialization response and completing the existing local fixture turn with two native tools, approvals and session resume. Repeat that on an actual iPhone, then measure cold start, memory, cancellation and multiworker behavior. Only a successful device fixture run justifies changing the production pin or update workflow. A subsequent live-account test is separate.
+
+Keep the scheduled updater blocked for native packages until this path is qualified. If successful, extend it to extract and validate each new release's module graph and run the same device acceptance gates. No current-version modules, downloaded native binaries or third-party shim code were added to the shipping runtime during this investigation.
+
 ## Executive conclusion
 
 **Follow-up experiment, 14 October 2026:** after the investigation, an explicitly authorized standalone [Harness Lab demo](/Users/tima/Projects/AssistantAI/ClaudeKit/HarnessDemo/README.md) ran the unmodified `2.1.112` harness inside a development-signed app on a physical iPhone 16 Pro Max (iOS 27.0.1). It passed initialization, streaming against a local model fixture, two native Swift MCP tool calls, permission control, and session resumption across an app restart. The Node runtime and Swift host reported the same process ID, with JIT disabled. A Node build with ICU and writable iOS cache paths were required. [Tool-loop evidence](/Users/tima/Projects/AssistantAI/ClaudeKit/HarnessDemo/Evidence/iphone-tool-loop.json), [resume evidence](/Users/tima/Projects/AssistantAI/ClaudeKit/HarnessDemo/Evidence/iphone-resume.json).

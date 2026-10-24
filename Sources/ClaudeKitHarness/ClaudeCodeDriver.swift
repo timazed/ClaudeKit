@@ -1,5 +1,5 @@
 import Foundation
-import ClaudeKit
+import ClaudeKitCore
 
 public actor ClaudeCodeDriver: HarnessDriving {
     public enum Authentication: Sendable {

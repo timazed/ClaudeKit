@@ -36,9 +36,10 @@ process.on('unhandledRejection', error => emit({ type: 'host_error', message: op
     if (!options.apiKey) throw new Error('API key required');
     process.env.ANTHROPIC_API_KEY = options.apiKey;
   } else if (options.mode !== 'account') throw new Error('Unknown authentication mode');
+  const pin = require('./vendor/claude-code/harness-pin.json');
   const cli = path.join(__dirname, 'vendor/claude-code/cli.js');
   const hash = crypto.createHash('sha256').update(fs.readFileSync(cli)).digest('hex');
-  if (hash !== 'bc3358282800e3e99daa8e71ac5b7b1566bd0d7ca7eb94f714a7859365d3163f') throw new Error('Harness checksum mismatch');
+  if (hash !== pin.cli_sha256) throw new Error('Harness checksum mismatch');
   const args = [...(options.mode === 'account' ? [] : ['--bare']), '-p', '--input-format', 'stream-json',
     '--output-format', 'stream-json', '--verbose', '--replay-user-messages', '--include-partial-messages', '--permission-prompt-tool', 'stdio',
     '--permission-mode', 'default', '--tools', options.webSearch ? 'WebSearch' : '', '--strict-mcp-config', '--mcp-config',
@@ -50,7 +51,7 @@ process.on('unhandledRejection', error => emit({ type: 'host_error', message: op
   if (options.resume && !options.ephemeral) args.push('--resume', require('./resume.cjs').resolveResumeTarget(options.configDirectory, options.resume));
   process.argv = ['node', cli, ...(options.command === 'logout' ? ['auth', 'logout'] : args)];
   emit({ type: 'host_runtime', pid: process.pid, threadId, platform: process.platform,
-    node: process.version, harnessVersion: '2.1.112', harnessSHA256: hash,
+    node: process.version, harnessVersion: pin.version, harnessSHA256: hash,
     jitless: process.execArgv.includes('--jitless') });
   await import(pathToFileURL(cli).href);
 })().catch(() => emit({ type: 'host_error', message: 'Harness initialization failed' }));
