@@ -58,7 +58,10 @@ def candidate(current):
         return report, None
     if tuple(map(int, version.split('.'))) < tuple(map(int, current['version'].split('.'))):
         raise ValueError('Latest tag is older than the pin; refusing a downgrade')
-    if metadata.get('bin', {}).get('claude') not in ('cli.js', './cli.js'):
+    entry = metadata.get('bin', {}).get('claude')
+    if not isinstance(entry, str) or not entry.strip():
+        raise ValueError('Release metadata is missing a valid Claude executable entry')
+    if entry not in ('cli.js', './cli.js'):
         report.update(status='blocked', reason='Latest release uses a native executable; the embedded iOS host requires cli.js.')
         return report, None
     dist = metadata['dist']
@@ -103,6 +106,7 @@ def main():
     parser.add_argument('command', choices=['check', 'install'])
     parser.add_argument('--write-candidate', action='store_true', help='Update the pin only for a structurally compatible candidate; tests must still pass.')
     parser.add_argument('--report', type=Path)
+    parser.add_argument('--allow-blocked', action='store_true', help='Report known incompatibilities without a failing exit code; unexpected errors still fail.')
     args = parser.parse_args()
     pin = json.loads(PIN.read_text())
     if args.command == 'install':
@@ -115,7 +119,7 @@ def main():
     print(json.dumps(report, indent=2))
     if update and args.write_candidate:
         PIN.write_text(json.dumps(update, indent=2) + '\n')
-    return 2 if report['status'] == 'blocked' else 0
+    return 2 if report['status'] == 'blocked' and not args.allow_blocked else 0
 
 
 if __name__ == '__main__':

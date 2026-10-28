@@ -20,10 +20,12 @@ jobs:
       - run: python3 -m unittest discover -s Tests/HarnessUpdates -v
       - id: check
         run: |
-          python3 Scripts/harness-update.py check --write-candidate --report /tmp/harness-report.json
+          python3 Scripts/harness-update.py check --allow-blocked --write-candidate --report /tmp/harness-report.json
           python3 - <<'PY'
           import json, os
           report = json.load(open('/tmp/harness-report.json'))
+          if report['status'] not in ('current', 'candidate', 'blocked'):
+              raise ValueError('Unexpected harness update status')
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
               output.write('candidate=' + str(report['status'] == 'candidate').lower() + '\n')
           PY
@@ -31,7 +33,16 @@ jobs:
         if: always()
         run: |
           if [ -f /tmp/harness-report.json ]; then
-            cat /tmp/harness-report.json >> "$GITHUB_STEP_SUMMARY"
+            python3 - <<'PY'
+          import json, os
+          report = json.load(open('/tmp/harness-report.json'))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write('## Harness update: ' + report['status'] + '\n\n')
+              summary.write('Pinned: `' + report['current'] + '` · Latest: `' + report['latest'] + '`\n\n')
+              if report['status'] == 'blocked':
+                  summary.write(report['reason'] + '\n\n')
+                  summary.write('The pin is unchanged. Qualification and PR creation are skipped. Runtime compatibility work is required before this release can be adopted.\n')
+          PY
           fi
       - uses: actions/upload-artifact@v4
         if: steps.check.outputs.candidate == 'true'

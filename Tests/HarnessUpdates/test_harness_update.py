@@ -32,6 +32,38 @@ class UpdateTests(unittest.TestCase):
         self.assertIsNone(pin)
         self.assertEqual(fetch.call_count, 1)
 
+    def test_blocked_cli_preserves_pin_and_reports_status(self):
+        for flags, expected in [([], 2), (['--allow-blocked'], 0)]:
+            with self.subTest(flags=flags), tempfile.TemporaryDirectory() as directory:
+                pin = Path(directory) / 'pin.json'
+                report = Path(directory) / 'report.json'
+                original = '{"version": "2.1.112"}\n'
+                pin.write_text(original)
+                args = ['harness-update.py', 'check', '--write-candidate', '--report', str(report), *flags]
+                with patch.object(updater, 'PIN', pin), patch('sys.argv', args), \
+                     patch.object(updater, 'download', return_value=json.dumps(self.metadata(entry='bin/claude.exe')).encode()), \
+                     patch('sys.stdout', new_callable=io.StringIO):
+                    self.assertEqual(updater.main(), expected)
+                self.assertEqual(pin.read_text(), original)
+                self.assertEqual(json.loads(report.read_text())['status'], 'blocked')
+
+    def test_allow_blocked_does_not_hide_errors(self):
+        malformed = self.metadata()
+        del malformed['bin']
+        for response in [OSError('Registry unavailable'), b'not json', json.dumps(malformed).encode()]:
+            with self.subTest(response=response), tempfile.TemporaryDirectory() as directory:
+                pin = Path(directory) / 'pin.json'
+                report = Path(directory) / 'report.json'
+                original = '{"version": "2.1.112"}\n'
+                pin.write_text(original)
+                args = ['harness-update.py', 'check', '--allow-blocked', '--write-candidate', '--report', str(report)]
+                with patch.object(updater, 'PIN', pin), patch('sys.argv', args), \
+                     patch.object(updater, 'download', side_effect=[response]):
+                    with self.assertRaises((OSError, ValueError)):
+                        updater.main()
+                self.assertFalse(report.exists())
+                self.assertEqual(pin.read_text(), original)
+
     def test_candidate_hashes_verified_archive(self):
         package = self.metadata()
         output = io.BytesIO()
