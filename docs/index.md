@@ -29,6 +29,7 @@ ClaudeKit embeds the official Claude Code harness and exposes a Swift applicatio
 | [Troubleshooting](troubleshooting.md) | Errors, storage failures, missing dependencies and diagnostic boundaries |
 | [Architecture](runtime-architecture.md) | Ownership of the model loop, worker sessions and persistence boundaries |
 | [Migration](migration.md) | Legacy API products, old lane stores and database formats |
+| [SwiftPM releases](swiftpm-releases.md) | Prepare, test, and publish an installable SDK version |
 | [Verification](verification.md) | Reproducible checks and what fixture tests establish |
 
 ## Core concepts

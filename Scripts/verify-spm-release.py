@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import tempfile
 import time
+from urllib.parse import unquote, urlsplit
 
 root = Path(__file__).resolve().parents[1]
 scheme = "AssistantRuntimeDemoApp"
@@ -51,7 +52,8 @@ def verify(work, repository, version, device):
     subprocess.run(["xcodebuild", "-project", str(project), "-scheme", scheme, "-destination",
                     "id=" + device, "-derivedDataPath", str(derived), "build"], check=True)
     resolved = json.loads((project / "project.xcworkspace/xcshareddata/swiftpm/Package.resolved").read_text())
-    if not any(pin["location"].rstrip("/") == repository.rstrip("/") and pin["state"].get("version") == version
+    location = unquote(urlsplit(repository).path) if repository.startswith("file://") else repository
+    if not any(pin["location"].rstrip("/") == location.rstrip("/") and pin["state"].get("version") == version
                for pin in resolved["pins"]):
         raise RuntimeError("Xcode did not resolve the requested Git URL and exact version")
 
