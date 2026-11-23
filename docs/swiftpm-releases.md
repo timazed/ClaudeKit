@@ -1,6 +1,6 @@
 # Release ClaudeKit through SwiftPM
 
-ClaudeKit versions identify the Swift SDK. The Claude Code and NodeMobile versions are independent dependency pins. A release tag points at a packaging commit whose parent is the tested source revision. This commit adds the generated harness under the Swift package’s existing resources directory. SwiftPM retrieves NodeMobile from the upstream release URL and verifies the archive checksum from the manifest.
+ClaudeKit versions identify the Swift SDK. The Claude Code and NodeMobile versions are independent dependency pins. A release tag points at a packaging commit whose parent is the tested source revision. This commit adds the generated harness under the Swift package’s resources directory and includes the two iOS slices of NodeMobile at the binary target path. Packaging checks the upstream archive and both framework binaries against the bootstrap checksums.
 
 ## Test a release candidate
 

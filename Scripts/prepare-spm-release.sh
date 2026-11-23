@@ -18,7 +18,16 @@ git -C "$destination" switch --quiet --detach "$source_commit"
 (
   cd "$destination"
   # Always build from this exact revision and lockfile in the clean clone.
-  python3 Scripts/harness-update.py install
+  bash HarnessDemo/scripts/bootstrap.sh
+  # The upstream archive also carries large debug symbols and visionOS slices.
+  # Keep its verified device and simulator frameworks intact in the release.
+  vendor="$PWD/HarnessDemo/Vendor"
+  mv "$vendor/NodeMobile.xcframework" "$vendor/Full.xcframework"
+  xcodebuild -create-xcframework \
+    -framework "$vendor/Full.xcframework/ios-arm64/NodeMobile.framework" \
+    -framework "$vendor/Full.xcframework/ios-arm64-simulator/NodeMobile.framework" \
+    -output "$vendor/NodeMobile.xcframework"
+  git add --force -- HarnessDemo/Vendor/NodeMobile.xcframework
   git add --force -- Sources/ClaudeKitHarness/Resources/Runtime/vendor/claude-code
   git -c user.name=ClaudeKit -c user.email=release@users.noreply.github.com \
     commit --quiet -m "Package embedded runtime for ClaudeKit $version"

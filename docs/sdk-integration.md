@@ -19,7 +19,7 @@ Use the repository URL `https://github.com/timazed/ClaudeKit.git` with an exact 
 .product(name: "ClaudeKitUI", package: "ClaudeKit")
 ```
 
-Xcode’s **Add Package Dependencies** accepts the same URL. SwiftPM fetches the checksum-pinned NodeMobile XCFramework and copies the tag’s runtime resources into the app. The first framework download is approximately 573 MiB. Apps using macOS development transport still supply a Node executable. Maintainers can prepare and test a version with the [SwiftPM release guide](swiftpm-releases.md).
+Xcode’s **Add Package Dependencies** accepts the same URL. SwiftPM links the iOS slices of NodeMobile from the tag and copies the runtime resources into the app. Apps using macOS development transport still supply a Node executable. Maintainers can prepare and test a version with the [SwiftPM release guide](swiftpm-releases.md).
 
 ### Develop from a checkout
 

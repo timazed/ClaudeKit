@@ -10,7 +10,7 @@ ClaudeKit runs the Claude Code agent loop inside your iOS app. The harness sends
 
 ## Installation
 
-For a published ClaudeKit version, choose **File → Add Package Dependencies** in Xcode, enter `https://github.com/timazed/ClaudeKit.git`, and select the exact version **0.1.0-alpha.1**. Release tags include the prepared harness. SwiftPM downloads the pinned NodeMobile framework on first resolution.
+For a published ClaudeKit version, choose **File → Add Package Dependencies** in Xcode, enter `https://github.com/timazed/ClaudeKit.git`, and select the exact version **0.1.0-alpha.1**. Release tags include the prepared harness and the arm64 device and simulator slices of NodeMobile.
 
 To develop ClaudeKit or run the repository demos, clone the repository and prepare the local Swift package. Bootstrap requires Python 3, Node, npm, and Xcode. Use the Node version in `.nvmrc` for desktop development.
 

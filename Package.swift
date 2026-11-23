@@ -2,15 +2,7 @@
 import PackageDescription
 import Foundation
 
-let localNode = "HarnessDemo/Vendor/NodeMobile.xcframework"
-let checkout = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
-let node: Target = FileManager.default.fileExists(atPath: checkout.appendingPathComponent(localNode).path)
-    ? .binaryTarget(name: "NodeMobile", path: localNode)
-    : .binaryTarget(
-        name: "NodeMobile",
-        url: "https://github.com/1Conan/nodejs-mobile/releases/download/v18.19.1-ios/NodeMobile.xcframework.zip",
-        checksum: "e6471b84b3420de0845586c9b564e2cd2f7b6343bb2994706d01a45de6d8de7b"
-    )
+let hasNode = FileManager.default.fileExists(atPath: URL(fileURLWithPath: #filePath).deletingLastPathComponent().appendingPathComponent("HarnessDemo/Vendor/NodeMobile.xcframework").path)
 
 let package = Package(
     name: "ClaudeKit",
@@ -47,14 +39,13 @@ let package = Package(
             dependencies: ["ClaudeKit"],
             path: "Sources/ClaudeKitUI"
         ),
-        .target(name: "ClaudeKitHarness", dependencies: [
-            .target(name: "ClaudeKitCore"), .target(name: "NodeMobile", condition: .when(platforms: [.iOS]))],
+        .target(name: "ClaudeKitHarness", dependencies: [.target(name: "ClaudeKitCore")] +
+            (hasNode ? [.target(name: "NodeMobile", condition: .when(platforms: [.iOS]))] : []),
             resources: [.copy("Resources/Runtime")]),
         .target(name: "ClaudeKitRealm", dependencies: ["ClaudeKit", .product(name: "RealmSwift", package: "realm-swift")]),
         .target(name: "ClaudeKitSQLite", dependencies: ["ClaudeKit"], linkerSettings: [.linkedLibrary("sqlite3")]),
         .testTarget(name: "ClaudeKitImportTests", dependencies: ["ClaudeKit"]),
         .testTarget(name: "ClaudeKitTests", dependencies: ["ClaudeKit", "ClaudeKitCore", "ClaudeKitHarness", "ClaudeKitUI", "ClaudeKitSQLite", "ClaudeKitRealm"]),
-        node,
-    ],
+    ] + (hasNode ? [.binaryTarget(name: "NodeMobile", path: "HarnessDemo/Vendor/NodeMobile.xcframework")] : []),
     swiftLanguageModes: [.v5]
 )
