@@ -10,7 +10,7 @@ Follow [installation](../README.md#installation), then open `LibraryDemo/Library
 
 ## 2. Connect your app to the runtime
 
-Add the local package products `ClaudeKit` and `ClaudeKitUI` to your iOS app. In a main-actor view model, retain the runtime, the approval inbox, and the sign-in coordinator for the life of the account.
+Add the package products `ClaudeKit` and `ClaudeKitUI` to your iOS app. In a main-actor view model, retain the runtime, the approval inbox, and the sign-in coordinator for the life of the account.
 
 ```swift
 let approvals = ApprovalInbox()

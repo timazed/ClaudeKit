@@ -4,9 +4,26 @@
 
 ## Requirements and package selection
 
-The current package targets iOS 18+ and macOS 14+. Embedded NodeMobile contains arm64 device and arm64 simulator slices. An Intel simulator is not supported by that binary. macOS development uses an configured Node 24.14.0 executable.
+The current package targets iOS 18+ and macOS 14+. Embedded NodeMobile contains arm64 device and arm64 simulator slices. An Intel simulator is not supported by that binary. macOS development uses a configured Node 24.14.0 executable.
 
-Clone the repository and run bootstrap before Xcode resolves the package:
+### Install a version with SwiftPM
+
+Use the repository URL `https://github.com/timazed/ClaudeKit.git` with an exact [published version](https://github.com/timazed/ClaudeKit/tags). For the first alpha, add these entries to your manifest.
+
+```swift
+// In dependencies
+.package(url: "https://github.com/timazed/ClaudeKit.git", exact: "0.1.0-alpha.1")
+
+// In your app target’s dependencies
+.product(name: "ClaudeKit", package: "ClaudeKit"),
+.product(name: "ClaudeKitUI", package: "ClaudeKit")
+```
+
+Xcode’s **Add Package Dependencies** accepts the same URL. SwiftPM links the iOS slices of NodeMobile from the tag and copies the runtime resources into the app. Apps using macOS development transport still supply a Node executable. Maintainers can prepare and test a version with the [SwiftPM release guide](swiftpm-releases.md).
+
+### Develop from a checkout
+
+Clone the repository and run bootstrap before Xcode resolves the local package.
 
 ```sh
 git clone https://github.com/timazed/ClaudeKit.git
@@ -17,7 +34,7 @@ open LibraryDemo/LibraryDemo.xcodeproj
 
 Bootstrap prepares the pinned runtime resources and generates the demo project. See [third-party provenance](../HarnessDemo/ThirdParty/README.md) for version pins and license boundaries. Do not edit the vendor CLI to customize app behavior.
 
-In Xcode, add this directory as a local Swift package. Link `ClaudeKit` and, for the supplied UI presenters, `ClaudeKitUI`. Add `ClaudeKitSQLite` or `ClaudeKitRealm` only when choosing that persistence adapter. These instructions describe checkout integration; they do not assume a published package URL or release tag.
+In Xcode, add this directory as a local Swift package. Link `ClaudeKit` and, for the supplied UI presenters, `ClaudeKitUI`. Add `ClaudeKitSQLite` or `ClaudeKitRealm` only when choosing that persistence adapter.
 
 ## Runtime ownership
 
