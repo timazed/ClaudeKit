@@ -6,7 +6,7 @@ Baseline: local CodexKit `be2e9842f19d63add93bb3f0dab8690c9ae0631a` (2.0 develop
 
 The user authorized verification on 19 October. Current build/test results are recorded in [verification results](verification-pending.md). Image generation is excluded. This is capability alignment, not an assertion that two different harnesses have identical protocols or production qualification.
 
-The official Claude Code 2.1.112 CLI remains the inference/tool loop. Swift adds app integration and policy enforcement. Its pinned source is unchanged.
+Claude Code 2.1.330 provides the inference and tool loop through the [Node adaptation](harness-updates.md). Swift adds app integration and policy enforcement.
 
 | Area | Implemented API | Qualification / differences |
 | --- | --- | --- |

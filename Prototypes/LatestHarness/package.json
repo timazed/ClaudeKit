@@ -3,5 +3,8 @@
     "core-js": "3.41.0",
     "esbuild": "0.25.12",
     "ws": "8.18.3"
+  },
+  "devDependencies": {
+    "regexpu-core": "6.3.1"
   }
 }

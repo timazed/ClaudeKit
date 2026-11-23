@@ -2,6 +2,12 @@
 
 [Documentation index](index.md)
 
+## Claude Code 2.1.330
+
+On 23 November 2026, the bootstrapped SDK passed 34 Swift tests with harness fixtures enabled on macOS using Node 24.14.0. The four JavaScript tests, eight updater tests, and desktop A → B → A worker session check passed. The sign-in smoke test verified the official PKCE URL and loopback callback.
+
+On an iPhone 17e simulator running iOS 26.5, the embedded NodeMobile 18.19.1 host completed two conversations with four native tool calls, then resumed the first conversation after an app restart with zero repeated calls. All seven LibraryDemo UI cases passed together. An earlier run timed out during harness startup in the typed-output case. That case passed three consecutive targeted runs and the final full run. The separate AssistantRuntimeDemoApp project also passed its fixture tool loop and restart check on the same simulator. The unsigned iPhone device build succeeded. Physical hardware, completed account login, and live inference remain unverified for this pin.
+
 ## Reproduce local checks
 
 From the repository root, after bootstrap:
@@ -29,7 +35,7 @@ Select an available simulator ID; do not copy an evidence-machine UUID blindly. 
 | Simulator UI tests | Browser cancellation, native approvals, turn cancellation, restart, typed formats and recovery replay |
 | Physical/live qualification | Account refresh, live model behavior, resource pressure, remote deployment and APNs |
 
-Current recorded baseline: 40 Swift tests, four JavaScript tests and six simulator UI tests passed, with device and Realm simulator builds passing. These counts describe the **19 October 2026 implementation verification**, not a test automatically rerun whenever this guide is edited.
+Earlier recorded baseline: 40 Swift tests, four JavaScript tests and six simulator UI tests passed, with device and Realm simulator builds passing. These counts describe the **19 October 2026 implementation verification**, not a test automatically rerun whenever this guide is edited.
 
 See the [detailed result report](verification-pending.md) and [source/log manifest](../LibraryDemo/Evidence/parity-verification-2026-10-19/manifest.json). The older report filename is retained for existing links. Earlier evidence directories remain historical.
 

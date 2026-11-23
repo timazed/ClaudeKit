@@ -1,17 +1,37 @@
 #!/usr/bin/env python3
-import base64,hashlib,io,json,tarfile,urllib.request
+"""Verify the pinned native npm archive and materialize the inputs for extraction."""
+import base64
+import hashlib
+import json
+import tarfile
+import urllib.request
 from pathlib import Path
-root=Path(__file__).resolve().parents[1]
-pin=json.loads((root/'pin.json').read_text())
-out=root/'Artifacts/claude-native';out.parent.mkdir(exist_ok=True)
-if out.exists() and hashlib.sha256(out.read_bytes()).hexdigest()==pin['binary_sha256']:
-    print('Verified cached binary')
-else:
-    data=urllib.request.urlopen(pin['tarball'],timeout=120).read()
-    assert 'sha512-'+base64.b64encode(hashlib.sha512(data).digest()).decode()==pin['integrity'], 'Archive integrity mismatch'
-    with tarfile.open(fileobj=io.BytesIO(data),mode='r:gz') as archive:
-        member=archive.getmember('package/claude');assert member.isfile()
-        binary=archive.extractfile(member).read()
-    assert hashlib.sha256(binary).hexdigest()==pin['binary_sha256'], 'Binary checksum mismatch'
-    out.write_bytes(binary)
-    print('Downloaded and verified',pin['version'])
+
+root = Path(__file__).resolve().parents[1]
+pin = json.loads((root.parents[1] / 'HarnessDemo/ThirdParty/claude-code.json').read_text())
+artifacts = root / 'Artifacts'
+artifacts.mkdir(exist_ok=True)
+archive = artifacts / 'claude-native.tgz'
+package_name = '@anthropic-ai/claude-code-darwin-arm64'
+tarball = f"https://registry.npmjs.org/{package_name}/-/claude-code-darwin-arm64-{pin['version']}.tgz"
+if pin['package'] != package_name or pin['tarball'] != tarball:
+    raise ValueError('Unexpected native package or tarball URL')
+
+
+def integrity(path):
+    return 'sha512-' + base64.b64encode(hashlib.sha512(path.read_bytes()).digest()).decode()
+
+if not archive.exists() or integrity(archive) != pin['integrity']:
+    urllib.request.urlretrieve(pin['tarball'], archive)
+if integrity(archive) != pin['integrity']:
+    raise ValueError('Native archive integrity mismatch')
+with tarfile.open(archive) as source:
+    package = json.load(source.extractfile('package/package.json'))
+    if (package['name'], package['version']) != (pin['package'], pin['version']):
+        raise ValueError('Unexpected native package identity')
+    binary = source.extractfile('package/claude').read()
+    if hashlib.sha256(binary).hexdigest() != pin['binary_sha256']:
+        raise ValueError('Native executable checksum mismatch')
+    (artifacts / 'claude-native').write_bytes(binary)
+    for name in ('LICENSE.md', 'README.md'):
+        (artifacts / name).write_bytes(source.extractfile('package/' + name).read())

@@ -5,6 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 const crypto = require('node:crypto');
+parentPort.on('message', command => { if (command === 'close') process.exit(0); });
 const emit = event => parentPort.postMessage(event);
 require('./shims/workspace.js').install(options.workspace);
 require('./shims/fetch.js').installWebGlobals();
@@ -37,7 +38,8 @@ process.on('unhandledRejection', error => emit({ type: 'host_error', message: op
     process.env.ANTHROPIC_API_KEY = options.apiKey;
   } else if (options.mode !== 'account') throw new Error('Unknown authentication mode');
   const pin = require('./vendor/claude-code/harness-pin.json');
-  const cli = path.join(__dirname, 'vendor/claude-code/cli.js');
+  const adapted = Boolean(pin.binary_sha256);
+  const cli = path.join(__dirname, 'vendor/claude-code', adapted ? 'compiled/root/cli' : 'cli.js');
   const hash = crypto.createHash('sha256').update(fs.readFileSync(cli)).digest('hex');
   if (hash !== pin.cli_sha256) throw new Error('Harness checksum mismatch');
   const args = [...(options.mode === 'account' ? [] : ['--bare']), '-p', '--input-format', 'stream-json',
@@ -53,5 +55,11 @@ process.on('unhandledRejection', error => emit({ type: 'host_error', message: op
   emit({ type: 'host_runtime', pid: process.pid, threadId, platform: process.platform,
     node: process.version, harnessVersion: pin.version, harnessSHA256: hash,
     jitless: process.execArgv.includes('--jitless') });
-  await import(pathToFileURL(cli).href);
+  if (adapted) {
+    process.env.CLAUDE_CODE_TMPDIR = require('node:os').tmpdir();
+    require('./vendor/claude-code/bun.cjs');
+    require(cli);
+  } else {
+    await import(pathToFileURL(cli).href);
+  }
 })().catch(() => emit({ type: 'host_error', message: 'Harness initialization failed' }));

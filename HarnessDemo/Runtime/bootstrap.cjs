@@ -64,7 +64,8 @@ setInterval(() => {}, 60000);
     } else if (!process.env.ANTHROPIC_API_KEY) throw new Error('Enter an Anthropic API key before starting API mode.');
   }
   const pin = require('./vendor/claude-code/harness-pin.json');
-  const cli = path.join(__dirname, 'vendor/claude-code/cli.js');
+  const adapted = Boolean(pin.binary_sha256);
+  const cli = path.join(__dirname, 'vendor/claude-code', adapted ? 'compiled/root/cli' : 'cli.js');
   const hash = require('node:crypto').createHash('sha256').update(fs.readFileSync(cli)).digest('hex');
   if (hash !== pin.cli_sha256) {
     throw new Error('Official CLI checksum mismatch');
@@ -84,6 +85,12 @@ setInterval(() => {}, 60000);
     icu: process.versions.icu || null, flags: process.execArgv,
     harnessVersion: pin.version, harnessSHA256: hash, mode: process.env.DEMO_MODE,
     workspace, resumedSession: process.env.DEMO_RESUME || null });
-  await import(pathToFileURL(cli).href);
+  if (adapted) {
+    process.env.CLAUDE_CODE_TMPDIR = require('node:os').tmpdir();
+    require('./vendor/claude-code/bun.cjs');
+    require(cli);
+  } else {
+    await import(pathToFileURL(cli).href);
+  }
 })().catch(failure);
 

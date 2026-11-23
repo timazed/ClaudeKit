@@ -35,7 +35,7 @@ final class HarnessHost: ObservableObject {
     @Published var sessionID = ""
     @Published var verdict = ""
     @Published var reportURL: URL?
-    @Published var runtime = "Official Claude Code 2.1.308 · Node 18.19.1"
+    @Published var runtime = "Starting Claude Code…"
     @Published var writeCount = 0
     @Published var readCount = 0
     @Published var permissionCount = 0

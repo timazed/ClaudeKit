@@ -1,12 +1,12 @@
 # Harness Lab: official Claude Code inside iOS
 
-This standalone SwiftUI demo embeds **the unmodified official Claude Code 2.1.112 JavaScript bundle** in NodeMobile 18.19.1, with JIT disabled. The harness executes inside the iOS app process. It does not use ClaudeKit's Swift agent loop, launch a remote harness, or implement a replacement agent loop.
+This standalone SwiftUI demo embeds **the adapted Claude Code 2.1.330 module graph** in NodeMobile 18.19.1, with JIT disabled. The harness executes inside the iOS app process. It does not use ClaudeKit's Swift agent loop, launch a remote harness, or implement a replacement agent loop.
 
 The native host uses the CLI's SDK JSON control protocol directly. An SDK-type MCP server exposes two tools implemented in Swift: write `Documents/Workspace/proof.txt`, then read it back. The official harness controls tool dispatch, permission requests, streaming, conversation state, and transcript persistence.
 
-**Claude account sign-in is the default.** The app asks the unmodified harness to run its own `claude_authenticate` flow, opens the generated Anthropic page in Safari, and waits for the harness to complete authentication. No API key is required for this mode. The harness owns PKCE, the callback listener, token exchange, credential persistence, and refresh. Swift does not import subscription tokens or implement a replacement OAuth client.
+**Claude account sign-in is the default.** The app asks the harness to run its own `claude_authenticate` flow, opens the generated Anthropic page in Safari, and waits for the harness to complete authentication. No API key is required for this mode. The harness owns PKCE, the callback listener, token exchange, credential persistence, and refresh. Swift does not import subscription tokens or implement a replacement OAuth client.
 
-## Verified on 14–15 October 2026
+## Historical verification of 2.1.112 on 14–15 October 2026
 
 | Test | Result |
 | --- | --- |
@@ -43,7 +43,7 @@ The embedded Node runtime starts once per app process, so changing modes require
 SwiftUI host
   ↕ dedicated in-process pipes (SDK JSON control protocol)
 NodeMobile + compatibility adapters
-  ↕ unmodified cli.js (verified SHA-256)
+  ↕ adapted Claude Code modules (verified entry SHA-256)
 Official Claude Code agent loop
   ↔ model: local Messages API fixture OR Anthropic API
   ↔ SDK MCP + permission control requests → Swift filesystem tools
