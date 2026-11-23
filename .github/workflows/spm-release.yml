@@ -1,0 +1,71 @@
+name: SwiftPM release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: ClaudeKit version (e.g. 0.1.0-alpha.1)
+        required: true
+        type: string
+      publish:
+        description: Publish the verified tag, including the prepared harness resources
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+concurrency:
+  group: spm-release-${{ inputs.version }}
+  cancel-in-progress: false
+
+jobs:
+  package:
+    if: github.ref == 'refs/heads/main'
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Prepare a local version tag
+        env:
+          VERSION: ${{ inputs.version }}
+        run: bash Scripts/prepare-spm-release.sh "$VERSION" "$RUNNER_TEMP/ClaudeKit"
+      - name: Verify installation from the exact tag in a separate iOS app
+        env:
+          VERSION: ${{ inputs.version }}
+        run: python3 Scripts/verify-spm-release.py "file://$RUNNER_TEMP/ClaudeKit" "$VERSION"
+      - name: Bundle the tested tag
+        if: inputs.publish
+        env:
+          VERSION: ${{ inputs.version }}
+        run: git -C "$RUNNER_TEMP/ClaudeKit" bundle create "$RUNNER_TEMP/tag.bundle" "refs/tags/$VERSION" "^$GITHUB_SHA"
+      - uses: actions/upload-artifact@v4
+        if: inputs.publish
+        with:
+          name: swiftpm-tag
+          path: ${{ runner.temp }}/tag.bundle
+          retention-days: 1
+  publish:
+    needs: package
+    if: inputs.publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: swiftpm-tag
+          path: ${{ runner.temp }}
+      - name: Publish the verified version
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          git fetch "$RUNNER_TEMP/tag.bundle" "refs/tags/$VERSION:refs/tags/$VERSION"
+          test "$(git rev-parse "refs/tags/$VERSION^")" = "$GITHUB_SHA"
+          git push origin "refs/tags/$VERSION"

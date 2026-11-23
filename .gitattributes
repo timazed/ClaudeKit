@@ -1,3 +1,5 @@
 * text=auto whitespace=blank-at-eol,space-before-tab
 # Preserve byte-for-byte verification logs and their recorded checksums.
 *.log -text -whitespace
+# Preserve prepared upstream modules and assets in SwiftPM release tags.
+Sources/ClaudeKitHarness/Resources/Runtime/vendor/** -text
