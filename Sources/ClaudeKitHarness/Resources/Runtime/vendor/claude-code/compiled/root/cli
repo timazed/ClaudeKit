@@ -1,0 +1,615 @@
+const __prototypeModuleURL = require("node:url").pathToFileURL(__filename).href;
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var import_chunk_h3s25p5k = require("/$bunfs/root/chunk-h3s25p5k.js");
+var import_chunk_78g0060s = require("/$bunfs/root/chunk-78g0060s.js");
+var import_chunk_74473z56 = require("/$bunfs/root/chunk-74473z56.js");
+var import_chunk_mmvajxhx = require("/$bunfs/root/chunk-mmvajxhx.js");
+var import_chunk_3d2897vr = require("/$bunfs/root/chunk-3d2897vr.js");
+var import_chunk_tb84sczh = require("/$bunfs/root/chunk-tb84sczh.js");
+var import_chunk_m15w38ag = require("/$bunfs/root/chunk-m15w38ag.js");
+var import_fs = require("fs");
+var import_path = require("path");
+function De() {
+  try {
+    let i = process.cwd(), c = process.env.CLAUDE_CODE_HOST_CHECKED_FOLDER;
+    delete process.env.CLAUDE_CODE_HOST_CHECKED_FOLDER;
+    let w = !process.env.CLAUDECODE && !process.env.CLAUDE_CODE_CHILD_SESSION && process.argv.some((T) => /^--cloud(=|$)/.test(T));
+    if (c !== void 0 && w) {
+      let [, T, M, H] = /^(-?\d+):(-?\d+):(.+)$/s.exec(c) ?? [], G = (0, import_fs.statSync)(".", { bigint: true });
+      if (T === void 0 || M === void 0 || H === void 0 || Pe(BigInt(T), BigInt(M), H) !== Pe(G.dev, G.ino, i)) return `${ce("ESTALE")}
+This isn't the folder that the app checked, so Claude Code stopped.`;
+    }
+    if (!i.includes("\uFFFD")) return;
+    let { isSameDirectory: N } = require("/$bunfs/root/chunk-vmqmw0r8.js");
+    for (let T = i, M = "."; T.includes("\uFFFD"); T = (0, import_path.dirname)(T), M = `${M}/..`) {
+      if (le(T, import_fs.lstatSync) === void 0) continue;
+      let H = le(T), G = le(M);
+      if (H === void 0 || G === void 0 || !N(G, H)) return `${ce("EILSEQ")}
+A folder name in this path has a character Claude Code can't read, so it can't be sure the path leads to this folder. You can rename that folder, or remove anything beside it with a nearly identical name.`;
+    }
+    return;
+  } catch (i) {
+    let c = i instanceof Error && "code" in i && typeof i.code === "string" ? i.code : void 0;
+    if (c === "ENOENT") return "The current directory no longer exists (it was deleted or moved). Start Claude Code from an existing directory.";
+    return ce(c);
+  }
+}
+function Pe(i, c, w) {
+  let N = w.normalize("NFC").toLowerCase();
+  return `${BigInt.asUintN(32, i)}:${BigInt.asUintN(64, c)}:${N}`;
+}
+function ce(i) {
+  return `Can't read the current directory${i ? ` (${i})` : ""}. Start Claude Code from a different directory.`;
+}
+function le(i, c = import_fs.statSync) {
+  try {
+    return c(i, { bigint: true });
+  } catch {
+    return;
+  }
+}
+process.env.NoDefaultCurrentDirectoryInExePath = "1";
+process.env.COREPACK_ENABLE_AUTO_PIN = "0";
+(0, import_chunk_tb84sczh.uNo)();
+if (process.env.CLAUDE_CODE_REMOTE === "true") {
+  let i = process.env.NODE_OPTIONS || "";
+  process.env.NODE_OPTIONS = i ? `${i} --max-old-space-size=8192` : "--max-old-space-size=8192";
+}
+function pe(i) {
+  for (let c = 0; c < i.length; c++) {
+    let w = i[c];
+    if (w === "--debug" || w === "-d" || w === "--debug-to-stderr" || w === "-d2e" || w.startsWith("--debug=") || w.startsWith("--debug-file=")) continue;
+    if (w === "--debug-file" && c + 1 < i.length) {
+      c++;
+      continue;
+    }
+    return false;
+  }
+  return true;
+}
+function de(i) {
+  let c = i.indexOf("--");
+  return (c === -1 ? i : i.slice(0, c)).includes("--desktop");
+}
+function ye(i) {
+  let { eagerFindCliArg: c, eagerHasCliFlag: w } = require("/$bunfs/root/chunk-bvaa0bhx.js");
+  if (w("--managed-settings-in-initialize", i)) return "--managed-settings-in-initialize";
+  if (c((N) => N === "--initialize-fields" || N.startsWith("--initialize-fields="), i) !== -1) return "--initialize-fields";
+  return w("--await-initialize", i) ? "--await-initialize" : void 0;
+}
+function Re(i) {
+  let c = ye(i);
+  if (c === void 0) return;
+  console.error(`Error: ${c} can't be combined with \`--bg\`, \`--background\`, \`--routine\`, \`--worktree --tmux\` or a background session command such as \`claude logs\`: none of those reads the initialize request, so managed settings, settings, denied tools, plugins or MCP servers sent in it would be lost. Nothing was started. Remove those options, or remove ${c} and pass the values with --managed-settings, --settings, --disallowedTools, --plugin-dir or --mcp-config.`), process.exit(1);
+}
+function st(i) {
+  let c, w, N, T, M, H, G = [];
+  for (let I = 0; I < i.length; I++) {
+    let E = i[I], q = E.indexOf("="), [n, V] = q > 0 ? [E.slice(0, q), E.slice(q + 1)] : [E, void 0], j = V !== void 0 || I + 1 < i.length;
+    if (n === "--dangerously-skip-permissions") c = "bypassPermissions";
+    else if (n === "--allow-dangerously-skip-permissions") H = true;
+    else if (n === "--permission-mode" && j) c = V ?? i[++I];
+    else if (n === "--inherit-permission-mode" && j) w = V ?? i[++I];
+    else if (n === "--model" && j) N = V ?? i[++I];
+    else if (n === "--effort" && j) T = V ?? i[++I];
+    else if (n === "--agent" && j) M = V ?? i[++I];
+    else G.push(E);
+  }
+  let e = c ?? w;
+  return { dispatchDefaults: e || N || T || M || H ? { permissionMode: e, ...!c && w && { permissionModeInherited: true }, model: N, effort: T, agent: M, allowBypass: H } : void 0, rest: G };
+}
+async function nt() {
+  if (process.env.CCR_AGENT_PROXY_TOKEN_FILE_DESCRIPTOR !== void 0 || process.argv.includes("--session-tunnel")) {
+    let { guardRelayTokenDescriptor: t } = require("/$bunfs/root/chunk-s65x63aj.js");
+    t();
+  }
+  let i = (0, import_chunk_3d2897vr.JTl)();
+  if (i === "refused") return;
+  let c = process.argv[2]?.startsWith("--runner-declares=") ? process.argv.splice(2, 1)[0] : void 0;
+  if (process.argv.includes("--ignore-persisted-trust")) {
+    if (process.env.CLAUDE_CODE_IGNORE_PERSISTED_TRUST = "1", process.argv[2] === "--ignore-persisted-trust") process.argv.splice(2, 1);
+  }
+  let w = (0, import_chunk_74473z56.Svo)(process.argv);
+  if (w) console.error(w), process.exit(1);
+  if (process.env.CLAUDE_CODE_REMOTE_SESSION_ORIGIN === "review") {
+    let { guardRunnerReviewTokens: t } = require("/$bunfs/root/chunk-6nmj7rcg.js");
+    t();
+  }
+  let { makeAttachServeHelperNonDumpable: N } = require("/$bunfs/root/chunk-dkszt29c.js");
+  N(() => {
+  });
+  let { noteProcessStartTuning: T } = require("/$bunfs/root/chunk-b8npbkcy.js");
+  T();
+  let { startGarbageCollectionCount: M } = require("/$bunfs/root/chunk-e7ajxa42.js");
+  M();
+  let { startThreadCpuMeter: H } = require("/$bunfs/root/chunk-vwnf8vg8.js");
+  H();
+  let { installCliArgvReader: G } = require("/$bunfs/root/chunk-g9jexr4w.js");
+  G((t) => require("/$bunfs/root/chunk-bvaa0bhx.js").cliFlagWords(t));
+  let e = process.argv.slice(2);
+  if ((e.length === 1 || e.length === 2 && e[1] === "--verbose") && (e[0] === "--version" || e[0] === "-v" || e[0] === "-V")) {
+    if (console.log(`${{ ISSUES_EXPLAINER: "report the issue at https://github.com/anthropics/claude-code/issues", PACKAGE_URL: "@anthropic-ai/claude-code", README_URL: "https://code.claude.com/docs/en/overview", VERSION: "2.1.330", FEEDBACK_CHANNEL: "https://github.com/anthropics/claude-code/issues", BUILD_TIME: "2026-11-20T17:34:37Z", GIT_SHA: "8c664bec500172ded713624f9ecac0eb7e714829", HOOKS_WORKER_URL: "/$bunfs/root/src/plugins/functionHooks/hooks-worker/hooks-worker.js", DD_SOURCEMAP_GROUP: "darwin" }.VERSION} (Claude Code)${(0, import_chunk_mmvajxhx.Qle)()}`), e.length === 2 && { ISSUES_EXPLAINER: "report the issue at https://github.com/anthropics/claude-code/issues", PACKAGE_URL: "@anthropic-ai/claude-code", README_URL: "https://code.claude.com/docs/en/overview", VERSION: "2.1.330", FEEDBACK_CHANNEL: "https://github.com/anthropics/claude-code/issues", BUILD_TIME: "2026-11-20T17:34:37Z", GIT_SHA: "8c664bec500172ded713624f9ecac0eb7e714829", HOOKS_WORKER_URL: "/$bunfs/root/src/plugins/functionHooks/hooks-worker/hooks-worker.js", DD_SOURCEMAP_GROUP: "darwin" }.GIT_SHA) console.log(`Commit: ${{ ISSUES_EXPLAINER: "report the issue at https://github.com/anthropics/claude-code/issues", PACKAGE_URL: "@anthropic-ai/claude-code", README_URL: "https://code.claude.com/docs/en/overview", VERSION: "2.1.330", FEEDBACK_CHANNEL: "https://github.com/anthropics/claude-code/issues", BUILD_TIME: "2026-11-20T17:34:37Z", GIT_SHA: "8c664bec500172ded713624f9ecac0eb7e714829", HOOKS_WORKER_URL: "/$bunfs/root/src/plugins/functionHooks/hooks-worker/hooks-worker.js", DD_SOURCEMAP_GROUP: "darwin" }.GIT_SHA}`);
+    return;
+  }
+  let I = De();
+  if (I) {
+    console.error(I);
+    let { writeStartupFailureResult: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-6fxwp7dt.js"))), { randomUUID: r } = await Promise.resolve().then(() => __toESM(require("crypto")));
+    await t({ sessionId: r(), message: I, reason: "cwd_unavailable" }), process.exit(1);
+  }
+  if (c !== void 0) {
+    let { adoptRunnerDeclaration: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-xh5gk36e.js")));
+    await t(c);
+  }
+  let { profileCheckpoint: E } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-c70kfwjr.js")));
+  E("cli_entry");
+  let q = e[0] === "--preload" || e[0] === "--bg-spare", n = !q && process.env.CLAUDE_CODE_HOVER_REST ? (await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-079qf2nr.js")))).pinStorageV5FromEnv() : void 0;
+  if (!q) setTimeout(() => {
+    if (process.env.CLAUDE_CODE_JIT_POLICY_AFTER_STARTUP) Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-72xy321s.js"))).then((t) => t.setJitPolicyAfterStartup());
+    else if (typeof Bun < "u") Bun.unsafe.setJITPolicy?.(1);
+  }, 1e4).unref();
+  if (i !== void 0) {
+    let { loadFastPathPolicy: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a9npmmw3.js"))), r = await t(n);
+    if (r) {
+      let { exitWithError: m } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-tpn966c0.js")));
+      m(r);
+    }
+    let { ghStandinMain: s } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-rvy10pnr.js")));
+    await s(i);
+    return;
+  }
+  if (e[0] === "plugin" && e[1] === "test") {
+    let [{ loadFastPathPolicy: t }, { pluginTestFormOf: r, pluginTestGatesOf: s, pluginTestRefusal: m }, { endPluginTest: v }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a9npmmw3.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-xnhd2the.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-pqvc079y.js")))]), R = m(await s({ helperError: await t(n), form: r(e.slice(2)), envPin: n }));
+    if (e[2] === "--file" && R !== void 0) {
+      let { REPORT_MARK: l } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-ystxn2zw.js")));
+      process.stdout.write(`${l}${JSON.stringify({ file: e[3], results: [], error: R })}
+`);
+      return;
+    }
+    if (R !== void 0) return process.stderr.write(`claude plugin test: ${R}
+`), process.exitCode = 1, v(process.exitCode);
+    let { pluginTestMain: L } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-3ytshz8k.js")));
+    return process.exitCode = await L(e.slice(2)), v(process.exitCode);
+  }
+  if (e[0] === "plugin" && e[1] === "validate" && e[2] === "--module") {
+    let t = process.ppid, { moduleCheckMain: r } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-18pdbxqt.js")));
+    await r(e.slice(2), t);
+    return;
+  }
+  if (process.argv[2] === "--eval-mock-server") {
+    E("cli_eval_mock_server_path");
+    let { runEvalMockServer: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-chw75xhe.js")));
+    try {
+      await t(process.argv[3], process.argv[4]);
+    } catch (r) {
+      console.error(`--eval-mock-server: ${r instanceof Error ? r.message : String(r)}`), process.exitCode = 1;
+    }
+    return;
+  }
+  if (process.argv[2] === "--claude-in-chrome-mcp") {
+    E("cli_claude_in_chrome_mcp_path");
+    let { runClaudeInChromeMcpServer: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-72zr3jp8.js")));
+    await t(n);
+    return;
+  } else if (process.argv[2] === "--chrome-native-host") {
+    E("cli_chrome_native_host_path");
+    let { runChromeNativeHost: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-4csfg4g0.js")));
+    await t();
+    return;
+  } else if (process.argv[2] === "--computer-use-mcp") {
+    E("cli_computer_use_mcp_path");
+    let { runComputerUseMcpServer: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-ybsv9ymt.js")));
+    await t(n);
+    return;
+  }
+  if (e[0] === "--daemon-worker") {
+    let { loadFastPathPolicy: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a9npmmw3.js"))), r = await t(n);
+    if (r) process.stderr.write(`${r}
+`);
+    let { sessionFactsRestored: s } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-y4cr87mf.js"))), m = await s(n);
+    if (m !== null) {
+      let { endsInARowOf: R, workerEndingOf: L } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-66znrcc9.js"))), l = L(m, R(e[2]));
+      process.stderr.write(l.said), process.exit(l.code);
+    }
+    let { runDaemonWorker: v } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jqmtbpzy.js")));
+    await v(e[1], n);
+    return;
+  }
+  if (e[0] === "--bg-pty-host") {
+    let { ensureFastPathSettingsLoaded: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a9npmmw3.js")));
+    try {
+      await t(n);
+    } catch (s) {
+      process.stderr.write(`ptyHost: settings bootstrap threw (continuing; supervisor already gated): ${s?.stack ?? String(s)}
+`);
+    }
+    let { runPtyHost: r } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jq86mb8m.js")));
+    await r(e.slice(1));
+    return;
+  }
+  if (e[0] === "--bg-spare") {
+    let { ensureFastPathSettingsLoaded: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a9npmmw3.js")));
+    await t(void 0);
+    let { runBackgroundSpare: r } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-s4ndzqvz.js")));
+    await r(e.slice(1));
+    return;
+  }
+  if (e[0] === "--preload") {
+    let { ensureFastPathSettingsLoaded: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a9npmmw3.js")));
+    await t(void 0);
+    let { runPreload: r } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-hz3bgawv.js")));
+    await r(e.slice(1));
+    return;
+  }
+  if (e[0] === "remote-control" || e[0] === "rc" || e[0] === "remote" || e[0] === "sync" || e[0] === "bridge") {
+    E("cli_bridge_path");
+    let [{ loadFastPathPolicy: t }, { markNoDialogLaunch: r }, { eagerParseCliFlag: s }, { loadSettingsFromFlag: m }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a9npmmw3.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-r1tgzm8q.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-bvaa0bhx.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jrtjjbyg.js")))]), v = s("--settings", e.slice(1));
+    if (v) m(v);
+    r();
+    {
+      let a = await t(n);
+      if (a) {
+        let { exitWithError: u } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-tpn966c0.js")));
+        u(a);
+      }
+    }
+    if (e.slice(1).some((a) => a === "--help" || a === "-h")) {
+      let { printRemoteControlHelp: a } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-j6t3cmyq.js")));
+      await a();
+      return;
+    }
+    let { sessionFactsRestored: R } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-y4cr87mf.js"))), L = await R(n);
+    if (L !== null) {
+      let { exitWithError: a } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-tpn966c0.js")));
+      a(L.reason);
+    }
+    let { refuseRemoteControlLocally: l, refuseRemoteControlIneligible: O, startRemoteControl: U } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-bjbhxk08.js"))), C = await l(), [{ pinStorageV5: P }, { seedInstallIDs: x }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-p0gnmqxn.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-zd7jjspn.js")))]), A = P(n);
+    if ((0, import_chunk_m15w38ag.ne)() && A !== void 0) {
+      let [{ credentialsStoreFor: a }, { setGrowthBookCredentials: u, setGrowthBookStorageBackend: B }, { composePolicyLimitsClient: Q, primePolicyLimitsCache: X }, { primeFastPathCredentials: ae }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jzzag22w.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-vgvexp78.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-7bg0909g.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-d7v0b880.js")))]), Z = a(A);
+      u(Z), B(A), Q({ storageV5: A, credentials: Z }), await ae(Z), await X(A), await x(A);
+    }
+    let [{ initSinks: W }, { initialize1PEventLogging: z }, { credentialsStoreFor: D }, { initDefaultDebugLog: f }, { watchGlobalConfigThroughStorage: o }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-s33f06f5.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-5nyv269y.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jzzag22w.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-gsap2848.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-zd7jjspn.js")))]);
+    W();
+    let p = D(A);
+    z(A);
+    let d = await O(C, p);
+    if ((0, import_chunk_m15w38ag.ne)() && A !== void 0) f({ storageV5: A }), o(A);
+    await U(d, e.slice(1), A, p);
+    return;
+  }
+  {
+    let t = (0, import_chunk_mmvajxhx.zTl)(e);
+    if (t !== null) {
+      E("cli_daemon_path");
+      let { ensureFastPathSettingsLoaded: r } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a9npmmw3.js")));
+      await r(n);
+      let { initializeErrorLogSink: s } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-f1nswdzb.js")));
+      s();
+      let { daemonMain: m } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-8tt62cwh.js")));
+      await m(t, n);
+      return;
+    }
+  }
+  let V = process.env.CLAUDE_CODE_SESSION_KIND === "bg", j = e.some((t) => t === "logs" || t === "attach" || t === "stop" || t === "kill" || t === "respawn" || t === "rm") ? require("/$bunfs/root/chunk-bvaa0bhx.js").backgroundSessionVerbIndex(e, { behindRootOptions: !V }) : -1, k = j === -1 ? [] : e.slice(j), ue = e.includes("--bg") || e.includes("--background") ? require("/$bunfs/root/chunk-bvaa0bhx.js").hasBackgroundFlag(e) : false, Y = false;
+  if ((ue || false) && k.length === 0 && !V && !de(e) && ye(e) === void 0) try {
+    let [{ eagerFindCliArg: r }, { ensureFastPathSettingsLoaded: s }, { resetSyncCache: m, startIsForRootProgramToJudge: v }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-bvaa0bhx.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a9npmmw3.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-70b912jx.js")))]);
+    if (r((L) => L === "--exec" || L.startsWith("--exec="), e) === -1) await s(n), Y = v(false);
+    if (Y) m();
+  } catch {
+    Y = true;
+  }
+  if (!Y && (k.length > 0 || ue || false)) {
+    if (E("cli_bg_path"), de(e)) console.error(k.length > 0 ? `--desktop can't be combined with \`claude ${k[0]}\`.` : "--desktop opens the Claude Desktop app and can't run in the background (`--bg`, `--background`, `--routine`)."), process.exit(1);
+    if (Re(e), j > 0) {
+      let [{ eagerParseCliFlag: f }, { loadSettingsFromFlag: o, loadManagedSettingsFromFlag: p }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-bvaa0bhx.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jrtjjbyg.js")))]), d = e.slice(0, j), a = f("--settings", d);
+      if (a) o(a);
+      let u = f("--managed-settings", d);
+      if (u) p(u);
+    }
+    let [{ loadFastPathPolicy: t }, { setIsInteractive: r }, { allowFlagFetchOnOwnCredential: s, getFeatureValue_CACHED_MAY_BE_STALE: m, hasWorkspaceTrust: v }, { checkHasTrustDialogAccepted: R }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a9npmmw3.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-r1tgzm8q.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-vgvexp78.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-zd7jjspn.js")))]), { sessionFactsRestored: L } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-y4cr87mf.js"))), l = null, O = ["logs", "stop", "kill", "rm"].includes(k[0] ?? "");
+    {
+      let f = await t(n);
+      if (f) if (O) process.stderr.write(`${f}
+`);
+      else {
+        let { exitWithError: o } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-tpn966c0.js")));
+        o(f);
+      }
+      if (!R() && m("tengu_sable_orrery", true) && (process.stdout.isTTY || m("tengu_functional_finch", true))) r(true);
+      if (l = await L(n), l !== null && !O) {
+        let { exitWithError: o } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-tpn966c0.js")));
+        o(l.reason);
+      }
+    }
+    let U = l === null;
+    if (l !== null) process.stderr.write(`${l.reason}
+`);
+    let C = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-aa90xtyx.js")));
+    if (await C.ensureFleetGateHydrated({ kickGrowthBook: U && !O && (v() || s()) }), !C.isAgentsFleetEnabled()) {
+      let f = k[0] ?? e.find((o) => o === "--bg" || o === "--background" || o === "--routine" || o.startsWith("--routine=")) ?? "--bg";
+      return C.fleetGateRejected(f);
+    }
+    let [P, { pinStorageV5: x }, { initDefaultDebugLog: A }, { seedInstallIDs: W, watchGlobalConfigThroughStorage: z }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-072yj59w.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-p0gnmqxn.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-gsap2848.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-zd7jjspn.js")))]), D = x(n);
+    if ((0, import_chunk_m15w38ag.ne)() && D !== void 0) {
+      A({ storageV5: D }), z(D);
+      let [{ credentialsStoreFor: f }, { setGrowthBookCredentials: o, setGrowthBookStorageBackend: p }, { composePolicyLimitsClient: d, primePolicyLimitsCache: a }, { primeFastPathCredentials: u }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jzzag22w.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-vgvexp78.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-7bg0909g.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-d7v0b880.js")))]), B = f(D);
+      o(B), p(D), d({ storageV5: D, credentials: B }), await u(B), await a(D), await W(D);
+    }
+    switch (k[0]) {
+      case "logs":
+      case "attach":
+      case "stop":
+      case "kill":
+      case "respawn":
+      case "rm": {
+        let [{ initializeAnalyticsSink: f }, { initialize1PEventLogging: o, shutdown1PEventLogging: p }, { shutdownDatadog: d }, { sleep: a }, { waitForOAuthRefreshBeforeExit: u }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-cyzc43gd.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-5nyv269y.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-xt5b4m8b.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-et2qhyh1.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-6r3c9gp2.js")))]);
+        if (U) f(), o(D);
+        if (k[0] === "logs") await P.logsHandler(k[1], D);
+        else if (k[0] === "attach") await P.attachHandler(k[1], D);
+        else if (k[0] === "respawn") await P.respawnHandler(k[1], D);
+        else if (k[0] === "rm") await P.rmHandler(k[1], D, void 0, U);
+        else await P.stopHandler(k[1], D, U);
+        return await Promise.race([Promise.all([p(), d()]), a(500, void 0, { unref: true })]).catch(() => {
+        }), await u(), process.exit(process.exitCode ?? 0);
+      }
+      default: {
+        let [{ initializeAnalyticsSink: f }, { initialize1PEventLogging: o, shutdown1PEventLogging: p }, { shutdownDatadog: d }, { logEvent: a }, { sleep: u }, { waitForOAuthRefreshBeforeExit: B }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-cyzc43gd.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-5nyv269y.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-xt5b4m8b.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-ss4ft2hs.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-et2qhyh1.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-6r3c9gp2.js")))]);
+        f(), o(D), a("tengu_background", { via_flag: true, via: (0, import_chunk_78g0060s.S)("flag") }), await P.handleBackgroundFlag(e, D), await Promise.race([Promise.all([p(), d()]), u(500, void 0, { unref: true })]).catch(() => {
+        }), await B(), process.exit(process.exitCode ?? 0);
+      }
+    }
+    return;
+  }
+  let _ = (0, import_chunk_mmvajxhx.Oun)(e);
+  _.config.restricted ||= ["1", "true", "yes", "on"].includes((process.env.CLAUDE_CODE_RESTRICTED ?? "").toLowerCase().trim());
+  let { dispatchDefaults: K, rest: Te } = st(_.rest), J = _.hasAgentsPositional && pe(Te), oe;
+  if ((J || (pe(e) || oe !== void 0) && process.stdin.isTTY) && process.stdout.isTTY) {
+    let { startCapturingEarlyInput: t, consumeEarlyInput: r } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-s5as5jsg.js")));
+    t();
+    let [{ startMdmRawRead: s }, { startKeychainPrefetch: m }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-s63fwq28.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-h7bbjxja.js")))]);
+    s(), m();
+    let { enableConfigs: v, getGlobalConfig: R, seedInstallIDs: L } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-zd7jjspn.js"))), l = false, O = false, U = false;
+    try {
+      await v((0, import_chunk_m15w38ag.ne)() ? n?.backend : void 0), O = R().defaultToAgentsView === true, l = J || O && oe === void 0;
+    } catch {
+    }
+    if (l) {
+      if (_.config.settings || _.config.managedSettings) {
+        let { loadSettingsFromFlag: o, loadManagedSettingsFromFlag: p } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jrtjjbyg.js")));
+        if (_.config.settings) o(_.config.settings);
+        if (_.config.managedSettings) p(_.config.managedSettings);
+      }
+      if (_.config.pluginDir.length > 0 || _.config.pluginDirNoMcp.length > 0) {
+        let [{ setInlinePlugins: o, setInlinePluginsNoMcp: p }, { clearPluginCache: d }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-r1tgzm8q.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-4918wyv3.js")))]);
+        o(_.config.pluginDir), p(_.config.pluginDirNoMcp), d("claude agents --plugin-dir");
+      }
+      let { loadFastPathPolicy: C } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a9npmmw3.js"))), P = await C(n);
+      if (P) {
+        let { exitWithError: o } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-tpn966c0.js")));
+        o(P);
+      }
+      let x;
+      if (process.env.CLAUDE_CODE_PLUGIN_DIRS?.trim()) {
+        let [{ mergePluginDirs: o, PLUGIN_DIRS_ENV_RECOVERY_HINT: p, PLUGIN_DIRS_ENV_VAR: d, settlePluginDirsEnv: a, withoutPluginDirs: u }, { setInlinePlugins: B }, { clearPluginCache: Q }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-7rhmfxnc.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-r1tgzm8q.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-4918wyv3.js")))]), X = u(a(), _.config.pluginDirNoMcp);
+        if (X.length > 0) x = { name: d, hint: p }, B(o(_.config.pluginDir, X)), Q("claude agents CLAUDE_CODE_PLUGIN_DIRS");
+      }
+      {
+        let { areSideloadFlagsDisabledByPolicy: o, sideloadFlagsBlockedMessage: p } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-9jwm313v.js")));
+        if (o()) {
+          let d = [];
+          if (_.config.pluginDir.length > 0) d.push("--plugin-dir");
+          if (_.config.pluginDirNoMcp.length > 0) d.push("--plugin-dir-no-mcp");
+          if (x) d.push(x.name);
+          if (d.length > 0) {
+            let { exitWithError: a } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-tpn966c0.js")));
+            a(x ? `${p(d)} ${x.hint}` : p(d));
+          }
+        }
+      }
+      let { isAgentsFleetEnabled: A, ensureFleetGateHydrated: W, fleetGateRejected: z, consumeAgentViewRelaunchMarker: D } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-aa90xtyx.js")));
+      await W({ kickGrowthBook: false });
+      let f = false;
+      if (l && A()) try {
+        let { startIsForRootProgramToJudge: o } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-70b912jx.js")));
+        f = o(true);
+      } catch {
+        f = true;
+      }
+      if (f && (J || O && oe === void 0)) {
+        let o = process.argv.slice(2), p = [], d = [];
+        for (let a = 0; a < o.length; a++) {
+          let u = o[a];
+          if (u === "--debug-file" && a + 1 < o.length) p.push(u, o[a + 1]), a++;
+          else if (pe([u])) p.push(u === "--debug" || u === "-d" ? "--debug=" : u);
+          else d.push(u);
+        }
+        process.argv.splice(2, o.length, ...p, ...J ? d : ["--agents-view-if-allowed"]);
+      }
+      if (l && A() && !f) {
+        let { sessionFactsRestored: o } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-y4cr87mf.js"))), p = await o(n);
+        if (p !== null) {
+          let { exitWithError: F } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-tpn966c0.js")));
+          F(p.reason);
+        }
+        let [{ applyFleetViewHostWindowsEnv: d }, { createRoot: a }, { getBaseRenderOptions: u }, { resolve: B }, { getRootSession: Q, setCliSessionConfigCarried: X, setIsInteractive: ae, setRestrictedSession: Z, setSessionStartType: Ue }, { cliCarriesSessionConfig: Be }, { pinStorageV5: Ge }, { appliedSettingSourcesFlagValue: je }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-sz92181d.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a76g8xws.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-s7g91et4.js"))), Promise.resolve().then(() => __toESM(require("path"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-r1tgzm8q.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-t0kz9edq.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-p0gnmqxn.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-m6ntmxwg.js")))]), me = { ..._.config, settingSources: je() }, y = Ge(n), ee;
+        if ((0, import_chunk_m15w38ag.ne)() && y !== void 0) {
+          let [{ credentialsStoreFor: F }, { setGrowthBookCredentials: h, setGrowthBookStorageBackend: b }, { primeFastPathCredentials: te }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jzzag22w.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-vgvexp78.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-d7v0b880.js")))]);
+          ee = F(y), h(ee), b(y), await te(ee), await L(y);
+        }
+        Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-476p1bqc.js"))).then(({ resolveSetting: F }) => {
+          let { value: h } = F("theme", "dark");
+          if (h.startsWith("custom:")) Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-8ts8qy5g.js"))).then((b) => b.loadCustomThemes(y));
+        });
+        let Ve = D();
+        ae(true), X(Be({ ...me, ...K })), Z(_.config.restricted), Ue("agents_view");
+        let fe = () => {
+        };
+        process.on("unhandledRejection", fe);
+        let he = Promise.resolve(), we = () => {
+        }, Ee = new Promise((F) => {
+          we = F;
+        });
+        setImmediate(async () => {
+          if ((0, import_chunk_m15w38ag.ne)() && y !== void 0) try {
+            let [{ credentialsStoreFor: h }, { composePolicyLimitsClient: b, primePolicyLimitsCache: te }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jzzag22w.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-7bg0909g.js")))]);
+            b({ storageV5: y, credentials: h(y) }), await te(y);
+          } catch (h) {
+            Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-gsap2848.js"))).then(({ logForDebugging: b }) => b(`Policy limits: start-up composition on the agents path failed: ${h instanceof Error ? h.message : String(h)}`, { level: "warn" }));
+          }
+          he = Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-s4dyym4n.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-f1nswdzb.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-cyzc43gd.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-5nyv269y.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-ss4ft2hs.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jc975wb9.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-vgvexp78.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-sgmhcjm5.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-zd7jjspn.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-7etk1m9c.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-9p8w0n1t.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-gsap2848.js")))]).then(([{ setupGracefulShutdown: h }, { initializeErrorLogSink: b }, { initializeAnalyticsSink: te }, { initialize1PEventLogging: qe }, { logEvent: Ke }, { captureTeammateModeSnapshotIfEnabled: Je }, { initializeGrowthBook: Xe }, { initializeTelemetryAfterTrust: Qe }, { checkHasTrustDialogAccepted: Se, watchGlobalConfigThroughStorage: Ze }, { applyConfigEnvironmentVariables: et }, { setRepoDetectionGuards: tt }, { initDefaultDebugLog: it }]) => {
+            if (h({ storageV5: y, credentials: ee }), tt({ trustProbe: Se }), Xe().catch(() => {
+            }), b(), te(), qe(y), (0, import_chunk_m15w38ag.ne)() && y !== void 0) it({ storageV5: y }), Ze(y);
+            return Ee.then(() => {
+              if (Se()) et(), Qe(y);
+            }), Ke("tengu_fleetview", { defaultToAgentsView: O, relaunch: Ve }), Je();
+          }).finally(() => process.off("unhandledRejection", fe));
+          let F = () => void Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-bbg9ny7v.js"))).then((h) => h.startBackgroundHousekeeping(Q().host, y));
+          Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-vgvexp78.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-zd7jjspn.js")))]).then(([{ getFeatureValue_CACHED_MAY_BE_STALE: h }, { checkHasTrustDialogAccepted: b }]) => {
+            if (h("tengu_noble_wozniak", true)) Ee.then(() => {
+              if (b()) F();
+            });
+            else F();
+          });
+        }), r(), d();
+        let ie = K?.permissionMode === "bypassPermissions" || K?.allowBypass ? await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-rpt37301.js"))) : void 0;
+        ie?.refuseBypassUnderRoot(K);
+        let _e = ie?.applyBypassPolicyGate(K) ?? K, re = await a(u(false)), { ensureAgentsWorkspaceTrust: We, agentsTrustDecision: Ye } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-qzdfztxy.js")));
+        if (await We(re, Ye(), y), we(), ie) await ie.ensureAgentsBypassConsent(re, _e, y);
+        let ve = true;
+        try {
+          ve = require("/$bunfs/root/chunk-78zjegnc.js").orgConfigGateFlagOnHand(R(), process.env.CLAUDE_INTERNAL_FC_OVERRIDES);
+        } catch {
+        }
+        if (ve && (await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-hzfcae6s.js")))).orgConfigGateFlagCouldEnable()) {
+          let { enforceOrgConfigGateOnLaunchLane: F } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-480kh22k.js")));
+          await F({ showBlockedScreen: () => Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-bddm1jfb.js"))).then((h) => h.showOrgConfigBlockedScreen, () => {
+            return;
+          }), printMessage: async (h) => {
+            let { endInkWithError: b } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-m6kff2db.js")));
+            await b(re, h);
+          } });
+        }
+        let Ce = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-aa90xtyx.js"))), $e = { cwdFilter: _.cwdFilter, dispatchExtraArgs: (0, import_chunk_mmvajxhx.GLe)((0, import_chunk_mmvajxhx.Iun)(me, B)), dispatchDefaults: _e, entryChannel: Ce.isListReturnRelaunch() ? "list_return" : J ? "cli_agents" : "default_home", storageV5: y, credentials: ee };
+        {
+          let { mountFleetViewWithComposerBack: F } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-8evqm9pt.js")));
+          await F(re, $e);
+        }
+        await he.catch(() => {
+        });
+        let { gracefulShutdown: ze } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-s4dyym4n.js")));
+        await ze(0, "other", { suppressResumeHint: true });
+        return;
+      }
+      if (J && !f) return z("claude agents");
+    }
+  }
+  if (e[0] === "self-hosted-runner") {
+    E("cli_self_hosted_runner_path");
+    let t = e[1];
+    if (t === "orchestrator") {
+      let { selfHostedRunnerOrchestratorMain: s } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-f8yq35dh.js")));
+      await s(e.slice(2));
+      return;
+    }
+    if (t === "setup") {
+      let { selfHostedRunnerSetupMain: s } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-dx4f97w4.js")));
+      await s(e.slice(2), n);
+      return;
+    }
+    if (t === "doctor") {
+      let { selfHostedRunnerDoctorMain: s } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-wgmmkyhg.js")));
+      await s(e.slice(2), n);
+      return;
+    }
+    if (t === "code-sign") {
+      let { selfHostedRunnerCodeSignMain: s } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-09yr2amh.js")));
+      await s(e.slice(2));
+      return;
+    }
+    if (t === "work-look") {
+      let { selfHostedRunnerWorkLookMain: s } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-5qkc3ebx.js")));
+      await s(e.slice(2));
+      return;
+    }
+    if (t === "decode-token") {
+      let { selfHostedRunnerDecodeTokenMain: s } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jkb6g4rs.js")));
+      await s(e.slice(2));
+      return;
+    }
+    let { selfHostedRunnerMain: r } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-q0y1fm2x.js")));
+    await r(e.slice(1));
+    return;
+  }
+  let ke = e.includes("--tmux") || e.includes("--tmux=classic"), se;
+  if (!Y && ke && (e.includes("-w") || e.includes("--worktree") || e.some((t) => t.startsWith("--worktree=")))) {
+    if (E("cli_tmux_worktree_fast_path"), de(e)) console.error("--desktop only opens the Claude Desktop app; it can't be combined with `--worktree` or `--tmux`."), process.exit(1);
+    Re(e);
+    let { eagerLoadSettings: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jrtjjbyg.js")));
+    t();
+    let { loadFastPathPolicy: r } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-a9npmmw3.js")));
+    {
+      let v = await r(n);
+      if (v) {
+        let { exitWithError: R } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-tpn966c0.js")));
+        R(v);
+      }
+    }
+    let { configureFastPathGlobalAgents: s } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-x3s55hgp.js")));
+    s();
+    let { isWorktreeModeEnabled: m } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-xphpvqee.js")));
+    if (m()) {
+      let [{ execIntoTmuxWorktree: v }, { pinStorageV5: R }, { initDefaultDebugLog: L }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-cxxhaqaj.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-p0gnmqxn.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-gsap2848.js")))]), l = R(n), O;
+      if ((0, import_chunk_m15w38ag.ne)() && l !== void 0) {
+        L({ storageV5: l });
+        let [{ credentialsStoreFor: C }, { setGrowthBookCredentials: P, setGrowthBookStorageBackend: x }, { primeFastPathCredentials: A }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-jzzag22w.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-vgvexp78.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-d7v0b880.js")))]);
+        O = C(l), P(O), x(l), await A(O);
+        let { seedInstallIDs: W } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-zd7jjspn.js")));
+        await W(l);
+      }
+      let U = await v(e, l, O, { async isLeftToRootProgram() {
+        let { mayModIsolateTmuxLaunch: C } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-bpy7e1r0.js")));
+        return C(e, l, O).catch(() => false);
+      } });
+      if (U.handled) return;
+      if (U.error !== void 0) {
+        let { exitWithError: C } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-tpn966c0.js")));
+        C(U.error);
+      }
+      se = e, process.argv = process.argv.map((C) => C === "--tmux=classic" ? "--tmux" : C);
+    }
+  }
+  if (e.length === 1 && (e[0] === "--update" || e[0] === "--upgrade")) process.argv = [process.argv[0], process.argv[1], "update"];
+  let ge = e.indexOf("--");
+  if ((ge === -1 ? e : e.slice(0, ge)).includes("--bare")) process.env.CLAUDE_CODE_SIMPLE = "1";
+  let { NON_REPL_SUBCOMMANDS: Le, isMcpServeInvocation: Oe, isPluginEvalInvocation: Fe, isRemoteControlInvocation: be, isAgentsJsonInvocation: Ie, isProjectVerbInvocation: Ne } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-w2bvnfzw.js")));
+  if (!Y && se === void 0 && !Le.has(process.argv[2] ?? "") && !Oe(process.argv.slice(2)) && !Fe(process.argv.slice(2)) && !be(process.argv.slice(2)) && !Ie(process.argv.slice(2)) && !Ne(process.argv.slice(2))) {
+    let { startCapturingEarlyInput: t } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-s5as5jsg.js")));
+    t();
+  }
+  let [{ startMdmRawRead: Me }, { startKeychainPrefetch: xe }] = await Promise.all([Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-s63fwq28.js"))), Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-h7bbjxja.js")))]);
+  E("cli_before_prefetch_launches"), Me(), xe(), E("cli_before_main_import"), (await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-b0x0pw0f.js")))).configureZodForStartup();
+  let { main: He } = await Promise.resolve().then(() => __toESM(require("/$bunfs/root/chunk-agsb1bpm.js")));
+  E("cli_after_main_import"), await He(n, Y, se), E("cli_after_main_complete");
+}
+nt();

@@ -1,0 +1,42 @@
+const __prototypeModuleURL = require("node:url").pathToFileURL(__filename).href;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var chunk_d70fgf5t_exports = {};
+__export(chunk_d70fgf5t_exports, {
+  HTl: () => HTl,
+  XGi: () => XGi,
+  YGi: () => YGi,
+  bGt: () => bGt,
+  fxe: () => fxe,
+  wGt: () => wGt
+});
+module.exports = __toCommonJS(chunk_d70fgf5t_exports);
+var bGt = ["PATH", "PYTHONPATH", "NODE_PATH", "RUBYLIB", "PERL5LIB", "PERLLIB", "GEM_PATH", "CLASSPATH", "DYLD_LIBRARY_PATH", "DYLD_FRAMEWORK_PATH", "LD_LIBRARY_PATH", "LIBRARY_PATH", "CPATH", "C_INCLUDE_PATH", "CPLUS_INCLUDE_PATH", "R_LIBS", "R_LIBS_USER", "R_LIBS_SITE"], YGi = /* @__PURE__ */ new Set(["GOFLAGS", "RUSTFLAGS", "GIT_EDITOR", "GIT_SEQUENCE_EDITOR", "GIT_EXTERNAL_DIFF", "GIT_PROXY_COMMAND", "SUDO_ASKPASS", "ZDOTDIR", "NULLCMD", "READNULLCMD", "CDPATH", "GCONV_PATH", "NLSPATH", "DOTNET_STARTUP_HOOKS", "npm_config_node_options", "NPM_CONFIG_NODE_OPTIONS", "LESSOPEN", "LESSCLOSE", "MANPAGER", "MAVEN_OPTS", "MAVEN_ARGS", "MAVEN_CONFIG", "ANT_OPTS", "ANT_ARGS", "GRADLE_OPTS", "JAVA_OPTS", "JVM_OPTS", "LEIN_JVM_OPTS", "ES_JAVA_OPTS", "SBT_OPTS", "SONAR_SCANNER_OPTS", "SONAR_SCANNER_JAVA_OPTS", "MAKEFLAGS", "GNUMAKEFLAGS", "MFLAGS", "MAKEFILES", "AWKPATH", "AWKLIBPATH", "DEVELOPER_DIR", "CFLAGS", "CXXFLAGS", "CPPFLAGS", "LDFLAGS", "LDLIBS", "CC", "CXX", "CPP", "MAKE", "AR", "AS", "LD", "LEX", "YACC", "RANLIB", "ARFLAGS", "RANLIBFLAGS", "NM", "STRIP", "OBJCOPY", "OBJDUMP", "PKG_CONFIG", "FC", "F77", "FFLAGS", "FCFLAGS", "CGO_CFLAGS", "CGO_CPPFLAGS", "CGO_CXXFLAGS", "CGO_FFLAGS", "CGO_LDFLAGS", "HOST_CC", "HOST_CXX", "HOST_AR", "HOST_RANLIB", "HOST_ARFLAGS", "HOST_CFLAGS", "HOST_CXXFLAGS", "TARGET_RANLIB", "TARGET_ARFLAGS", "TARGET_CC", "TARGET_CXX", "TARGET_AR", "TARGET_CFLAGS", "TARGET_CXXFLAGS", "GCC_EXEC_PREFIX", "COMPILER_PATH", "DEPENDENCIES_OUTPUT", "SUNPRO_DEPENDENCIES", "GOAUTH", "GOTOOLCHAIN", "OPENSSL_ENGINES", "SHELLOPTS", "BASHOPTS", "PS4", "PROMPT_COMMAND", "GIT_SSH_COMMAND", "GIT_SSH", "GIT_EXEC_PATH", "GIT_ASKPASS", "SSH_ASKPASS", "GIT_PAGER", "PAGER", "EDITOR", "VISUAL", "BROWSER", "PYTHONWARNINGS", "PYTHONBREAKPOINT", "PERL5DB", "NODE_REPL_EXTERNAL_MODULE", "JAVA_TOOL_OPTIONS", "_JAVA_OPTIONS", "JDK_JAVA_OPTIONS", "IBM_JAVA_OPTIONS", "OPENJ9_JAVA_OPTIONS", "NODE_OPTIONS", "NODE_COMPILE_CACHE", "PYTHONSTARTUP", "PYTHONHOME", "PYTHONUSERBASE", "BASH_ENV", "ENV", "PERL5OPT", "RUBYOPT", "GEM_HOME", "RUBYGEMS_GEMDEPS", "BUNDLE_GEMFILE", "OPENSSL_CONF", "OPENSSL_CONF_INCLUDE", "OPENSSL_MODULES", "DYLD_INSERT_LIBRARIES", "LD_PRELOAD", "LD_AUDIT", "BUN_OPTIONS", "npm_config_script_shell", "NPM_CONFIG_SCRIPT_SHELL", "RUSTC", "RUSTC_WRAPPER", "RUSTC_WORKSPACE_WRAPPER", "RUSTDOC", "CARGO_BUILD_RUSTC", "CARGO_BUILD_RUSTC_WRAPPER", "CARGO_BUILD_RUSTC_WORKSPACE_WRAPPER", "CARGO_BUILD_RUSTDOC", "CARGO_BUILD_RUSTFLAGS", "RUSTDOCFLAGS", "CARGO_BUILD_RUSTDOCFLAGS", "CARGO_ENCODED_RUSTDOCFLAGS", "CARGO_ENCODED_RUSTFLAGS", "GOROOT", "PSModulePath", "PSMODULEPATH", "JAVA_HOME", "JAVACMD", "JDK_HOME", "DOTNET_ROOT", "COREPACK_HOME", "VIRTUAL_ENV", "CONDA_PREFIX", "PYENV_ROOT", "PYENV_VERSION", "VOLTA_HOME", "ASDF_DIR", "ASDF_DATA_DIR", "RBENV_ROOT", "RBENV_VERSION", "NODENV_ROOT", "NODENV_VERSION", "GOENV_ROOT", "GOENV_VERSION", "JENV_ROOT", "JENV_VERSION", "PLENV_ROOT", "PLENV_VERSION", "PERL5SHELL", "RUBYSHELL", "NODE_V8_COVERAGE", "NODE_REDIRECT_WARNINGS", "AWS_PAGER", "GH_PAGER", "CLOUDSDK_PYTHON", "CLOUDSDK_PYTHON_ARGS", "CLOUDSDK_GSUTIL_PYTHON", "CLOUDSDK_BQ_PYTHON", "UV_PYTHON", "GH_BROWSER", "SOPS_GPG_EXEC", "RSYNC_RSH", "CVS_RSH", "TAR_OPTIONS", "DOCKER_CLI_PLUGIN_EXTRA_DIRS", "R_PROFILE", "R_PROFILE_USER", "R_ENVIRON", "R_ENVIRON_USER"]), XGi = /* @__PURE__ */ new Set(["GOROOT", "JAVA_HOME", "JDK_HOME", "DOTNET_ROOT", "COREPACK_HOME", "VIRTUAL_ENV", "CONDA_PREFIX", "PYENV_ROOT", "VOLTA_HOME", "ASDF_DIR", "ASDF_DATA_DIR", "RBENV_ROOT", "NODENV_ROOT", "GOENV_ROOT", "JENV_ROOT", "PLENV_ROOT", "ZDOTDIR"]), A = /* @__PURE__ */ new Set(["GIT_CONFIG_GLOBAL", "GIT_CONFIG_SYSTEM", "JAVACMD", "CLOUDSDK_PYTHON", "CLOUDSDK_GSUTIL_PYTHON", "CLOUDSDK_BQ_PYTHON", "UV_PYTHON", "SOPS_GPG_EXEC", "R_PROFILE", "R_PROFILE_USER", "R_ENVIRON", "R_ENVIRON_USER"]);
+function HTl(_) {
+  let O = _.toUpperCase().replace(/-/g, "_");
+  return XGi.has(O) ? "directory" : A.has(O) ? "file" : null;
+}
+var S = /^(?:DYLD_|LD_|BASH_FUNC_|GIT_CONFIG_|LUA_|TF_CLI_ARGS|CARGO_ALIAS_|CARGO_TARGET_[A-Z0-9_]+_(?:RUNNER|LINKER|RUSTFLAGS|RUSTDOCFLAGS)$|(?:CC|CXX|AR|RANLIB|(?:AR|RANLIB)FLAGS|FC?FLAGS|CFLAGS|CXXFLAGS|LDFLAGS)_(?:X86_64|I[3-6]86|AARCH64|ARM|RISCV|WASM|POWERPC|S390X|MIPS|SPARC|LOONGARCH|THUMB)[A-Z0-9_-]*$|[A-Z0-9][A-Z0-9_]*_(?:EXTERNAL_DIFF|PAGER|EDITOR)$)/, R = new Set([...YGi].map((_) => _.toUpperCase()));
+function wGt(_) {
+  return E.has(_.toUpperCase().replace(/-/g, "_"));
+}
+var E = new Set(bGt);
+function fxe(_) {
+  let O = _.toUpperCase().replace(/-/g, "_");
+  return R.has(O) || S.test(O);
+}

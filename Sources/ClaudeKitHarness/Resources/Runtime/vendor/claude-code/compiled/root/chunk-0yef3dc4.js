@@ -1,0 +1,33 @@
+const __prototypeModuleURL = require("node:url").pathToFileURL(__filename).href;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var chunk_0yef3dc4_exports = {};
+__export(chunk_0yef3dc4_exports, {
+  Y8s: () => Y8s,
+  ZZn: () => ZZn
+});
+module.exports = __toCommonJS(chunk_0yef3dc4_exports);
+var import_chunk_0vw1gz5c = require("/$bunfs/root/chunk-0vw1gz5c.js");
+var e = "/$bunfs/root/claude-code.d.ts-4937b62f.txt.zst";
+var t = (0, import_chunk_0vw1gz5c.Wt)(e, __dirname);
+var Y8s = t;
+function ZZn(s) {
+  return `// Written by Claude Code ${s}.
+${Y8s}
+`;
+}
