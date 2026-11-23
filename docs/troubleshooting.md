@@ -8,7 +8,7 @@
 | --- | --- |
 | Default runtime initializer not found | Import/link `ClaudeKit`; it includes the default-harness initializer |
 | Missing NodeMobile resources or incompatible simulator architecture | Bootstrap before package resolution; use an arm64 simulator/device |
-| macOS harness cannot start | Supply an existing absolute `nodeExecutable` path |
+| macOS harness cannot start | Supply an absolute `nodeExecutable` path to Node 24.14.0. Node 22.22.2 fails during JIT-disabled fetch initialization |
 | Sign-in does not open a browser | Retain/render the coordinator and browser; `signIn()` alone does not present UI |
 | Old API-key screen | Build the current harness-backed demo target, not an old installed binary |
 | Lazy conversation appears empty | Activate history or page from the store; an overview intentionally omits message bodies |

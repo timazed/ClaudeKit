@@ -38,7 +38,7 @@ child.stdout.on('data', data => {
         const callback = new URL(automatic.searchParams.get('redirect_uri'));
         assert.ok(['localhost', '127.0.0.1'].includes(callback.hostname));
         passed = true;
-        console.log(JSON.stringify({ passed: true, harnessVersion: '2.1.112', mode: 'account',
+        console.log(JSON.stringify({ passed: true, harnessVersion: require('../ThirdParty/claude-code.json').version, mode: 'account',
           authorizationOrigin: automatic.origin, authorizationPath: automatic.pathname,
           pkce: 'S256', callbackHost: callback.hostname, manualFallback: true,
           scope: 'Official harness generates login URL and owns PKCE/callback; account authentication and inference await human sign-in.' }));

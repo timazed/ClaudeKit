@@ -4,7 +4,8 @@ import hashlib,json,struct,sys
 from pathlib import Path,PurePosixPath
 root=Path(__file__).resolve().parents[1]
 binary=Path(sys.argv[1]).read_bytes()
-expected=json.loads((root/'pin.json').read_text())['binary_sha256']
+pin=json.loads((root.parents[1]/'HarnessDemo/ThirdParty/claude-code.json').read_text())
+expected=pin['binary_sha256']
 assert hashlib.sha256(binary).hexdigest()==expected, 'Unexpected prototype binary'
 # Bun Offsets trailer + 52-byte module records. Fail closed on format changes.
 trailer=b'\n---- Bun! ----\n'
@@ -34,7 +35,7 @@ while True:
 assert found, 'Unknown Bun module table'
 entry,records=found
 out=root/'Artifacts/extracted'; out.mkdir(exist_ok=True)
-manifest={'version':'2.1.308','binary_sha256':expected,'entry':records[entry][0],'modules':[]}
+manifest={'version':pin['version'],'binary_sha256':expected,'entry':records[entry][0],'modules':[]}
 for name,data,flags in records:
  rel=PurePosixPath(name.removeprefix('/$bunfs/')); assert not rel.is_absolute() and '..' not in rel.parts
  path=out/str(rel); path.parent.mkdir(parents=True,exist_ok=True); path.write_bytes(data)

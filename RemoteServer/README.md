@@ -2,7 +2,7 @@
 
 [Documentation index](../docs/index.md)
 
-A standalone Node 22+ service using the pinned, unmodified official Claude Code CLI. The Swift client is `ClaudeKit.AgentRemoteClient`. Scheduler and loopback HTTP regression tests run without model generation. Live generation and APNs are not deployed or qualified by these tests.
+A standalone Node service using the bootstrapped Claude Code module graph. The Swift client is `ClaudeKit.AgentRemoteClient`. Scheduler and loopback HTTP regression tests run without model generation. Live generation and APNs are not deployed or qualified by these tests.
 
 Use one deployment, account configuration directory, queue directory, and application credential per account. This is not a multitenant identity service. Claude credentials stay on the server. The iOS client sends an application-server bearer credential, **not** its Claude OAuth token. Provision and store that application credential using your app's authentication/Keychain system.
 
@@ -12,7 +12,7 @@ Use one deployment, account configuration directory, queue directory, and applic
 2. Set `CLAUDEKIT_ACCOUNT_DIRECTORY` to that configuration directory. Keep this directory/account stable for the lifetime of the queue; changing account requires a new queue directory.
 3. Set a unique random `CLAUDEKIT_REMOTE_TOKEN` of at least 32 characters through the deployment's secret manager. Do not put it in source control or app source code.
 4. Optionally set `CLAUDEKIT_REMOTE_DIRECTORY` (default `RemoteServer/data`) and `PORT` (default 8787).
-5. Start `node RemoteServer/server.mjs`. There are no npm dependencies. Startup verifies the CLI's pinned SHA-256. `CLAUDEKIT_CLI` can select another file only with the identical hash.
+5. Run `bash Scripts/bootstrap-library.sh` from the checkout with the Node version in `.nvmrc`, then start `node RemoteServer/server.mjs`. Startup verifies the CLI's pinned SHA-256. `CLAUDEKIT_CLI` can select another file only with the identical hash.
 6. For remote devices, put authenticated HTTPS ingress in front of the loopback listener. The Swift client permits cleartext only for loopback development and rejects redirects.
 
 The service runs independent jobs concurrently and persists each submission before acknowledging it. Repeating the same job ID and identical payload returns the existing job. Reusing an ID with a different payload returns 409. Keep the original submission ID/payload until you have a receipt, including after network timeouts. A process crash during generation marks that job `interrupted`; it is never silently regenerated. Submitting a new ID explicitly authorizes new generation.

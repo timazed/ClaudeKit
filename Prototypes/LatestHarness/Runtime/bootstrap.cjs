@@ -65,9 +65,10 @@ setInterval(() => {}, 60000);
     } else if (!process.env.ANTHROPIC_API_KEY) throw new Error('Enter an Anthropic API key before starting API mode.');
   }
   require('./bun.cjs');
-  const cli = path.join(__dirname, 'vendor/root/cli');
+  const pin = require('./vendor/harness-pin.json');
+  const cli = path.join(__dirname, 'compiled/root/cli');
   const hash = require('node:crypto').createHash('sha256').update(fs.readFileSync(cli)).digest('hex');
-  if (hash !== 'd59c529190a6c017c8d2f1e0f94aceb1817bc726f53f2ead01bfe3ca0399521b') {
+  if (hash !== pin.cli_sha256) {
     throw new Error('Official CLI checksum mismatch');
   }
   // --bare disables the harness's own OAuth lookup; account mode must not use it.
@@ -83,7 +84,7 @@ setInterval(() => {}, 60000);
   emit({ type: 'demo_runtime', node: process.version, platform: process.platform,
     arch: process.arch, pid: process.pid, jitless: process.execArgv.includes('--jitless'),
     icu: process.versions.icu || null, flags: process.execArgv,
-    harnessVersion: '2.1.308', prototype: true, moduleFormat: 'esbuild CommonJS', nodeVersionGateException: process.platform === 'ios', harnessSHA256: hash, mode: process.env.DEMO_MODE,
+    harnessVersion: pin.version, prototype: true, moduleFormat: 'esbuild CommonJS', nodeVersionGateException: process.platform === 'ios', harnessSHA256: hash, mode: process.env.DEMO_MODE,
     workspace, resumedSession: process.env.DEMO_RESUME || null });
-  require(path.join(__dirname, 'compiled/root/cli'));
+  require(cli);
 })().catch(failure);

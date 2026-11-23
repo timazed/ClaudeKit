@@ -4,7 +4,7 @@
 
 ## Requirements and package selection
 
-The current package targets iOS 18+ and macOS 14+. Embedded NodeMobile contains arm64 device and arm64 simulator slices. An Intel simulator is not supported by that binary. macOS development uses an explicitly configured Node executable.
+The current package targets iOS 18+ and macOS 14+. Embedded NodeMobile contains arm64 device and arm64 simulator slices. An Intel simulator is not supported by that binary. macOS development uses an configured Node 24.14.0 executable.
 
 Clone the repository and run bootstrap before Xcode resolves the package:
 
@@ -54,7 +54,7 @@ Pass `harness: .init(storageDirectory: directory)` to select an account-specific
 
 On macOS, also pass `nodeExecutable: URL(fileURLWithPath: "/absolute/path/to/node")` in the harness configuration. The supplied `ClaudeSignInBrowser` is iOS-only; a macOS app needs its own implementation of `ClaudeSignInPresenting`. A browser presenter remains necessary for interactive account login.
 
-`harness: .init(authentication: .fixture)` runs the unmodified harness against the deterministic local model fixture. It is a test mode, not a logged-in Claude account or a general-purpose offline model.
+`harness: .init(authentication: .fixture)` runs the pinned harness against the deterministic local model fixture. It is a test mode, not a logged-in Claude account or a general-purpose offline model.
 
 ## Application lifecycle
 

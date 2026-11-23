@@ -17,7 +17,16 @@ async function close(channel = 'main') {
   const old = channels.get(channel);
   if (!old) return;
   channels.delete(channel);
-  await old.worker.terminate();
+  // Let NodeMobile leave native filesystem callbacks before exiting the isolate.
+  // Interrupt a worker directly only if its event loop is unresponsive.
+  const exited = new Promise(resolve => old.worker.once('exit', resolve));
+  const timeout = setTimeout(() => { void old.worker.terminate(); }, 3000);
+  try {
+    old.worker.postMessage('close');
+    await exited;
+  } finally {
+    clearTimeout(timeout);
+  }
   emit({ channel, generation: old.generation, event: { type: 'host_closed' } });
 }
 let lifecycle = Promise.resolve();

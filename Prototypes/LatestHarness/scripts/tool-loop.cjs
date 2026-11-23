@@ -6,7 +6,7 @@ const events=[];let buffer='',note='',calls=0,approvals=0,stream=0,finished=fals
 const send=m=>child.stdin.write(JSON.stringify(m)+'\n');
 const respond=(id,value)=>send({type:'control_response',response:{subtype:'success',request_id:id,response:value}});
 const timeout=setTimeout(()=>finish(new Error('Fixture timed out')),60000);
-function finish(error){if(finished)return;finished=true;clearTimeout(timeout);child.kill("SIGKILL");fs.writeFileSync(path.join(root,'Artifacts/desktop-events.json'),JSON.stringify(events,null,2));if(error){console.error(error.stack);process.exitCode=1;}else console.log(JSON.stringify({passed:true,version:'2.1.308',calls,approvals,stream,note}));}
+function finish(error){if(finished)return;finished=true;clearTimeout(timeout);child.kill("SIGKILL");fs.writeFileSync(path.join(root,'Artifacts/desktop-events.json'),JSON.stringify(events,null,2));if(error){console.error(error.stack);process.exitCode=1;}else console.log(JSON.stringify({passed:true,version:require('../../../HarnessDemo/ThirdParty/claude-code.json').version,calls,approvals,stream,note}));}
 child.stderr.on('data',b=>process.stderr.write(b));
 child.on('exit',code=>{if(!finished)finish(new Error('Host exited '+code));});
 child.stdout.on('data',b=>{buffer+=b;let n;while((n=buffer.indexOf('\n'))>=0){const line=buffer.slice(0,n);buffer=buffer.slice(n+1);if(!line.trim())continue;let e;try{e=JSON.parse(line);}catch{console.error(line);continue;}events.push(e);console.error("EVENT",e.type,e.subtype||"",e.response?.request_id||"",e.stage||"");try{

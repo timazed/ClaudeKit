@@ -19,7 +19,7 @@ final class RawHarnessTransport: @unchecked Sendable {
 
     func start(nodeExecutable: URL?) throws -> AsyncThrowingStream<JSONValue, Error> {
         guard let root = Bundle.module.url(forResource: "Runtime", withExtension: nil),
-              FileManager.default.fileExists(atPath: root.appendingPathComponent("vendor/claude-code/cli.js").path) else {
+              FileManager.default.fileExists(atPath: root.appendingPathComponent("vendor/claude-code/harness-pin.json").path) else {
             throw AgentRuntimeError(code: "runtime_assets_missing", message: "Run Scripts/bootstrap-library.sh before building the app.")
         }
         let bootstrap = root.appendingPathComponent("host.cjs")

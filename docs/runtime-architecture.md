@@ -30,7 +30,7 @@ The harness owns account authentication, provider requests, tool iteration and m
 
 On iOS one embedded Node host serves independent logical channels. Each execution uses a Worker isolate. Filesystem shims resolve relative operations against that worker's logical workspace; this is path routing, not a security sandbox. macOS development uses a process transport with an explicit Node executable.
 
-The pinned official CLI is unmodified. Host shims bridge unsupported platform functions and native tool control. Version updates should be qualified with the fixture/provenance tests rather than changing the CLI in place.
+The pinned native distribution is unpacked and its JavaScript modules are converted for Node. iOS uses a version-specific Node compatibility patch. See [harness updates](harness-updates.md). Host shims bridge unsupported platform functions and native tool control. Version updates should be qualified with the fixture/provenance tests rather than changing the CLI in place.
 
 ## Execution and commit
 

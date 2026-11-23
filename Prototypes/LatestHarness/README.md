@@ -1,6 +1,8 @@
-# Latest official harness: isolated iPhone prototype
+# Claude Code module adaptation
 
-This experiment ports the official Claude Code **2.1.308** module graph to the existing NodeMobile 18.19.1 host. It has its own app ID, `ai.claudekit.latestharnesslab`, and does not change the shipping package, its runtime resources, or its 2.1.112 pin.
+The SDK and Harness Lab reuse this directory’s extraction and conversion scripts for Claude Code **2.1.330**. The [shared release pin](../../HarnessDemo/ThirdParty/claude-code.json) identifies the input and compiled entry. Run `bash Scripts/bootstrap-library.sh` from the repository root to prepare the SDK. The standalone experiment below has its own app ID and fixture.
+
+## Historical device evidence for 2.1.308
 
 On 23 October 2026, the prototype passed on an actual **iPhone 16 Pro Max running iOS 27.0.1**, launched without a debugger:
 
@@ -19,11 +21,11 @@ Reports: [tool loop](Evidence/iphone-tool-loop.json), [resume](Evidence/iphone-r
 
 ## What was adapted
 
-1. The official macOS ARM64 package is pinned in `pin.json`. Download verifies npm SHA-512 integrity and the binary SHA-256. No native desktop executable is run.
-2. `scripts/extract.py` reads the Bun module table and preserves 2,776 source modules/assets and their identities under ignored `Artifacts/extracted`. The original JavaScript is not committed.
-3. `scripts/prepare.cjs` verifies source hashes and converts the JavaScript modules to CommonJS for Node 18. This handles the current bundle's mixed ESM/require cycles. Original extracted files remain unchanged. Desktop native `.node` addons are omitted from the device runtime.
+1. The official macOS ARM64 package is pinned in the shared release manifest. Download verifies npm SHA-512 integrity and the binary SHA-256. No native desktop executable is run.
+2. `scripts/extract.py` reads the Bun module table and preserves the release’s source modules/assets and their identities under ignored `Artifacts/extracted`. The original JavaScript is not committed.
+3. `scripts/prepare.cjs` verifies source hashes and converts the JavaScript modules to CommonJS for Node 18. This handles the current bundle's mixed ESM/require cycles. Original extracted files remain unchanged. For 2.1.330, regexpu-core also converts the terminal-width module’s Unicode sets expression so the logout command loads on NodeMobile 18. Desktop native `.node` addons are omitted from the device runtime.
 4. `Runtime/bun.cjs` maps Bun virtual paths and text assets, provides the small host API subset needed by this path, and loads core-js standard JavaScript polyfills. Unimplemented Bun properties remain absent so upstream feature detection can use its fallbacks. Missing-property accesses are logged. This is not full Bun compatibility.
-5. **One explicit prototype-only harness edit:** the generated `chunk-nj41373t.js` version guard permits iOS to continue below Node 22. The original guard is checked before replacement. Runtime evidence still reports the actual Node 18.19.1 and `nodeVersionGateException: true`. This bypass is a feasibility experiment, not proof that Node 18 satisfies the current harness's runtime requirements.
+5. **iOS compatibility patch.** The generated setup module’s version guard permits iOS to continue below Node 22. The original guard is checked before replacement. Runtime evidence still reports the actual Node 18.19.1 and `nodeVersionGateException: true`. This bypass is a feasibility experiment, not proof that Node 18 satisfies the current harness's runtime requirements.
 6. `CLAUDE_CODE_TMPDIR` points at the app's writable temporary directory. Dedicated pipes and native tools are reused from HarnessDemo in isolated source copies.
 
 The resulting artifact is an **adapted current official harness**, not an unmodified supported Anthropic iOS distribution. Device logs contain optional Bun API fallback messages and a managed-preferences warning because iOS cannot read macOS's `/Library/Managed Preferences` path. These limitations were not hidden or treated as supported features.
@@ -50,6 +52,6 @@ Downloaded originals, converted modules, dependencies and build outputs are igno
 
 ## Remaining qualification
 
-A modern iOS Node runtime or a fully audited compatibility layer is still needed before considering production adoption. Built-in shell tools, native addons, live authentication, policy management, subagents, compaction, cancellation, multiworker concurrency, resource pressure and future releases were not qualified here. The scheduled updater should remain blocked for native packages until an extraction-and-device-validation path is deliberately integrated.
+A modern iOS Node runtime or a fully audited compatibility layer is still needed before considering production adoption. Built-in shell tools, native addons, live authentication, policy management, subagents, compaction, cancellation, multiworker concurrency, resource pressure and future releases were not qualified here. New native versions require a manual compatibility review.
 
 Runtime shims copied from HarnessDemo retain their original attribution; the L Shell MIT notice is in `ThirdParty`. The extracted official harness remains subject to its own license. See the repository's third-party provenance documentation.

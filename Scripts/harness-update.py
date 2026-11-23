@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import re
 import shutil
+import subprocess
 import tarfile
 import tempfile
 import urllib.request
@@ -62,7 +63,7 @@ def candidate(current):
     if not isinstance(entry, str) or not entry.strip():
         raise ValueError('Release metadata is missing a valid Claude executable entry')
     if entry not in ('cli.js', './cli.js'):
-        report.update(status='blocked', reason='Latest release uses a native executable; the embedded iOS host requires cli.js.')
+        report.update(status='blocked', reason='Native release requires manual review of its module graph and Node adaptation.')
         return report, None
     dist = metadata['dist']
     archive = download(dist['tarball'])
@@ -78,7 +79,43 @@ def candidate(current):
     return report, pin
 
 
+def install_native(pin):
+    project = ROOT / 'Prototypes/LatestHarness'
+    artifacts = project / 'Artifacts'
+    runtime = project / 'Runtime'
+    subprocess.run(['python3', 'scripts/download.py'], cwd=project, check=True)
+    subprocess.run(['python3', 'scripts/extract.py', str(artifacts / 'claude-native')], cwd=project, check=True)
+    subprocess.run(['npm', 'ci', '--ignore-scripts', '--no-audit', '--no-fund'], cwd=project, check=True)
+    subprocess.run(['node', 'scripts/prepare.cjs'], cwd=project, check=True)
+    entry = runtime / 'compiled/root/cli'
+    if hashlib.sha256(entry.read_bytes()).hexdigest() != pin['cli_sha256']:
+        raise ValueError('Adapted CLI entry checksum mismatch')
+    for relative in ('HarnessDemo/Runtime', 'Sources/ClaudeKitHarness/Resources/Runtime'):
+        destination = ROOT / relative / 'vendor/claude-code'
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=destination.parent) as temporary:
+            stage = Path(temporary) / 'claude-code'
+            stage.mkdir()
+            for name in ('compiled', 'node_modules'):
+                shutil.copytree(runtime / name, stage / name)
+            shutil.copy(runtime / 'bun.cjs', stage)
+            for name in ('LICENSE.md', 'README.md'):
+                shutil.copy(artifacts / name, stage)
+            (stage / 'harness-pin.json').write_text(json.dumps(pin, indent=2) + '\n')
+            previous = Path(temporary) / 'previous'
+            if destination.exists():
+                destination.rename(previous)
+            try:
+                stage.rename(destination)
+            except OSError:
+                if previous.exists():
+                    previous.rename(destination)
+                raise
+
+
 def install(pin):
+    if pin['package'] == '@anthropic-ai/claude-code-darwin-arm64':
+        return install_native(pin)
     if pin['package'] != PACKAGE:
         raise ValueError('Unexpected pinned package')
     archive = download(pin['tarball'])

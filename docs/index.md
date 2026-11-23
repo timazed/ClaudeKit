@@ -4,14 +4,12 @@
 
 ClaudeKit embeds the official Claude Code harness and exposes a Swift application API. These guides describe the current development alpha. They document implemented behavior rather than assuming every CodexKit API has a Claude equivalent.
 
-## Start here
+## Start building
 
-1. [Install and integrate the SDK](sdk-integration.md).
-2. [Connect Claude-account sign-in](authentication.md).
-3. [Send messages and manage executions](messaging.md).
-4. [Add native tools and approvals](tools-and-policies.md).
-
-For a working app, use the [library demo](../LibraryDemo/README.md). For exact test coverage, read [verification](verification.md).
+- [Build your first SwiftUI assistant](swiftui-assistant.md) walks through a fixture turn, browser sign-in, tool approval, and restoring a conversation.
+- [Integrate the SDK](sdk-integration.md) covers package products, configuration, and runtime ownership.
+- [Understand the embedded runtime](runtime-architecture.md) traces a request from Swift to the harness and back.
+- [Compare capabilities](feature-parity.md) lists platform support and current limits.
 
 ## Feature guides
 
