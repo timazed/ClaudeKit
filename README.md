@@ -1,7 +1,7 @@
 # ClaudeKit
 
 [![CI on main](https://github.com/timazed/ClaudeKit/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/timazed/ClaudeKit/actions/workflows/verify.yml?query=branch%3Amain)
-[![Latest release](https://img.shields.io/github/v/release/timazed/ClaudeKit?include_prereleases&sort=semver&label=release&color=blue)](https://github.com/timazed/ClaudeKit/releases)
+[![Latest release](docs/images/release.svg)](https://github.com/timazed/ClaudeKit/releases)
 
 **Build Swift apps with Claude sign-in, streaming conversations, and app-defined tools.**
 
