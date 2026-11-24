@@ -69,3 +69,13 @@ jobs:
           git fetch "$RUNNER_TEMP/tag.bundle" "refs/tags/$VERSION:refs/tags/$VERSION"
           test "$(git rev-parse "refs/tags/$VERSION^")" = "$GITHUB_SHA"
           git push origin "refs/tags/$VERSION"
+      - name: Refresh the homepage release badge
+        run: |
+          git fetch origin main --tags
+          git switch --detach origin/main
+          python3 Scripts/update-release-badge.py
+          git add docs/images/release.svg
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Refresh published SDK version badge'
+            git push origin HEAD:main
+          fi
