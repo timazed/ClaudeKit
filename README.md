@@ -1,5 +1,8 @@
 # ClaudeKit
 
+[![CI on main](https://github.com/timazed/ClaudeKit/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/timazed/ClaudeKit/actions/workflows/verify.yml?query=branch%3Amain)
+[![Latest release](https://img.shields.io/github/v/release/timazed/ClaudeKit?include_prereleases&sort=semver&label=release&color=blue)](https://github.com/timazed/ClaudeKit/releases)
+
 **Build Swift apps with Claude sign-in, streaming conversations, and app-defined tools.**
 
 ClaudeKit runs the Claude Code agent loop inside your iOS app. The harness sends model requests to Claude, and your Swift code controls the interface, conversation storage, and tools the user can approve.
